@@ -1,0 +1,9 @@
+<form #animeForm="ngForm" (ngSubmit)="onSubmit(animeForm.value)">
+  <label for="animeTitle">Title</label>
+  <input type="text" id="animeTitle" name="animeTitle" [(ngModel)]="animeTitle">
+
+  <label for="animeEpisodes">Episodes</label>
+  <input type="number" id="animeEpisodes" name="animeEpisodes" [(ngModel)]="animeEpisodes">
+  <br>
+  <button type="submit">Add Anime</button>
+</form>
