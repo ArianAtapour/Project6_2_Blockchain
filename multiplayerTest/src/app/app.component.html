@@ -1,21 +1,15 @@
-<form (ngSubmit)="addNewEntry(titleInput.value, Number(episodesInput.value))">
-  <input type="text" #titleInput placeholder="Title">
-  <input type="number" #episodesInput placeholder="Episodes">
-  <button type="submit">Save Data</button>
+<div class="grid">
+  <div *ngFor="let row of grid" class="row">
+    <div *ngFor="let cell of row" class="cell">
+      <div *ngIf="cell">
+        <img [src]="cell.skin" alt="Player Skin">
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<form #skinForm="ngForm" (ngSubmit)="onSubmit(skinForm.value)">
+  <label for="skinUrl">Insert Custom Skin URL</label>
+  <input type="text" id="skinUrl" name="skinUrl" ngModel>
+  <button type="submit">Input Skin</button>
 </form>
-<br>
-<br>
-<table>
-  <thead>
-  <tr>
-    <th>Title</th>
-    <th>Episodes</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let item of animeData$ | async">
-    <td>{{ item.title }}</td>
-    <td>{{ item.episodes }}</td>
-  </tr>
-  </tbody>
-</table>
