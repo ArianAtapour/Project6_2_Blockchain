@@ -1,24 +1,30 @@
-<div id="game">
+<div *ngIf="displayQuestion" id="game">
   <div class="container unsolved">
     <div class="pair_items left">
       <h1 *ngIf="question" class="item">
-        {{this.question.question}}
+        {{question.question}}
       </h1>
     </div>
     <div class="pair_items right">
-      <button *ngFor="let choice of this.question.choices; let i = index;" class="item" (click)="this.clicked = true; this.choiceIndex = i">
+      <button
+        *ngFor="let choice of question.choices; index as i;"
+        class="item"
+        (click)="clicked = true; choiceIndex = i; checkAnswer();"
+      >
         {{choice}}
       </button>
     </div>
   </div>
-  <div *ngIf="this.clicked == true">
-    <div class="container solved" *ngIf="this.question.answerIndex == this.choiceIndex">
+  <div *ngIf="clicked == true">
+    <div class="container solved" *ngIf="checkAnswer()">
       CORRECT!
     </div>
-    <div class="container solved" *ngIf="this.question.answerIndex != this.choiceIndex">
+    <div class="container solved" *ngIf="!checkAnswer()">
       INCORRECT!
     </div>
   </div>
 
+  <app-timeLeft [answer]="answer" (timeExpiredEvent)="incorrectAnswer()"></app-timeLeft>
 </div>
+
 

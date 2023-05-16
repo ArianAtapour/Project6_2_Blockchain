@@ -1,0 +1,33 @@
+in app.component.ts I use <app-game1></app-game1>
+
+you can switch that to <app-trigger></app-trigger> if we have only one variation of the game
+
+<app-trigger></app-trigger>
+is the main app
+
+
+
+<app-game1></app-game1>
+<app-game2></app-game2>
+etc... are different variations of the game aka
+
+game1:
+
+questions:    1 - 2 - 3
+answer index: 3 - 1 - 0
+
+
+game2:
+
+
+questions:    1 - 2 - 3
+answer index: 2 - 3 - 2
+
+
+game3:
+
+
+questions:    1 - 2 - 3
+answer index: 0 - 0 - 2
+
+!!!!!!!THIS MEANS we have to make the game according to the questions and vice versa.
