@@ -15,7 +15,7 @@ export class TriggerComponent {
 
   //TIMER FOR TRIGGER OF QUESTIONS
   //I would say (30, 120) for the official game | change it for testing purposes
-  timeLeft = this.randomNumber(10, 15);
+  timeLeft = this.randomNumber(1, 10);
 
   interval;
   displayTrigger = false;
@@ -51,7 +51,7 @@ export class TriggerComponent {
           this.childRef.newQuestion();
         }
         this.displayTrigger = true;
-        this.timeLeft = this.randomNumber(30, 120);
+        this.timeLeft = this.randomNumber(1, 10);
 
       }
     },1000)
