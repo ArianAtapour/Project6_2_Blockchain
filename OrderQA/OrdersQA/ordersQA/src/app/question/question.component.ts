@@ -48,6 +48,7 @@ export class QuestionComponent implements OnInit {
   }
 
   handleAnswer(isCorrect: boolean) {
+    this.clicked = true;
     if(isCorrect) {
       //TODO: Implement what happens when correct answer
       this.deleteQuestion();

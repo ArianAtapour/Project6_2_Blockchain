@@ -9,11 +9,9 @@ import {QuestionComponent} from "../question/question.component";
   styleUrls: ['./trigger.component.css']
 })
 
-//TODO: Implement Admin Page to Start/Stop the flow [Game master]
 export class TriggerComponent {
   //Child Reference
   @ViewChild(QuestionComponent) childRef: QuestionComponent
-
 
   //TIMER FOR TRIGGER OF QUESTIONS
   //I would say (30, 120) for the official game | change it for testing purposes
@@ -35,12 +33,18 @@ export class TriggerComponent {
   randomNumber(min: number, max: number) {
     return Math.random() * (max - min) + min;
   }
-
   startTimer() {
     this.interval = setInterval(() => {
       console.log(this.timeLeft);
+      //Stop timer if question hasn't been answered
       if(this.timeLeft > 0) {
-        this.timeLeft--;
+        if (this.childRef) {
+          if (this.childRef.clicked) {
+            this.timeLeft--;
+          }
+        } else {
+          this.timeLeft--;
+        }
       } else {
         //time ran out, trigger new question
         if(this.childRef) {
