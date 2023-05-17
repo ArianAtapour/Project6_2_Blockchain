@@ -6,6 +6,7 @@
       </h1>
     </div>
     <div class="pair_items right">
+      <!--keep track of index to register user's choice-->
       <button
         *ngFor="let choice of question.choices; index as i;"
         class="item"
@@ -15,6 +16,7 @@
       </button>
     </div>
   </div>
+  <!--Run this only after the user has clicked a button-->
   <div *ngIf="clicked == true">
     <div class="container solved" *ngIf="checkAnswer()">
       CORRECT!
@@ -24,6 +26,7 @@
     </div>
   </div>
 
+  <!--This is the question timer component-->
   <app-timeLeft [answer]="answer" (timeExpiredEvent)="incorrectAnswer()"></app-timeLeft>
 </div>
 

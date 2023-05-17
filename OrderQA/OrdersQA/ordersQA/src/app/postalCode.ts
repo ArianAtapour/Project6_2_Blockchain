@@ -2,26 +2,26 @@ import { Qa } from './qa';
 export const POSTALCODE: Qa[] = [
   {
     id: 1,
-    question: 'What were the first two letters of the Postal Code where the package was headed?',
-    choices: ['GB', 'UK', 'GR', 'US'],
-    answerIndex: 0
-  },
-  {
-    id: 2,
-    question: 'The package arrived but the first two letters of the Postal Code on the cover are unreadable, what were they?',
-    choices: ['AZ', 'NL', 'AU', 'GE'],
-    answerIndex: 1
-  },
-  {
-    id: 3,
-    question: 'David',
-    choices: ['is a BOSS', 'is the BEST', 'is so COOL', 'is a fucking JEW'],
+    question: 'Who\'s the hottest?',
+    choices: ['Masha', 'Lara', 'Ryan Reynolds', 'David Hlavacek'],
     answerIndex: 3
   },
   {
+    id: 2,
+    question: "Are you trippin?",
+    choices: ['what', 'no u are', 'I am', 'absofruitely not'],
+    answerIndex: 2
+  },
+  {
+    id: 3,
+    question: 'David and Masha are homies',
+    choices: ['xD', 'nah', 'fax', 'u trippin'],
+    answerIndex: 2
+  },
+  {
     id: 4,
-    question: 'Hi',
-    choices: ['Yo', 'No', 'Yes', 'LOL'],
-    answerIndex: 1
+    question: 'Is Masha cute?',
+    choices: ['Always', 'No', 'Yes', 'Absolutely'],
+    answerIndex: 0
   },
 ];

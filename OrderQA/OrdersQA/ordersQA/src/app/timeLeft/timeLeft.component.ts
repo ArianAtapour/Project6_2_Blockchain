@@ -9,34 +9,25 @@ export class TimeLeftComponent implements OnInit {
   @Input() answer = true;
   @Output() timeExpiredEvent = new EventEmitter<boolean>; boolean
 
-
-  // timeLeft: number = Math.floor((this.randomNumber(30, 120)));
+  //HOW LONG THE USER HAS TO PICK AN ANSWER
   timeLeft: number = 15;
+
   interval;
 
   ngOnInit() {
     this.startTimer();
   }
-
-  randomNumber(min: number, max: number) {
-    return Math.random() * (max - min) + min;
-  }
-
   startTimer() {
     this.interval = setInterval(() => {
+      //if answered incorrectly: timeLeft = 0
       if(this.timeLeft > 0 && this.answer) {
         this.timeLeft--;
       } else {
         this.timeLeft = 0;
+        //if time runs out, run incorrectAnswer() in app-question
         this.timeExpiredEvent.emit(false);
       }
     },1000)
   }
-
-
-  // <button (click)='startTimer()'>Start Timer</button>
-  // <button (click)='pauseTimer()'>Pause</button>
-  //
-  //   <p>{{timeLeft}} Seconds Left....</p>
 
 }

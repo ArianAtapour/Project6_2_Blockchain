@@ -8,30 +8,30 @@ import {QuestionComponent} from "../question/question.component";
   templateUrl: './trigger.component.html',
   styleUrls: ['./trigger.component.css']
 })
+
+//TODO: Implement Admin Page to Start/Stop the flow [Game master]
 export class TriggerComponent {
+  //Child Reference
   @ViewChild(QuestionComponent) childRef: QuestionComponent
-  timeLeft = this.randomNumber(30, 120);
+
+
+  //TIMER FOR TRIGGER OF QUESTIONS
+  //I would say (30, 120) for the official game | change it for testing purposes
+  timeLeft = this.randomNumber(10, 15);
+
   interval;
   displayTrigger = false;
-  private readonly onDestroy: Subject<any> = new Subject<any>();
   constructor() {
-    console.log("CONSTRUCTOR");
     this.displayTrigger = false;
     this.startTimer();
   }
 
-
+  //Referencing of Child's method
   destroyChild() {
     if (this.childRef) {
       this.childRef.deleteQuestion();
     }
   }
-
-  // display()
-  // {
-  //   this.displayTrigger = true;
-  // }
-
   randomNumber(min: number, max: number) {
     return Math.random() * (max - min) + min;
   }
@@ -42,7 +42,7 @@ export class TriggerComponent {
       if(this.timeLeft > 0) {
         this.timeLeft--;
       } else {
-        console.log("NOW!");
+        //time ran out, trigger new question
         if(this.childRef) {
           this.childRef.newQuestion();
         }
@@ -51,6 +51,10 @@ export class TriggerComponent {
 
       }
     },1000)
+  }
+
+  pauseTimer() {
+    clearInterval(this.interval);
   }
 
 

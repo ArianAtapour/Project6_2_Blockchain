@@ -8,6 +8,7 @@ import { Game1Component } from './game1/game1.component';
 import { Game2Component } from './game2/game2.component';
 import { TimeLeftComponent } from './timeLeft/timeLeft.component';
 import { TriggerComponent } from './trigger/trigger.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { TriggerComponent } from './trigger/trigger.component';
     Game1Component,
     Game2Component,
     TimeLeftComponent,
-    TriggerComponent
+    TriggerComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
