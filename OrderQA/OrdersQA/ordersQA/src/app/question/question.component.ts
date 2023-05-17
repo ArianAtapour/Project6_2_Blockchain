@@ -17,7 +17,6 @@ export class QuestionComponent implements OnInit {
   public choiceIndex: number;
   public clicked: boolean;
   public answer: boolean;
-  public index: number;
   constructor() { }
   ngOnInit() {
     this.newQuestion();
@@ -33,35 +32,30 @@ export class QuestionComponent implements OnInit {
       this.question = POSTALCODE[Math.floor(Math.random()*POSTALCODE.length)]
     );
   }
+
   deleteQuestion() {
     this.displayQuestion = false;
   }
 
-  checkAnswer() {
+  checkAnswer(choice: number) {
+    this.clicked = true;
     //check if user's answer is the correct answer
-    if(this.clicked && this.choiceIndex == this.question.answerIndex) {
-      this.answer = true;
-      this.correctAnswer();
-      return true;
+    const isCorrect = (choice == this.question.answerIndex);
+    this.answer = isCorrect;
+    this.handleAnswer(isCorrect);
+
+    return isCorrect;
+  }
+
+  handleAnswer(isCorrect: boolean) {
+    if(isCorrect) {
+      //TODO: Implement what happens when correct answer
+      this.deleteQuestion();
+      console.log("CORRECT!");
+    } else {
+      //TODO: Implement what happens when incorrect answer
+      this.deleteQuestion();
+      console.log("INCORRECT!");
     }
-    this.answer = false;
-    this.incorrectAnswer();
-    return false;
-  }
-
-  //TODO: Implement what happens when correct answer
-  correctAnswer() {
-    //DESTROY
-    // this.answerEvent.emit(this.answer);
-    this.deleteQuestion();
-    console.log("CORRECT!");
-  }
-
-  //TODO: Implement what happens when incorrect answer
-  incorrectAnswer() {
-    //DESTROY + PUNISHMENT
-    // this.answerEvent.emit(this.answer);
-    this.deleteQuestion();
-    console.log("INCORRECT!");
   }
 }

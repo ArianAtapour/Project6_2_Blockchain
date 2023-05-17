@@ -10,24 +10,22 @@
       <button
         *ngFor="let choice of question.choices; index as i;"
         class="item"
-        (click)="clicked = true; choiceIndex = i; checkAnswer();"
+        (click)="checkAnswer(i);"
       >
         {{choice}}
       </button>
     </div>
   </div>
   <!--Run this only after the user has clicked a button-->
-  <div *ngIf="clicked == true">
-    <div class="container solved" *ngIf="checkAnswer()">
-      CORRECT!
+  <div *ngIf="clicked">
+    <div class="container solved">
+      {{ answer ? 'CORRECT!' : 'INCORRECT!' }}
     </div>
-    <div class="container solved" *ngIf="!checkAnswer()">
-      INCORRECT!
-    </div>
+
   </div>
 
   <!--This is the question timer component-->
-  <app-timeLeft [answer]="answer" (timeExpiredEvent)="incorrectAnswer()"></app-timeLeft>
+  <app-timeLeft [answer]="answer" (timeExpiredEvent)="handleAnswer(false)"></app-timeLeft>
 </div>
 
 
