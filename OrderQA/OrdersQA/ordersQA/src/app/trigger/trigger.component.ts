@@ -15,7 +15,7 @@ export class TriggerComponent {
 
   //TIMER FOR TRIGGER OF QUESTIONS
   //I would say (30, 120) for the official game | change it for testing purposes
-  timeLeft = this.randomNumber(1, 10);
+  timeLeft = this.randomNumber(1, 5);
 
   interval;
   displayTrigger = false;
@@ -36,14 +36,17 @@ export class TriggerComponent {
   startTimer() {
     this.interval = setInterval(() => {
       console.log(this.timeLeft);
+      let one = false;
       //Stop timer if question hasn't been answered
       if(this.timeLeft > 0) {
         if (this.childRef) {
-          if (this.childRef.clicked) {
+          if (this.childRef.clicked && !one) {
             this.timeLeft--;
+            one = true;
           }
-        } else {
+        } else if (!one) {
           this.timeLeft--;
+          one = true;
         }
       } else {
         //time ran out, trigger new question
@@ -51,7 +54,7 @@ export class TriggerComponent {
           this.childRef.newQuestion();
         }
         this.displayTrigger = true;
-        this.timeLeft = this.randomNumber(1, 10);
+        this.timeLeft = this.randomNumber(1, 5);
 
       }
     },1000)
