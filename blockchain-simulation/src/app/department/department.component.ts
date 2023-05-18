@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 // import { _the_specific_department } from '';
 import { Department } from "../department";
 import { Factory } from "../departments";
@@ -10,9 +10,9 @@ import {Block} from "../block";
   styleUrls: ['./department.component.css']
 })
 export class DepartmentComponent {
+  @Input() department: Department;
   @Output() sendEvent = new EventEmitter<Block>();
 
-  department = Factory;
   block;
 
   constructor(department: Department) {
