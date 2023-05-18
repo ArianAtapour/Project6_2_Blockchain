@@ -3,7 +3,7 @@
   <tr>
     <h2>Blockchain</h2>
   </tr>
-  <tr *ngFor="let block of blocks; index as i">
+  <tr *ngFor="let block of blocks.slice().reverse(); index as i">
     <button (click)="setIndex(i)">
       <td [ngStyle]="{color: getBlockDepartmentColor(block)}">{{hashIt(getBlockDepartmentName(block), block.message)}}</td>
 
