@@ -1,0 +1,11 @@
+<form (ngSubmit)="createBlock(message.value, status.value)">
+  <label>Message: <textarea #message></textarea></label>
+  <div class="custom-control custom-radio">
+    <input id="true" type="radio" class="custom-control-input" value="true" name="true" #status ngModel>
+    <label class="custom-control-label" for="true">Male</label>
+  </div>
+  <div class="custom-control custom-radio">
+    <input id="false" type="radio" class="custom-control-input" value="false" name="false" #status ngModel>
+    <label class="custom-control-label" for="false">Female</label>
+  </div>
+</form>
