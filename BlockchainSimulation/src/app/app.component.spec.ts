@@ -19,13 +19,13 @@ describe('AppComponent', () => {
   it(`should have as title 'SupplyChain'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('SupplyChain');
+    expect(app.title).toEqual('BlockchainSimulation');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('SupplyChain app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('BlockchainSimulation app is running!');
   });
 });
