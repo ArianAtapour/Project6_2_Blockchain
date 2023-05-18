@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { POSTALCODE } from '../postalCode';
+import { Game1 } from '../questions';
 
 @Component({
   selector: 'app-game1',
@@ -7,7 +7,7 @@ import { POSTALCODE } from '../postalCode';
   styleUrls: ['./game1.component.css']
 })
 export class Game1Component implements OnInit {
-  postalCode = POSTALCODE;
+  postalCode = Game1;
   constructor() { }
   ngOnInit() {
   }

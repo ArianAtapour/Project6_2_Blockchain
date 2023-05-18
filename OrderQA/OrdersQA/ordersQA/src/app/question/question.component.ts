@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Qa } from '../qa';
-import { POSTALCODE } from "../postalCode";
+import { Game1 } from "../questions";
 
 @Component({
   selector: 'app-question',
@@ -17,7 +17,10 @@ export class QuestionComponent implements OnInit {
   public choiceIndex: number;
   public clicked: boolean;
   public answer: boolean;
-  constructor() { }
+  public questionIndex: number;
+  constructor() {
+    this.questionIndex = 0;
+  }
   ngOnInit() {
     this.newQuestion();
   }
@@ -29,7 +32,9 @@ export class QuestionComponent implements OnInit {
     this.answer = true;
     this.choiceIndex = -1;
     console.log(
-      this.question = POSTALCODE[Math.floor(Math.random()*POSTALCODE.length)]
+      // this.question = Game1[Math.floor(Math.random()*Game1.length)]
+      this.question = Game1[this.questionIndex > Game1.length ? this.questionIndex = 0 : this.questionIndex++]
+
     );
   }
 
@@ -55,6 +60,8 @@ export class QuestionComponent implements OnInit {
       console.log("CORRECT!");
     } else {
       //TODO: Implement what happens when incorrect answer
+      //repeat question if incorrect
+      this.questionIndex--;
       this.deleteQuestion();
       console.log("INCORRECT!");
     }

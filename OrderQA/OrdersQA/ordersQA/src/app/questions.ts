@@ -1,5 +1,5 @@
 import { Qa } from './qa';
-export const POSTALCODE: Qa[] = [
+export const Game1: Qa[] = [
   {
     id: 1,
     question: 'What were the first two letters of the postcode where the package was sent?',
