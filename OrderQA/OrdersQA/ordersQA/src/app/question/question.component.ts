@@ -12,6 +12,7 @@ export class QuestionComponent implements OnInit {
   @Input() qas: Qa[];
   @Output() answerEvent = new EventEmitter<boolean>;
 
+  public game: Qa[]
   public displayQuestion: boolean;
   public question: Qa;
   public choiceIndex: number;
@@ -19,7 +20,9 @@ export class QuestionComponent implements OnInit {
   public answer: boolean;
   public questionIndex: number;
   // public gameCollection = new Array(3);
-  constructor() {
+  constructor(game: Qa[]) {
+    // this.game = game;
+    this.game = Game1;
     this.questionIndex = 0;
     // this.gameCollection.push(Game1);
     // this.gameCollection.push(Game2);
@@ -38,7 +41,7 @@ export class QuestionComponent implements OnInit {
     console.log(
       // this.question = Game1[Math.floor(Math.random()*Game1.length)]
       // this.question = this.gameCollection[Math.floor(Math.random()*2)][this.questionIndex > Game1.length ? this.questionIndex = 0 : this.questionIndex++]
-      this.question = Game1[this.questionIndex >= Game1.length ? this.questionIndex = 0 : this.questionIndex++]
+      this.question = this.game[this.questionIndex >= this.game.length ? this.questionIndex = 0 : this.questionIndex++]
     );
   }
 
