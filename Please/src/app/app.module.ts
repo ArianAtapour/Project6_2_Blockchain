@@ -9,6 +9,7 @@ import { Department } from "./department";
 import { Factory } from "./testDepartment";
 import { Block } from "./block";
 import { Blockchain } from "./blockchain";
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { Blockchain } from "./blockchain";
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
