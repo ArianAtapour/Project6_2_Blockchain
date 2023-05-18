@@ -20,7 +20,7 @@ export class QuestionComponent implements OnInit {
   public answer: boolean;
   public questionIndex: number;
   // public gameCollection = new Array(3);
-  constructor(game: Qa[]) {
+  constructor() {
     // this.game = game;
     this.game = Game1;
     this.questionIndex = 0;
