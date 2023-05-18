@@ -1,4 +1,4 @@
 export class Department {
-  name: string;
-  description: string;
+  public name: string = "";
+  public description: string = "";
 }

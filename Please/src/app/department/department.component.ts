@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 // import { _the_specific_department } from '';
 import { Department } from "../department";
-import { Factory, Supplier } from "../testDepartment";
+import { Factory } from "../testDepartment";
 import {Block} from "../block";
 
 @Component({
