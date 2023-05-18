@@ -25,3 +25,21 @@ export const Game1: Qa[] = [
     answerIndex: 1
   },
 ];
+
+export const Game2: Qa[] = [
+  {
+    id: 1,
+    question: 'WTFFFFFF',
+    choices: ['UK', 'US', 'NL', 'AU'],
+    answerIndex: 0
+  },
+];
+
+export const Game3: Qa[] = [
+  {
+    id: 1,
+    question: 'AHAHAH',
+    choices: ['UK', 'US', 'NL', 'AU'],
+    answerIndex: 0
+  },
+];

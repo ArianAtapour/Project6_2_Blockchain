@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Qa } from '../qa';
-import { Game1 } from "../questions";
+import { Game1, Game2, Game3 } from "../questions";
 
 @Component({
   selector: 'app-question',
@@ -18,8 +18,12 @@ export class QuestionComponent implements OnInit {
   public clicked: boolean;
   public answer: boolean;
   public questionIndex: number;
+  // public gameCollection = new Array(3);
   constructor() {
     this.questionIndex = 0;
+    // this.gameCollection.push(Game1);
+    // this.gameCollection.push(Game2);
+    // this.gameCollection.push(Game3);
   }
   ngOnInit() {
     this.newQuestion();
@@ -33,8 +37,8 @@ export class QuestionComponent implements OnInit {
     this.choiceIndex = -1;
     console.log(
       // this.question = Game1[Math.floor(Math.random()*Game1.length)]
-      this.question = Game1[this.questionIndex > Game1.length ? this.questionIndex = 0 : this.questionIndex++]
-
+      // this.question = this.gameCollection[Math.floor(Math.random()*2)][this.questionIndex > Game1.length ? this.questionIndex = 0 : this.questionIndex++]
+      this.question = Game1[this.questionIndex >= Game1.length ? this.questionIndex = 0 : this.questionIndex++]
     );
   }
 
