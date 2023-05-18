@@ -1,1 +1,18 @@
-<app-department (sendEvent)="pushToBlockchain($event)"></app-department>
+<app-department></app-department>
+<table>
+  <tr>
+    <h2>Blockchain</h2>
+  </tr>
+  <tr *ngFor="let block of blocks; index as i">
+    <button (click)="setIndex(i)">
+      <td [ngStyle]="{color: getBlockDepartmentColor(block)}">{{hashIt(getBlockDepartmentName(block), block.message)}}</td>
+
+      <!--    IMPLEMENT THIS AS BUTTON WHEN CLICKED EXPAND BLOCK DATA!-->
+    </button>
+  </tr>
+</table>
+<br><br>
+<div *ngIf="click">
+  <app-show-info [department]="getBlockDepartment(blocks[index])" [message]="blocks[index].message" [status]="blocks[index].status">
+  </app-show-info>
+</div>

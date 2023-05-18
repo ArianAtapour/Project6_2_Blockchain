@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class Blockchain {
-  blocks: Block[] = [];
+  public blocks: Block[] = [];
 
   constructor() { }
 

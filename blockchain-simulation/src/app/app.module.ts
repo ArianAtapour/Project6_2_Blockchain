@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DepartmentComponent } from './department/department.component';
 import { BlockchainComponent } from './blockchain/blockchain.component';
+import { ShowInfoComponent } from './show-info/show-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DepartmentComponent,
-    BlockchainComponent
+    BlockchainComponent,
+    ShowInfoComponent
   ],
   imports: [
     BrowserModule,
