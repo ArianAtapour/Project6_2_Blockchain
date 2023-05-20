@@ -3,12 +3,9 @@
     <button
       *ngFor="let department of departments; index as i;"
       (click)="indexToDepartment(i)"
-      routerLink="department"
-      routerLinkActive="active"
       class="nav-link btn btn-primary"
     >
       {{ department.name }}
     </button>
   </div>
   <app-department *ngIf="clicked" [department]="department"></app-department>
-  <router-outlet></router-outlet>

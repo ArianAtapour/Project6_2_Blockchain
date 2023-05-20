@@ -6,11 +6,12 @@ import {Inject, Injectable} from "@angular/core";
 export class Block {
   department: Department;
   message: string;
-  hash?: number;
+  hash: number;
 
   constructor(department: Department, @Inject(String) message: string) {
     this.department = department;
     this.message = message;
+    this.hash = 0;
   }
 
   static createBlock(department: Department, message: string) {

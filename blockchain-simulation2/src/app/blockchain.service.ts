@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
 import {Block} from "./block";
+import {Department} from "./department/department";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlockchainService {
-  blocks: Block[];
+  private _blocks: Array<Block> = new Array<Block>();
   constructor() {
-    this.blocks = { } as Block[];
+    let department1 = Department.createDepartment(1, "Client", "Peepee")
+    let block1 = Block.createBlock(department1, "test");
+    this.sendBlockToBlockchain(block1);
+
   }
   sendBlockToBlockchain(block: Block) {
     block.setHash(this.hashIt(block.getName(), block.getMessage()));
-    this.blocks.push(block);
+    this._blocks.push(block);
   }
 
   hashIt(str1: string, str2: string): number {
@@ -27,7 +31,7 @@ export class BlockchainService {
     return hash;
   }
 
-  getBlocks() {
-    return this.blocks;
+  get blocks() {
+    return this._blocks;
   }
 }
