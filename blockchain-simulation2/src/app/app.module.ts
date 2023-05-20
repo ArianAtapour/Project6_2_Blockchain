@@ -4,9 +4,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
-import { environment } from 'src/environments/environment';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+// import { AngularFireModule } from '@angular/fire';
+// import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from "../environments/environment";
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -64,8 +64,8 @@ import { BlockInfoComponent } from './block-info/block-info.component';
     MdbTabsModule,
     MdbTooltipModule,
     MdbValidationModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    // AngularFireModule.initializeApp(environment.firebase),
+    // AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
