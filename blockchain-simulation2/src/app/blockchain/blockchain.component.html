@@ -1,1 +1,25 @@
-<p>blockchain works!</p>
+<table>
+  <tr>
+    <h2>Blockchain</h2>
+  </tr>
+  <tr *ngFor="let block of blocks.slice().reverse(); index as i">
+    <button (click)="setIndex(blocks.length - 1 - i)">
+      <td
+        [ngStyle]="{color: getColor(getBlockDepartmentId(block))}"
+      >
+        {{ getBlockHash(block) }}
+      </td>
+
+    </button>
+  </tr>
+</table>
+<br>
+<div *ngIf="click">
+  <app-block-info
+    [hash]="getBlockHash(blocks[index])"
+    [id]="getBlockDepartmentId(blocks[index])"
+    [name]="getBlockDepartmentName(blocks[index])"
+    [description]="getBlockDepartmentDescription(blocks[index])"
+    [message]="getBlockMessage(blocks[index])"
+  ></app-block-info>
+</div>

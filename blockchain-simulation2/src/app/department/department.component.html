@@ -1,1 +1,8 @@
-<p>department works!</p>
+<mat-card class="item" *ngIf="department">
+  <h1>{{ department.name }}</h1>
+  <label>Message: <br><textarea #message></textarea></label>
+  <br><br>
+  <button (click)="sendBlockToBlockchain(message.value)">Submit</button>
+  <br><br>
+</mat-card>
+<app-blockchain></app-blockchain>

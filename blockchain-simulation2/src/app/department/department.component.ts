@@ -1,16 +1,35 @@
-import { Component } from '@angular/core';
+import {Component, Inject, Input, Output} from '@angular/core';
+import { Router } from '@angular/router';
+
 import { BlockchainService } from "../blockchain.service";
+import {Department} from "./department";
+import {Block} from "../block";
+
 
 @Component({
   selector: 'app-department',
   templateUrl: './department.component.html',
-  styleUrls: ['./department.component.css']
+  styleUrls: ['./department.component.scss']
 })
 export class DepartmentComponent {
+  @Input() department: Department = {} as Department;
+  @Output() block: Block | null = null;
+  blockchainService: BlockchainService
 
-
-  pushToBlockchain() {
-
+  constructor(blockchainService: BlockchainService) {
+    this.blockchainService = blockchainService;
   }
+
+  ngOnInit(): void {};
+
+  createBlock(message: string) {
+    return Block.createBlock(this.department, message);
+  }
+
+  sendBlockToBlockchain(message: string) {
+    this.blockchainService.sendBlockToBlockchain(this.createBlock(message));
+  }
+
+
 
 }
