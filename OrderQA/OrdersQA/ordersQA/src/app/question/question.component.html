@@ -1,9 +1,13 @@
+<br><br><br>
 <div *ngIf="displayQuestion" id="game">
   <div class="container unsolved">
     <div class="pair_items left">
-      <h1 *ngIf="question" class="item">
-        {{question.question}}
-      </h1>
+      <div *ngIf="question">
+        <img alt="sad cat" [src]="question.image">
+        <h1 class="item">
+          {{question.question}}
+        </h1>
+      </div>
     </div>
     <div class="pair_items right">
       <!--keep track of index to register user's choice-->

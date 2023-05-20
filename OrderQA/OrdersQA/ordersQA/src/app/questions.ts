@@ -1,28 +1,34 @@
+// PATH: /../../assets/images/yourImage.jpg
+
 import { Qa } from './qa';
 export const Game1: Qa[] = [
   {
     id: 1,
     question: 'What were the first two letters of the postcode where the package was sent?',
     choices: ['UK', 'US', 'NL', 'AU'],
-    answerIndex: 0
+    answerIndex: 0,
+    image: "/../../assets/images/download.jpg"
   },
   {
     id: 2,
     question: "Were the materials payed for?",
     choices: ['Not yet', 'Yes'],
-    answerIndex: 1
+    answerIndex: 1,
+    image: "/../../assets/images/download-2.jpg"
   },
   {
     id: 3,
     question: 'What time is the package supposed to be released?',
     choices: ['10AM', '13PM', '6AM', '15PM'],
-    answerIndex: 2
+    answerIndex: 2,
+    image: "/../../assets/images/download-1.jpg"
   },
   {
     id: 4,
     question: 'Did the client want to send the package through fast delivery?',
     choices: ['Yes', 'No'],
-    answerIndex: 1
+    answerIndex: 1,
+    image: "/../../assets/images/download.jpg"
   },
 ];
 
@@ -31,7 +37,8 @@ export const Game2: Qa[] = [
     id: 1,
     question: 'WTFFFFFF',
     choices: ['UK', 'US', 'NL', 'AU'],
-    answerIndex: 0
+    answerIndex: 0,
+    image: "/../../assets/images/download.jpg"
   },
 ];
 
@@ -40,6 +47,7 @@ export const Game3: Qa[] = [
     id: 1,
     question: 'AHAHAH',
     choices: ['UK', 'US', 'NL', 'AU'],
-    answerIndex: 0
+    answerIndex: 0,
+    image: "/../../assets/images/download.jpg"
   },
 ];

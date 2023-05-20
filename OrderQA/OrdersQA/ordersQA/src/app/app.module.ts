@@ -9,6 +9,7 @@ import { Game2Component } from './game2/game2.component';
 import { TimeLeftComponent } from './timeLeft/timeLeft.component';
 import { TriggerComponent } from './trigger/trigger.component';
 import { AdminComponent } from './admin/admin.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -20,10 +21,11 @@ import { AdminComponent } from './admin/admin.component';
     TriggerComponent,
     AdminComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgOptimizedImage
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
