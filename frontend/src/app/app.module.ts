@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StartPageComponent } from './start-page/start-page.component';
 import { RulesPageComponent } from './rules-page/rules-page.component';
+import { CharacterNameComponent } from './character-name/character-name.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartPageComponent,
-    RulesPageComponent
+    RulesPageComponent,
+    CharacterNameComponent
   ],
   imports: [
     BrowserModule,
