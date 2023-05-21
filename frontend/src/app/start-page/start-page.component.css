@@ -1,0 +1,48 @@
+.container {
+  background-color: #303B44;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: 'Hind', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header { 
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.welcome-text {
+  color: #6C47F6;
+  font-family: 'Hind', sans-serif;
+  font-size: 96px;
+  font-weight: bold;
+}
+
+.quest-text {
+  color: #FFD215;
+  font-family: 'Hind', sans-serif;
+  font-size: 96px;
+  font-weight: bold;
+}
+
+button {
+  background-color: #FFD215;
+  color: #000000;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Hind', sans-serif;
+  font-size: 50px;
+  font-weight: bold; 
+  margin-top: 30px
+}
