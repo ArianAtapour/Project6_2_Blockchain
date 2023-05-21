@@ -8,8 +8,19 @@
         <p>Timer: <span id="timer">00:00</span></p>
     </div>
     <div class="big-box">
-        
-        <button (click)="goToNext()">Next</button>
+        <div class="frame">
+            <p class="label"><strong>Character Name:</strong></p>
+            <input type="text" class="input-field" placeholder="Enter character name">
+            <p class="label"><strong>Character Role:</strong></p>
+            <select class="dropdown">
+                <option value="producer">Producer</option>
+                <option value="buyer">Buyer</option>
+                <option value="shipper">Shipper</option>
+                <option value="financier">Financier</option>
+                <option value="company">Company</option>
+            </select>
+        </div>
+        <button (click)="goToMain()">Generate Game!</button>
     </div>
 </div>
 

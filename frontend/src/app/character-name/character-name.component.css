@@ -65,8 +65,39 @@
   border-radius: 20px;
   cursor: pointer;
   position: absolute;
-  bottom: 130px;
+ bottom: 130px;
   right: 220px;
   font-family: 'Hind', sans-serif;
   font-size: 24px;
+} 
+.frame {
+    border: 3px solid #FFD215;
+    border-radius: 20px;
+    width: 600px;
+    margin-top: 70px;
+    height: 250px;
+    padding: 20px;
+    background-color: #FFFFFF;
+    color: #6C47F6;
+    font-family: 'Hind', sans-serif;
+    font-size: 22px;
+}
+.label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.input-field {
+    width: 450px;
+    padding: 10px;
+    margin: 20px;
+    border: 1px solid #FFD215;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+.dropdown {
+    width: 450px;
+    padding: 10px;
+    border: 1px solid #FFD215;
+    border-radius: 4px;
+    margin: 20px;
 }

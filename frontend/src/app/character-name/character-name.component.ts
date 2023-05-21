@@ -12,7 +12,7 @@ export class CharacterNameComponent {
   ngOnInit() {
   }
 
-  goToNext() {
-    this.router.navigate(['/character-name']);
+  goToMain() {
+    this.router.navigate(['/main']);
   }
 }
