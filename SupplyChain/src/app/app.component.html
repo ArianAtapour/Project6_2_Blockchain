@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Supply chain classic bare-bones</title>
+</head>
+<body>
+<h1>Supply chain classic bare-bones</h1>
+
+<!-- Element 1 -->
+<div>
+  <label>Game master:</label><br>
+  <textarea readonly rows="5" cols="50" [(ngModel)]="receiverGMaster"></textarea><br>
+  <input type="text" [(ngModel)]="senderGMaster"><br>
+  <button (click)="GMasterToBuyer()">Send</button>
+  <button (click)="ProductGood()">Product was good</button>
+  <button (click)="ProductBad()">Product was bad</button><br>
+  <a>Good products: {{goodNumber}}</a><br>
+  <a>Bad products: {{badNumber}}</a>
+</div>
+
+<!-- Element 2 -->
+<div>
+  <label>Buyer:</label><br>
+  <textarea readonly rows="5" cols="50" [(ngModel)]="receiverBuyer"></textarea><br>
+  <input type="text" [(ngModel)]="senderBuyer"><br>
+  <button (click)="BuyerToFinancier()">Send for financier's approval</button>
+  <button (click)="BuyerToShipper()">Send to the shipper</button>
+  <button (click)="BuyerToClient()">Send to the client</button>
+</div>
+
+<!-- Element 3 -->
+<div>
+  <label>Financier:</label><br>
+  <textarea readonly rows="5" cols="50" [(ngModel)]="receiverFinancier"></textarea><br>
+  <input type="text" [(ngModel)]="senderFinancier"><br>
+  <button (click)="FinancierToBuyer()">Send to buyer</button>
+  <button (click)="FinancierToShipper()">Send to shipper</button>
+  <button (click)="FinancierToProducer()">Send to producer</button>
+
+</div>
+
+<!-- Element 4 -->
+<div>
+  <label>Shipper:</label><br>
+  <textarea readonly rows="5" cols="50" [(ngModel)]="receiverShipper"></textarea><br>
+  <input [(ngModel)]="senderShipper" type="text"><br>
+  <button (click)="ShipperToFinancier()">Send for financier's approval</button>
+  <button (click)="ShipperToProducer()">Send to producer</button>
+</div>
+
+<!-- Element 5 -->
+<div>
+  <label>Producer:</label><br>
+  <textarea readonly rows="5" cols="50" [(ngModel)]="receiverProducer"></textarea><br>
+  <input type="text" [(ngModel)]="senderProducer"><br>
+  <button (click)="ProducerToFinancier()">Send for financier's approval</button>
+  <button (click)="ProducerToBuyer()">Send to buyer</button>
+</div>
+
+</body>
+</html>
