@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Block } from "../block";
-import { BlockchainService } from "../blockchain.service";
+import { Block } from "./block";
+import { BlockchainService } from "../services/blockchain.service";
+import {FirebaseService} from "../services/firebase.service";
 
 @Component({
   selector: 'app-blockchain',
@@ -11,18 +12,32 @@ export class BlockchainComponent {
   blocks: Block[];
   index: number;
   click: boolean
+  fb: FirebaseService;
 
-  constructor(blockchainService: BlockchainService) {
-    this.blocks = blockchainService.blocks;
+  constructor(blockchainService: BlockchainService, firebaseService: FirebaseService) {
+    this.fb = firebaseService;
+    this.blocks = this.fb.blocks;
+    this.fb.blocksData?.subscribe(() => this.updateBlockchain());
     this.index = -1;
     this.click = false;
+    this.sortBlocks();
   }
 
   ngOnInit(): void {};
 
+  updateBlockchain() {
+    this.blocks = this.fb.blocks;
+    // this.sortBlocks();
+  }
+
+  sortBlocks() {
+    this.blocks.sort((blockA, blockB) => blockA.timestamp.getTime() - blockB.timestamp.getTime());
+  }
+
   setIndex(index: number) {
     this.click = true;
     this.index = index;
+    console.log(this.blocks[index].timestamp);
   }
 
   getBlockHash(block: Block) {
@@ -54,7 +69,7 @@ export class BlockchainComponent {
       case 1: return 'red';
       case 2: return 'green';
       case 3: return 'blue';
-      case 4: return 'yellow';
+      case 4: return 'purple';
       case 5: return 'pink';
       default: return 'black';
     }

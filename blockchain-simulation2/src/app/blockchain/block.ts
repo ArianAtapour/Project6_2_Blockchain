@@ -1,4 +1,4 @@
-import { Department } from "./department/department";
+import { Department } from "../department/department";
 import {Inject, Injectable} from "@angular/core";
 @Injectable({
   providedIn: 'root'
@@ -7,6 +7,7 @@ export class Block {
   department: Department;
   message: string;
   hash: number;
+  timestamp: Date;
 
   constructor(department: Department, @Inject(String) message: string) {
     this.department = department;
@@ -21,7 +22,7 @@ export class Block {
   getHash(){
     return this.hash;
   }
-  getDepartment() {
+  getDepartment(): Department {
     return this.department;
   }
   getId() {
@@ -38,5 +39,9 @@ export class Block {
   }
   setHash(hash: number) {
     this.hash = hash;
+  }
+
+  setTimestamp(timestamp: Date) {
+    this.timestamp = timestamp;
   }
 }

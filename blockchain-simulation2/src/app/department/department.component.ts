@@ -1,9 +1,9 @@
 import {Component, Inject, Input, Output} from '@angular/core';
 import { Router } from '@angular/router';
 
-import { BlockchainService } from "../blockchain.service";
+import { BlockchainService } from "../services/blockchain.service";
 import {Department} from "./department";
-import {Block} from "../block";
+import {Block} from "../blockchain/block";
 
 
 @Component({

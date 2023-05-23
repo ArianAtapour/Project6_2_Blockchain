@@ -7,18 +7,19 @@ import { getAnalytics } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 export const environment = {
-  production: false,
+  production: true,
   firebase : {
-    apiKey: "AIzaSyB-7ukPz_mA519yZ5_n-2w02Fv8zx8Plxk",
-    authDomain: "blockchain-simulation.firebaseapp.com",
-    projectId: "blockchain-simulation",
-    storageBucket: "blockchain-simulation.appspot.com",
-    messagingSenderId: "1052729484172",
-    appId: "1:1052729484172:web:d6386064f7791f41f26ca9",
-    measurementId: "G-6VFLY67XW3"
+    apiKey: "AIzaSyBUlCZRiF3kU64sVWQ94Fl-4MkaRnCc4sY",
+    authDomain: "blockchain-simulation2.firebaseapp.com",
+    databaseURL: "https://blockchain-simulation2-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "blockchain-simulation2",
+    storageBucket: "blockchain-simulation2.appspot.com",
+    messagingSenderId: "507010350585",
+    appId: "1:507010350585:web:939910d86a3a5610709128",
+    measurementId: "G-TZLR3S8EG7"
   }
 };
 
 // Initialize Firebase
-const app = initializeApp(environment.firebase);
-const analytics = getAnalytics(app);
+// const app = initializeApp(environment.firebase);
+// const analytics = getAnalytics(app);

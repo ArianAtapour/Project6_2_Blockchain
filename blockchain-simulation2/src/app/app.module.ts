@@ -4,8 +4,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
-// import { AngularFireModule } from '@angular/fire';
-// import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireDatabase} from "@angular/fire/compat/database";
 import { environment } from "../environments/environment";
 
 
@@ -31,6 +32,8 @@ import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { MainComponent } from './main/main.component';
 import { BlockInfoComponent } from './block-info/block-info.component';
+import { SortBlocksByTimestampPipe } from './pipes/sort-blocks-by-timestamp.pipe';
+import { ReverseArrayPipe } from './pipes/reverse-array.pipe';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,9 @@ import { BlockInfoComponent } from './block-info/block-info.component';
     BlockchainComponent,
     DepartmentComponent,
     MainComponent,
-    BlockInfoComponent
+    BlockInfoComponent,
+    SortBlocksByTimestampPipe,
+    ReverseArrayPipe
   ],
   imports: [
     BrowserModule,
@@ -64,8 +69,7 @@ import { BlockInfoComponent } from './block-info/block-info.component';
     MdbTabsModule,
     MdbTooltipModule,
     MdbValidationModule,
-    // AngularFireModule.initializeApp(environment.firebase),
-    // AngularFirestoreModule
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
   bootstrap: [AppComponent]
