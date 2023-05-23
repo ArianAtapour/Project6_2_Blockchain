@@ -26,6 +26,18 @@ export class DepartmentComponent {
     return Block.createBlock(this.department, message);
   }
 
+  getColor(index: number): string {
+    switch (index)
+    {
+      case 1: return 'black';
+      case 2: return '#baed91';
+      case 3: return '#fea3aa';
+      case 4: return '#f2a2e8';
+      case 5: return '#faf884';
+      default: return 'white';
+    }
+  }
+
   sendBlockToBlockchain(message: string) {
     this.blockchainService.sendBlockToBlockchain(this.createBlock(message));
   }

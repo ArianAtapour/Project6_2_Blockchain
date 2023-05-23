@@ -4,9 +4,13 @@
       <h1>Blockchain</h1>
     </tr>
     <tr *ngFor="let block of blocks | sortBlocksByTimestamp | reverseArray; index as i">
-      <button class="btn btn-primary" (click)="setIndex(blocks.length - 1 - i)">
+      <button
+        class="btn btn-primary"
+        (click)="setIndex(blocks.length - 1 - i)"
+        [style.backgroundColor]="getColor(getBlockDepartmentId(block))"
+      >
         <td
-          [ngStyle]="{color: getColor(getBlockDepartmentId(block))}"
+          [ngStyle]=""
         >
           {{ getBlockHash(block) }}
         </td>
