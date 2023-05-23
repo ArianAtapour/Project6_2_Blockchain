@@ -1,10 +1,10 @@
 <mat-card class="item">
   <table>
     <tr>
-      <h2>Blockchain</h2>
+      <h1>Blockchain</h1>
     </tr>
     <tr *ngFor="let block of blocks | sortBlocksByTimestamp | reverseArray; index as i">
-      <button (click)="setIndex(blocks.length - 1 - i)">
+      <button class="btn btn-primary" (click)="setIndex(blocks.length - 1 - i)">
         <td
           [ngStyle]="{color: getColor(getBlockDepartmentId(block))}"
         >

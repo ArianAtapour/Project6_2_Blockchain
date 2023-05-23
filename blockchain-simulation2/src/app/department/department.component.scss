@@ -1,10 +1,15 @@
-button {
-  font-size: 1.5em;
-  margin: 1em;
+* {
+  margin: 0.5em auto;
 }
 
 mat-card {
-
+  width: 35%;
   background-color: #b2cefe;
-
 }
+
+button {
+  font-size: 1.5em;
+  margin: 1em auto;
+  width: 50%;
+}
+

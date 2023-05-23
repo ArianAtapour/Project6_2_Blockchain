@@ -66,11 +66,11 @@ export class BlockchainComponent {
   getColor(index: number): string {
     switch (index)
     {
-      case 1: return 'red';
-      case 2: return 'green';
-      case 3: return 'blue';
-      case 4: return 'purple';
-      case 5: return 'pink';
+      case 1: return '#fea3aa';
+      case 2: return '#baed91';
+      case 3: return '#faf884';
+      case 4: return '#f2a2e8';
+      case 5: return '#faf884';
       default: return 'black';
     }
   }
