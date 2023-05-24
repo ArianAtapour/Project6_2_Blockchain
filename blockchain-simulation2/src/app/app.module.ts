@@ -34,6 +34,7 @@ import { MainComponent } from './main/main.component';
 import { BlockInfoComponent } from './block-info/block-info.component';
 import { SortBlocksByTimestampPipe } from './pipes/sort-blocks-by-timestamp.pipe';
 import { ReverseArrayPipe } from './pipes/reverse-array.pipe';
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
   declarations: [
@@ -45,32 +46,33 @@ import { ReverseArrayPipe } from './pipes/reverse-array.pipe';
     SortBlocksByTimestampPipe,
     ReverseArrayPipe
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RouterModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatCardModule,
-    BrowserAnimationsModule,
-    NoopAnimationsModule,
-    MdbAccordionModule,
-    MdbCarouselModule,
-    MdbCheckboxModule,
-    MdbCollapseModule,
-    MdbDropdownModule,
-    MdbFormsModule,
-    MdbModalModule,
-    MdbPopoverModule,
-    MdbRadioModule,
-    MdbRangeModule,
-    MdbRippleModule,
-    MdbScrollspyModule,
-    MdbTabsModule,
-    MdbTooltipModule,
-    MdbValidationModule,
-    AngularFireModule.initializeApp(environment.firebase),
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        RouterModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatCardModule,
+        BrowserAnimationsModule,
+        NoopAnimationsModule,
+        MdbAccordionModule,
+        MdbCarouselModule,
+        MdbCheckboxModule,
+        MdbCollapseModule,
+        MdbDropdownModule,
+        MdbFormsModule,
+        MdbModalModule,
+        MdbPopoverModule,
+        MdbRadioModule,
+        MdbRangeModule,
+        MdbRippleModule,
+        MdbScrollspyModule,
+        MdbTabsModule,
+        MdbTooltipModule,
+        MdbValidationModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        MatExpansionModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

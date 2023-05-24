@@ -4,7 +4,7 @@
       *ngFor="let department of departments; index as i;"
       (click)="indexToDepartment(i)"
       class="nav-link btn btn-primary"
-      [style.backgroundColor]="getColor(i+1)"
+      [style.backgroundColor]="Department.getColor(i+1)"
     >
       {{ department.name }}
     </button>

@@ -1,7 +1,7 @@
 <mat-card
   class="item"
   *ngIf="department"
-  [style.backgroundColor]="getColor(department.id)"
+  [style.backgroundColor]="Department.getColor(department.id)"
 >
   <tr>
     <h1>{{ department.name }}</h1>

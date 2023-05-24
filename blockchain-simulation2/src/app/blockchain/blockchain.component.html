@@ -1,24 +1,18 @@
-<mat-card class="item">
-  <table>
-    <tr>
-      <h1>Blockchain</h1>
-    </tr>
-    <tr *ngFor="let block of blocks | sortBlocksByTimestamp | reverseArray; index as i">
+<div class="container">
+  <mat-card class="item">
+    <h1>Blockchain</h1>
+    <div *ngFor="let block of blocks | sortBlocksByTimestamp | reverseArray; index as i">
       <button
         class="btn btn-primary"
         (click)="setIndex(blocks.length - 1 - i)"
-        [style.backgroundColor]="getColor(getBlockDepartmentId(block))"
+        [style.backgroundColor]="Department.getColor(getBlockDepartmentId(block))"
       >
-        <td
-          [ngStyle]=""
-        >
-          {{ getBlockHash(block) }}
-        </td>
-
+        <span>{{ getBlockHash(block) }}</span>
       </button>
-    </tr>
-  </table>
-</mat-card>
+    </div>
+    <div class="last-button-space"></div>
+  </mat-card>
+</div>
 <div *ngIf="click">
   <app-block-info
     [hash]="getBlockHash(blocks[index])"
@@ -28,3 +22,4 @@
     [message]="getBlockMessage(blocks[index])"
   ></app-block-info>
 </div>
+

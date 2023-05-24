@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Block } from "./block";
 import { BlockchainService } from "../services/blockchain.service";
 import {FirebaseService} from "../services/firebase.service";
+import {Department} from "../department/department";
 
 @Component({
   selector: 'app-blockchain',
@@ -61,23 +62,9 @@ export class BlockchainComponent {
   getBlockMessage(block: Block) {
     return block.getMessage();
   }
-
-
-  getColor(index: number): string {
-    switch (index)
-    {
-      case 1: return 'black';
-      case 2: return '#baed91';
-      case 3: return '#fea3aa';
-      case 4: return '#f2a2e8';
-      case 5: return '#faf884';
-      default: return 'white';
-    }
-  }
-
-
-
   getBlock(index: number) {
     return this.blocks[index];
   }
+
+  protected readonly Department = Department;
 }

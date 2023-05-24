@@ -18,6 +18,19 @@ export class Department {
     return new Department(id, name, description);
   }
 
+  static getColor(index: number): string {
+    switch (index)
+    {
+      // case 1: return '#c37892';
+      case 1: return '#FF8C83';
+      case 2: return '#a2d0c0';
+      case 3: return '#FF947D';
+      case 4: return '#c094cc';
+      case 5: return '#a4b6dd';
+      default: return 'white';
+    }
+  }
+
   getId(){
     return this.id;
   }

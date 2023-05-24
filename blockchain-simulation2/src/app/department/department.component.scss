@@ -1,17 +1,24 @@
 * {
-  margin: 0.5em auto;
+  margin: auto;
 }
 
 mat-card {
-  width: 35%;
+  margin-top: 2em;
+  width: 25%;
 }
 
 button {
   font-size: 1.5em;
   margin: 1em auto;
-  width: 50%;
+  width: 75%;
 }
 
 textarea {
   color: black;
+}
+
+h1 {
+  font-size: 3em;
+  padding: 0.3em;
+  margin-top: 0.4em;
 }

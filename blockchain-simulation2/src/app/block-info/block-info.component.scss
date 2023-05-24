@@ -1,14 +1,39 @@
-* {
-  margin: 1em auto;
+.container {
+  display: flex;
+  justify-content: center;
 }
 
-mat-card {
-  width: 30%;
+.item {
+  width: 300px;
+  margin: 20px auto;
 }
 
-button {
-  font-size: 1.2em;
-  margin: 0.3em;
-  width: 90%;
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 16px;
 }
+
+.mat-card-header-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+  line-height: 1;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
 
