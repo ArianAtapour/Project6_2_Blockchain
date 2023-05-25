@@ -1,6 +1,6 @@
 <mat-card
 
-  class="item"
+  class="container"
   *ngIf="department"
   [style.backgroundColor]="Department.getColor(department.id)"
 >
@@ -8,7 +8,7 @@
     <h1>{{ department.name }}</h1>
   </tr>
   <div class="d-flex align-items-start justify-content-center">
-    <textarea rows="4" cols="30" #message></textarea>
+    <textarea rows="3" cols="40" #message></textarea>
   </div>
   <button class="btn btn-primary" (click)="sendBlockToBlockchain(message.value)">Submit</button>
   <br>

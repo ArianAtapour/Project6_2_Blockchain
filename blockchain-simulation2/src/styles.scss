@@ -9,10 +9,66 @@
   font-family: 'Sora', sans-serif;
 }
 
-//body {
-//  font-family: 'Sora', sans-serif;
-//}
+@media (max-width: 768px) {
 
-//h1 {
-//  font-size: 5em;
-//}
+  mat-card {
+  }
+
+  .container {
+    margin-top: 3em;
+    width: 100em;
+  }
+
+  button {
+    font-size: 24px;
+    padding: 0.8em 1.5em;
+    width: 100em;
+  }
+
+  .item {
+    width: 100em;
+  }
+
+  textarea {
+    width: 100em;
+  }
+
+
+
+  .department-container {
+    margin-top: 1em;
+    width: 100em;
+  }
+
+  h1 {
+    font-size: 2.5em;
+  }
+
+  .blockchain-container {
+    margin: 0.5em auto;
+    width: 100em;
+  }
+
+  .block-button {
+    font-size: 1em;
+    padding: 0.6em;
+    width: 100em;
+
+  }
+
+  .block-info-container {
+    margin-top: 1em;
+    width: 100em;
+  }
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+    font-size: 0.8em;
+  }
+
+  .message {
+    margin-left: 2em;
+    font-size: 1.2em;
+  }
+}

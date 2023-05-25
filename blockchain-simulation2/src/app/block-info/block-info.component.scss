@@ -19,15 +19,15 @@ mat-card {
 }
 
 .avatar {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   background-color: #000;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 16px;
-  font-size: 1em;
+  font-size: 1.3em;
   font-weight: bold;
 }
 
@@ -50,10 +50,10 @@ mat-card {
   align-items: center;
   justify-content: center;
   height: 100%;
-  margin-left: 3em;
+  margin-left: 1.5em;
   margin-top: -0.35em;
   line-height: 1;
-  font-size: 1.5em;
+  font-size: 1.8em;
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   color: #fff;
