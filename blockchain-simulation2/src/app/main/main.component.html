@@ -1,12 +1,11 @@
-
-  <div class="container d-flex align-items-start justify-content-center" *ngIf="!clicked">
-    <button
-      *ngFor="let department of departments; index as i;"
-      (click)="indexToDepartment(i)"
-      class="nav-link btn btn-primary"
-      [style.backgroundColor]="Department.getColor(i+1)"
-    >
-      {{ department.name }}
-    </button>
-  </div>
-  <app-department *ngIf="clicked" [department]="department"></app-department>
+<div class="container d-flex align-items-start justify-content-center" *ngIf="!clicked">
+  <button
+    *ngFor="let department of departments; index as i;"
+    (click)="indexToDepartment(i)"
+    class="nav-link btn btn-primary"
+    [style.backgroundColor]="Department.getColor(i+1)"
+  >
+    {{ department.name }}
+  </button>
+</div>
+<app-department *ngIf="clicked" [department]="department"></app-department>

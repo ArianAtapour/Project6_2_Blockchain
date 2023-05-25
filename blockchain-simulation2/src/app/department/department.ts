@@ -31,6 +31,17 @@ export class Department {
   //   }
   // }
 
+  // static getColor(index: number) {
+  //   switch (index) {
+  //     case 1: return '#ff8151'; // Coral
+  //     case 2: return '#c95aa1'; // Vibrant pastel blue
+  //     case 3: return '#ffaf2f'; // Updated slightly less vibrant pastel orange
+  //     case 4: return '#1298bf'; // Vibrant pastel purple
+  //     case 5: return '#8fad30'; // Vibrant pastel green
+  //     default: return 'white';
+  //   }
+  // }
+  //MAIN
   static getColor(index: number) {
     switch (index) {
       case 1: return '#FF6B61'; // Coral
