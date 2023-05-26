@@ -10,7 +10,9 @@
   <div class="d-flex align-items-start justify-content-center">
     <textarea rows="3" cols="40" #message></textarea>
   </div>
-  <button class="btn btn-primary" (click)="sendBlockToBlockchain(message.value)">Submit</button>
+  <button class="btn btn-primary" (click)="message.value.trim() !== '' && sendBlockToBlockchain(message.value)">Submit</button>
   <br>
 </mat-card>
-<app-blockchain></app-blockchain>
+<div class="container2">
+   <app-blockchain></app-blockchain>
+</div>
