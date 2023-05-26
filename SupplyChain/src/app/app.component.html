@@ -8,10 +8,14 @@
 
 <!-- Element 1 -->
 <div>
+  <input type="text" [(ngModel)]="value1">
+  <input type="text" [ngModel]="value2">
+  <button (click)="moveValue('value1', 'value2')">Move Value</button>
+
   <label>Game master:</label><br>
   <textarea readonly rows="5" cols="50" [(ngModel)]="receiverGMaster"></textarea><br>
   <input type="text" [(ngModel)]="senderGMaster"><br>
-  <button (click)="GMasterToBuyer()">Send</button>
+  <button (click)="moveValue('senderGMaster', 'receiverBuyer')">Send to buyer</button>
   <button (click)="ProductGood()">Product was good</button>
   <button (click)="ProductBad()">Product was bad</button><br>
   <a>Good products: {{goodNumber}}</a><br>
@@ -23,9 +27,9 @@
   <label>Buyer:</label><br>
   <textarea readonly rows="5" cols="50" [(ngModel)]="receiverBuyer"></textarea><br>
   <input type="text" [(ngModel)]="senderBuyer"><br>
-  <button (click)="BuyerToFinancier()">Send for financier's approval</button>
-  <button (click)="BuyerToShipper()">Send to the shipper</button>
-  <button (click)="BuyerToClient()">Send to the client</button>
+  <button (click)="moveValue('senderBuyer', 'receiverFinancier')">Send for financier's approval</button>
+  <button (click)="moveValue('senderBuyer', 'receiverShipper')">Send to the shipper</button>
+  <button (click)="moveValue('senderBuyer', 'receiverGMaster')">Send to the client</button>
 </div>
 
 <!-- Element 3 -->
@@ -33,9 +37,9 @@
   <label>Financier:</label><br>
   <textarea readonly rows="5" cols="50" [(ngModel)]="receiverFinancier"></textarea><br>
   <input type="text" [(ngModel)]="senderFinancier"><br>
-  <button (click)="FinancierToBuyer()">Send to buyer</button>
-  <button (click)="FinancierToShipper()">Send to shipper</button>
-  <button (click)="FinancierToProducer()">Send to producer</button>
+  <button (click)="moveValue('receiverFinancier', 'receiverBuyer')">Send to buyer</button>
+  <button (click)="moveValue('receiverFinancier', 'receiverShipper')">Send to shipper</button>
+  <button (click)="moveValue('receiverFinancier', 'receiverProducer')">Send to producer</button>
 
 </div>
 
@@ -44,8 +48,8 @@
   <label>Shipper:</label><br>
   <textarea readonly rows="5" cols="50" [(ngModel)]="receiverShipper"></textarea><br>
   <input [(ngModel)]="senderShipper" type="text"><br>
-  <button (click)="ShipperToFinancier()">Send for financier's approval</button>
-  <button (click)="ShipperToProducer()">Send to producer</button>
+  <button (click)="moveValue('senderShipper', 'receiverFinancier')">Send for financier's approval</button>
+  <button (click)="moveValue('senderShipper', 'receiverProducer')">Send to producer</button>
 </div>
 
 <!-- Element 5 -->
@@ -53,8 +57,8 @@
   <label>Producer:</label><br>
   <textarea readonly rows="5" cols="50" [(ngModel)]="receiverProducer"></textarea><br>
   <input type="text" [(ngModel)]="senderProducer"><br>
-  <button (click)="ProducerToFinancier()">Send for financier's approval</button>
-  <button (click)="ProducerToBuyer()">Send to buyer</button>
+  <button (click)="moveValue('senderProducer', 'receiverFinancier')">Send for financier's approval</button>
+  <button (click)="moveValue('senderProducer', 'receiverBuyer')">Send to buyer</button>
 </div>
 
 </body>

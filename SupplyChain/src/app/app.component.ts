@@ -22,50 +22,17 @@ export class AppComponent {
   goodNumber : number = 0;
   badNumber : number = 0;
   //Text transfer methods, all separate because I didn't figure it out yet
-  GMasterToBuyer()
-  {
-    this.receiverBuyer += this.senderGMaster + "\n";
+
+  value1: string = "";
+  value2: string = "";
+  moveValue(sourceProperty: string, targetProperty: string) {
+    // @ts-ignore
+    this[targetProperty] += this[sourceProperty] + "\n";
+    // @ts-ignore
+    this[sourceProperty] = '';
   }
-  BuyerToShipper()
-  {
-    this.receiverShipper += this.senderBuyer + "\n";
-  }
-  ShipperToProducer()
-  {
-    this.receiverProducer += this.senderShipper + "\n";
-  }
-  ProducerToBuyer()
-  {
-    this.receiverBuyer += this.senderProducer + "\n";
-  }
-  BuyerToFinancier()
-  {
-    this.receiverFinancier += this.senderBuyer + "\n";
-  }
-  ShipperToFinancier()
-  {
-    this.receiverFinancier += this.senderShipper + "\n";
-  }
-  ProducerToFinancier()
-  {
-    this.receiverFinancier += this.senderProducer + "\n";
-  }
-  FinancierToBuyer()
-  {
-    this.receiverBuyer += this.senderFinancier + "\n";
-  }
-  BuyerToClient()
-  {
-    this.receiverGMaster += this.senderBuyer;
-  }
-  FinancierToShipper()
-  {
-    this.receiverShipper += this.senderFinancier + "\n";
-  }
-  FinancierToProducer()
-  {
-    this.receiverProducer += this.senderFinancier + "\n";
-  }
+
+
   ProductGood()
   {
     this.goodNumber++;
