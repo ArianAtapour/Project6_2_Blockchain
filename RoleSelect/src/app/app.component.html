@@ -1,0 +1,40 @@
+<div class="grid-container">
+  <div class="left-side">
+    <form #roleForm="ngForm" (ngSubmit)="onSubmit(roleForm.value)">
+      <label>Name</label><br>
+      <input id="name" type="text" name="name" ngModel><br>
+      <br>
+      <label>Role</label><br>
+      <select id="role" name="role" ngModel>
+        <option value="producer">Producer</option>
+        <option value="buyer">Buyer</option>
+        <option value="shipper">Shipper</option>
+        <option value="company">Company</option>
+        <option value="gamemaster">Game-master</option>
+      </select>
+      <br>
+      <br>
+      <input type="submit" value="Submit">
+      <br>
+      <i *ngIf="nameTakenWarning">{{nameTakenWarning}}</i>
+      <br>
+      <i *ngIf="roleTakenWarning">{{roleTakenWarning}}</i>
+    </form>
+  </div>
+  <div class="right-side">
+    <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let player of data">
+        <td>{{ player.name }}</td>
+        <td>{{ player.role }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
