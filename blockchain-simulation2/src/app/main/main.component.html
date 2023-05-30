@@ -1,11 +1,14 @@
-<div class="container d-flex align-items-center justify-content-center" *ngIf="!clicked">
-  <button
-    *ngFor="let department of departments; index as i;"
-    (click)="indexToDepartment(i)"
-    class="nav-link btn btn-primary"
-    [style.backgroundColor]="Department.getColor(i+1)"
-  >
-    {{ department.name }}
-  </button>
+<div class="intro-container" *ngIf="!clicked">
+  <h1>Welcome to the Blockchain Game</h1>
+  <div class="button-container">
+    <button
+      *ngFor="let department of departments; index as i;"
+      (click)="indexToDepartment(i)"
+      class="nav-link btn btn-primary"
+      [style.backgroundColor]="Department.getColor(i + 1)"
+    >
+      {{ department.name }}
+    </button>
+  </div>
 </div>
 <app-department *ngIf="clicked" [department]="department"></app-department>
