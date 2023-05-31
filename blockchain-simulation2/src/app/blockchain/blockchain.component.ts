@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Block } from "./block";
-import { BlockchainService } from "../services/blockchain.service";
-import {FirebaseService} from "../services/firebase.service";
+import {DataService} from "../services/data.service";
 import {Department} from "../department/department";
 
 @Component({
@@ -13,10 +12,10 @@ export class BlockchainComponent {
   blocks: Block[];
   index: number;
   click: boolean
-  fb: FirebaseService;
+  fb: DataService;
 
-  constructor(blockchainService: BlockchainService, firebaseService: FirebaseService) {
-    this.fb = firebaseService;
+  constructor(dataService: DataService) {
+    this.fb = dataService;
     this.blocks = this.fb.blocks;
     this.fb.blocksData?.subscribe(() => this.updateBlockchain());
     this.index = -1;
