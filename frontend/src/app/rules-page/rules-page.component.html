@@ -1,12 +1,33 @@
 <div class="container">
-    <div class="rules-container">
-        <span class="rules-text">CARGO QUEST</span>
-    </div>
-    <div class="info-box">
-        <p>Players: 5</p>
-        <p>Chains: 1</p>
-        <p>Timer: <span id="timer">00:00</span></p>
-    </div>
+<div class="rules-container">
+    <span class="rules-text">CARGO QUEST</span>
+</div>
+<div class="info-box">
+    <p>Players: 5</p>
+    <p>Chains: 1</p>
+    <p>Timer: <span id="timer">00:00</span></p>
+</div>
+<script>
+    // JavaScript code to create a timer
+    function startTimer() {
+        const timerElement = document.getElementById('timer');
+        let seconds = 0;
+
+        function formatTime(time) {
+            return time < 10 ? `0${time}` : time;
+        }
+
+        setInterval(() => {
+            seconds++;
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            timerElement.textContent = `${formatTime(minutes)}:${formatTime(remainingSeconds)}`;
+        }, 1000);
+    }
+
+    // Call the startTimer function after the DOM has loaded
+    document.addEventListener('DOMContentLoaded', startTimer);
+</script>
     <div class="big-box">
         <h2>Welcome to Cargo Quest!</h2>
         <p>The ultimate logistics supply game where you'll embark on an exciting journey to test your strategic
@@ -38,30 +59,3 @@
         <button (click)="goToNext()">Next</button>
     </div>
 </div>
-
-<script>
-    // JavaScript code to update the timer dynamically
-    function startTimer() {
-        const timerElement = document.getElementById('timer');
-        let seconds = 0;
-
-        function formatTime(time) {
-            return time < 10 ? `0${time}` : time;
-        }
-
-        setInterval(() => {
-            seconds++;
-            const minutes = Math.floor(seconds / 60);
-            const remainingSeconds = seconds % 60;
-            timerElement.textContent = `${formatTime(minutes)}:${formatTime(remainingSeconds)}`;
-        }, 1000);
-    }
-
-    // Define the goToNext function within the Angular component
-    function goToNext() {
-        // Add your logic here to navigate to the next page or perform any desired action
-        console.log('Button clicked!');
-    }
-
-    document.addEventListener('DOMContentLoaded', startTimer);
-</script>

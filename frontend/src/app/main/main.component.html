@@ -1,1 +1,46 @@
-<p>main works!</p>
+<div class="container">
+    <div class="rules-container">
+        <span class="rules-text">CARGO QUEST</span>
+    </div>
+    <div class="info-box">
+        <p>Players: 5</p>
+        <p>Chains: 1</p>
+        <p>Timer: <span id="timer">00:00</span></p>
+    </div>
+    <div class="main">
+        <div class="big-box"></div>
+        <div class="notification-center">
+            <button (click)="goToRules()" class="custom-button">Game Rules</button>
+            <button  class="custom-button"></button>
+            <div class="textBox">
+                <textarea id="messageInput" placeholder="Enter your message"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="textBox"></div>
+<script>
+    // JavaScript code to update the timer dynamically
+    function startTimer() {
+        const timerElement = document.getElementById('timer');
+        let seconds = 0;
+
+        function formatTime(time) {
+            return time < 10 ? `0${time}` : time;
+        }
+
+        setInterval(() => {
+            seconds++;
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            timerElement.textContent = `${formatTime(minutes)}:${formatTime(remainingSeconds)}`;
+        }, 1000);
+    }
+
+    // Define the goToNext function within the Angular component
+    function goToNext() {
+        // Add your logic here to navigate to the next page or perform any desired action
+        console.log('Button clicked!');
+    }
+
+    document.addEventListener('DOMContentLoaded', startTimer);
+</script>
