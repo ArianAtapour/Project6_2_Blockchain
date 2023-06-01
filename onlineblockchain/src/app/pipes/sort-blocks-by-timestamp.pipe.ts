@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Block } from "../blockchain/block";
+import { Block } from "../models/interfaces";
 
 @Pipe({
   name: 'sortBlocksByTimestamp'

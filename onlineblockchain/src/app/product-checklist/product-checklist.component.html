@@ -1,0 +1,21 @@
+<div class="container">
+  <mat-card class="item" [style.backgroundColor]="Department.getColor(id)">
+    <mat-card-content>
+      <h2>Checklist</h2>
+      <ul>
+        <li>
+          <span>1 Product Selected</span>
+          <span class="status" [class.completed]="checklist.hasProduct">
+            {{ checklist.hasProduct ? '✔️' : '❌' }}
+          </span>
+        </li>
+        <li>
+          <span>2 Approved by Finance</span>
+          <span class="status" [class.completed]="checklist.approvedByFinance">
+            {{ checklist.approvedByFinance ? '✔️' : '❌' }}
+          </span>
+        </li>
+      </ul>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,8 @@
+<ng-container *ngIf="department" [ngSwitch]="department.id">
+  <app-client-message *ngSwitchCase="1" (messageChange)="sendMessage($event)" [department]="department"></app-client-message>
+  <app-buyer-message *ngSwitchCase="2" (messageChange)="sendMessage($event)" [department]="department"></app-buyer-message>
+  <app-financier-message *ngSwitchCase="3" (messageChange)="sendMessage($event)" [department]="department"></app-financier-message>
+  <app-shipper-message *ngSwitchCase="4"></app-shipper-message>
+  <app-producer-message *ngSwitchCase="5"></app-producer-message>
+  <app-spectator-message *ngSwitchDefault></app-spectator-message>
+</ng-container>

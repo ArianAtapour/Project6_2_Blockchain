@@ -1,1 +1,41 @@
-<p>department works!</p>
+<div class="menu-container" *ngIf="menuVisibility">
+  <h1>Welcome to the Blockchain Game</h1>
+  <div class="button-container">
+    <button
+      *ngFor="let department of departments; index as i;"
+      (click)="indexToDepartment(i)"
+      class="nav-link btn btn-primary"
+      [style.backgroundColor]="Department.getColor(i + 1)"
+    >
+      {{ department.name }}
+    </button>
+  </div>
+</div>
+<div class="game-container" *ngIf="gameVisibility">
+  <div class="department-container">
+    <mat-card
+      class="container"
+      *ngIf="department"
+      [style.backgroundColor]="Department.getColor(department.id)"
+    >
+      <tr>
+        <h1>{{ department.name }}</h1>
+      </tr>
+      <div *ngIf="department.id !== 1">
+        <select [(ngModel)]="productIndex" class="form-control">
+          <option *ngFor="let product of products; index as i" [value]="i">{{ product.name }}</option>
+        </select>
+      </div>
+      <div class="d-flex align-items-start justify-content-center">
+        <app-department-message (messageChange)="sendBlockToBlockchain($event.message, $event.department, $event.isApproved)" [department]="department"></app-department-message>
+      </div>
+    <!--  <button class="btn btn-primary" (click)="message.value.trim() !== '' && sendBlockToBlockchain(message.value)">Submit</button>-->
+      <br>
+    </mat-card>
+  </div>
+  <div class="blockchain-container">
+    <app-blockchain></app-blockchain>
+  </div>
+</div>
+
+

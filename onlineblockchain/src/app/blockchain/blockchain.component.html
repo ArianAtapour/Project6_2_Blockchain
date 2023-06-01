@@ -1,1 +1,32 @@
-<p>blockchain works!</p>
+<div class="container">
+  <mat-card class="item">
+    <h1>Blockchain</h1>
+    <div *ngFor="let block of blocks | sortBlocksByTimestamp | reverseArray; index as i ">
+      <button
+        class="btn btn-primary"
+        (click)="setIndex(blocks.length - 1 - i)"
+        [style.backgroundColor]="Department.getColor(getBlockDepartmentId(block))"
+      >
+        <span>{{ getBlockHash(block) }}</span>
+      </button>
+    </div>
+    <div class="last-button-space"></div>
+  </mat-card>
+</div>
+<br>
+<div *ngIf="click">
+  <app-block-info
+    [product]="getBlockProductName(blocks[index])"
+    [hash]="getBlockHash(blocks[index])"
+    [id]="getBlockDepartmentId(blocks[index])"
+    [department]="getBlockDepartmentName(blocks[index])"
+    [description]="getBlockDepartmentDescription(blocks[index])"
+    [message]="getBlockMessage(blocks[index])"
+  ></app-block-info>
+  <br>
+  <app-product-checklist
+    [checklist]="getBlockChecklist(blocks[index])"
+    [id]="getBlockDepartmentId(blocks[index])"
+  ></app-product-checklist>
+
+</div>
