@@ -5,15 +5,25 @@
 </head>
 <body>
 <h1>Supply chain classic bare-bones</h1>
+<form *ngIf="showForm" #roleForm="ngForm" (ngSubmit)="toggleDiv(selectedRole)">
+  <label>Role</label><br>
+  <select [(ngModel)]="selectedRole" name="role">
+    <option value="producer">Producer</option>
+    <option value="buyer">Buyer</option>
+    <option value="shipper">Shipper</option>
+    <option value="financier">Financier</option>
+    <option value="gamemaster">Game-master</option>
+  </select>
+  <button type="submit">Take role</button>
+</form>
 
-<!-- Element 1 -->
-<div>
+<div *ngIf="showGM">
   <input type="text" [(ngModel)]="value1">
   <input type="text" [ngModel]="value2">
   <button (click)="moveValue('value1', 'value2')">Move Value</button>
 
   <label>Game master:</label><br>
-  <textarea readonly rows="5" cols="50" [(ngModel)]="receiverGMaster"></textarea><br>
+  <textarea readonly rows="5" cols="50" [(ngModel)]="receiverGMaster" *ngFor="let msgTable of data">{{msgTable.message}}</textarea><br>
   <input type="text" [(ngModel)]="senderGMaster"><br>
   <button (click)="moveValue('senderGMaster', 'receiverBuyer')">Send to buyer</button>
   <button (click)="ProductGood()">Product was good</button>
@@ -23,7 +33,7 @@
 </div>
 
 <!-- Element 2 -->
-<div>
+<div *ngIf="showBuyer">
   <label>Buyer:</label><br>
   <textarea readonly rows="5" cols="50" [(ngModel)]="receiverBuyer"></textarea><br>
   <input type="text" [(ngModel)]="senderBuyer"><br>
@@ -33,7 +43,7 @@
 </div>
 
 <!-- Element 3 -->
-<div>
+<div *ngIf="showFinancier">
   <label>Financier:</label><br>
   <textarea readonly rows="5" cols="50" [(ngModel)]="receiverFinancier"></textarea><br>
   <input type="text" [(ngModel)]="senderFinancier"><br>
@@ -44,7 +54,7 @@
 </div>
 
 <!-- Element 4 -->
-<div>
+<div *ngIf="showShipper">
   <label>Shipper:</label><br>
   <textarea readonly rows="5" cols="50" [(ngModel)]="receiverShipper"></textarea><br>
   <input [(ngModel)]="senderShipper" type="text"><br>
@@ -53,7 +63,7 @@
 </div>
 
 <!-- Element 5 -->
-<div>
+<div *ngIf="showProducer">
   <label>Producer:</label><br>
   <textarea readonly rows="5" cols="50" [(ngModel)]="receiverProducer"></textarea><br>
   <input type="text" [(ngModel)]="senderProducer"><br>
