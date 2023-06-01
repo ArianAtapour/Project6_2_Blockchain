@@ -15,6 +15,7 @@ export class AppComponent {
   gameData$: Observable<any[]> = of([]);
   data : any[] | undefined;
   gameDataSubscription: Subscription | undefined;
+  previousName : string = "";
 
   //warning strings
   nameTakenWarning: any;
@@ -89,13 +90,17 @@ export class AppComponent {
     //check to see if username or role was taken
     if (this.data) {
       this.data.forEach((playerData) => {
-          //check name
+        //check name
+        if(value.name == this.previousName){
+
+        } else {
           if(playerData.name == value.name){
             this.nameIsTaken = true;
             console.log("playerName: " + playerData.name);
             console.log("valueName: " + value.name);
             //this.nameTakenWarning = "username already taken, please pick another name"
           }
+
           //check role
           if(playerData.role == value.role){
             this.roleIsTaken = true;
@@ -103,12 +108,14 @@ export class AppComponent {
             console.log("valueRole: " + value.role);
             //this.roleTakenWarning = "role already taken, please pick another role"
           }
+        }
       });
     }
 
     if(this.nameIsTaken){
       this.nameTakenWarning = "name is taken, please try another";
     } else {
+      this.previousName = value.name;
       this.nameTakenWarning = "";
     }
 
