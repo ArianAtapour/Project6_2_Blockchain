@@ -22,6 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { ProductChecklistComponent } from './product-checklist/product-checklist.component';
 import { SortBlocksByTimestampPipe } from './pipes/sort-blocks-by-timestamp.pipe';
 import { ReverseArrayPipe } from './pipes/reverse-array.pipe';
+import { GameComponent } from './game/game.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ReverseArrayPipe } from './pipes/reverse-array.pipe';
     BlockInfoComponent,
     ProductChecklistComponent,
     SortBlocksByTimestampPipe,
-    ReverseArrayPipe
+    ReverseArrayPipe,
+    GameComponent
   ],
   imports: [
     BrowserModule,

@@ -21,19 +21,17 @@
   .tg-sort-desc:after{border-bottom:none;border-width:5px 5px 0}@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;margin: auto 0px;}}</style>
 <div class="container">
   <mat-card class="item" [style.backgroundColor]="Department.getColor(id)">
-      <div class="product">
-        <span>{{ product }}</span>
+      <div class="department">
+        <h1>{{ department }}</h1>
       </div>
-      <br>
       <br>
       <!--      <div mat-card-avatar class="avatar" [ngStyle]="{ color: Department.getColor(id) }">-->
-      <div class="department">
-        {{ department }}
+      <div class="product">
+        <h2>{{ product }}</h2>
       </div>
       <br>
-      <br>
       <div class="message">
-        <span>{{ message }}</span>
+        <h3>{{ message }}</h3>
       </div>
   </mat-card>
 </div>

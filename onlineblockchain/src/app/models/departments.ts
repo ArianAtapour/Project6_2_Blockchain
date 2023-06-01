@@ -6,4 +6,5 @@ export const departments: Department[] = [
   { id: 3, name: "Financier", description: "Finances things." },
   { id: 4, name: "Shipper", description: "Ships things." },
   { id: 5, name: "Producer", description: "Produces things." },
+
 ];

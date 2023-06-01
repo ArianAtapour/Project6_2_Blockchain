@@ -1,1 +1,5 @@
-<p>producer-message works!</p>
+<div>
+  <button (click)="sendMessage({ message: 'Client wants this product.', department: department, isApproved: true })">Send Request</button>
+  <button (click)="sendMessage({ message: 'Approved', department: department, isApproved: true })">Approve</button>
+  <button (click)="sendMessage({ message: 'Rejected', department: department, isApproved: false })">Reject</button>
+</div>

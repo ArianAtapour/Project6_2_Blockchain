@@ -1,1 +1,5 @@
-<p>spectator-message works!</p>
+<!-- UI for buyer message, e.g., textarea -->
+<div>
+  <textarea rows="3" cols="40" #message></textarea>
+</div>
+<button (click)="sendMessage({ message: message.value, department: department, isApproved: true })">Send Message</button>

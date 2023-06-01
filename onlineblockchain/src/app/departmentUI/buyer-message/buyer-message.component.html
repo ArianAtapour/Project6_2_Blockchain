@@ -1,1 +1,3 @@
-<button (click)="sendMessage({ message: 'Client wants this product.', department: department, isApproved: true })">Send Message</button>
+<button *ngIf="buttonIndex==0" (click)="sendMessage({ message: 'Waiting for Approval from Finance.', department: department, isApproved: true })">Send Request to Finance</button>
+<button *ngIf="buttonIndex==1" (click)="sendMessage({ message: 'Waiting for Approval from Producer.', department: department, isApproved: true })">Send Request to Producer</button>
+<button *ngIf="buttonIndex>1" (click)="sendMessage({ message: 'Delivering Product to Client', department: department, isApproved: true })">Deliver to Client</button>

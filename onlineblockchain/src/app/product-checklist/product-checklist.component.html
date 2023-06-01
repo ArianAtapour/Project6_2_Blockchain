@@ -1,18 +1,78 @@
 <div class="container">
   <mat-card class="item" [style.backgroundColor]="Department.getColor(id)">
     <mat-card-content>
-      <h2>Checklist</h2>
+      <h2>Checklist for {{product}}</h2>
       <ul>
         <li>
-          <span>1 Product Selected</span>
+          <span>1 Client ordered product</span>
           <span class="status" [class.completed]="checklist.hasProduct">
             {{ checklist.hasProduct ? '✔️' : '❌' }}
           </span>
         </li>
         <li>
-          <span>2 Approved by Finance</span>
-          <span class="status" [class.completed]="checklist.approvedByFinance">
-            {{ checklist.approvedByFinance ? '✔️' : '❌' }}
+          <span>2 Buyer sends request to Finance</span>
+          <span class="status" [class.completed]="checklist.buyerToFinance">
+            {{ checklist.buyerToFinance ? '✔️' : '❌' }}
+          </span>
+        </li>
+        <li>
+          <span>3 Finance approves request</span>
+          <span class="status" [class.completed]="checklist.financeToBuyer">
+            {{ checklist.financeToBuyer ? '✔️' : '❌' }}
+          </span>
+        </li>
+        <li>
+          <span>4 Buyer sends request to Producer</span>
+          <span class="status" [class.completed]="checklist.buyerToProducer">
+            {{ checklist.buyerToProducer ? '✔️' : '❌' }}
+          </span>
+        </li>
+        <li>
+          <span>5 Producer sends request Finance</span>
+          <span class="status" [class.completed]="checklist.producerToFinance">
+            {{ checklist.producerToFinance ? '✔️' : '❌' }}
+          </span>
+        </li>
+        <li>
+          <span>6 Finance approves request</span>
+          <span class="status" [class.completed]="checklist.financeToProducer">
+            {{ checklist.financeToProducer ? '✔️' : '❌' }}
+          </span>
+        </li>
+        <li>
+          <span>7 Producer sends request to Shipper</span>
+          <span class="status" [class.completed]="checklist.producerToShipper">
+            {{ checklist.producerToShipper ? '✔️' : '❌' }}
+          </span>
+        </li>
+        <li>
+          <span>8 Shipper to Finance</span>
+          <span class="status" [class.completed]="checklist.shipperToFinance">
+            {{ checklist.shipperToFinance ? '✔️' : '❌' }}
+          </span>
+        </li>
+        <li>
+          <span>9 Finance To Shipper</span>
+          <span class="status" [class.completed]="checklist.financeToShipper">
+            {{ checklist.financeToShipper ? '✔️' : '❌' }}
+          </span>
+        </li>
+        <li>
+          <span>10 Ship parts to Producer</span>
+          <span class="status" [class.completed]="checklist.shipperToProducer">
+            {{ checklist.shipperToProducer ? '✔️' : '❌' }}
+          </span>
+        </li>
+        <li>
+          <span>11 Deliver from Producer to Buyer</span>
+          <span class="status" [class.completed]="checklist.producerToBuyer">
+            {{ checklist.producerToBuyer ? '✔️' : '❌' }}
+          </span>
+        </li>
+        <li>
+          <span>12 Deliver from Buyer to Client</span>
+          <span class="status" [class.completed]="checklist.buyerToClient">
+            {{ checklist.buyerToClient ? '✔️' : '❌' }}
           </span>
         </li>
       </ul>

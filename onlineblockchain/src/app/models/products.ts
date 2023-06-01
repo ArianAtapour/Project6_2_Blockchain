@@ -6,7 +6,17 @@ export function createChecklist(productId: number): Checklist {
   if (!checklistInstances[productId]) {
     checklistInstances[productId] = {
       hasProduct: false,
-      approvedByFinance: false,
+      buyerToFinance: false,
+      financeToBuyer: false,
+      buyerToProducer: false,
+      producerToFinance: false,
+      financeToProducer: false,
+      producerToShipper: false,
+      shipperToFinance: false,
+      financeToShipper: false,
+      shipperToProducer: false,
+      producerToBuyer: false,
+      buyerToClient: false,
     };
   }
   return checklistInstances[productId];

@@ -21,7 +21,7 @@
       <tr>
         <h1>{{ department.name }}</h1>
       </tr>
-      <div *ngIf="department.id !== 1">
+      <div>
         <select [(ngModel)]="productIndex" class="form-control">
           <option *ngFor="let product of products; index as i" [value]="i">{{ product.name }}</option>
         </select>

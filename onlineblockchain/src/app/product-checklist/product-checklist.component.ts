@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Checklist, Department } from '../models/interfaces';
+import {Checklist, Department, Product} from '../models/interfaces';
 
 @Component({
   selector: 'app-product-checklist',
@@ -9,6 +9,7 @@ import { Checklist, Department } from '../models/interfaces';
 export class ProductChecklistComponent {
   @Input() checklist = {} as Checklist;
   @Input() id: number = 0;
+  @Input() product = "";
   protected readonly Department = Department;
 
   get checklistArray(): boolean[] {

@@ -5,6 +5,7 @@ import { departments } from "../models/departments";
 import { DataService } from "../services/data.service";
 import {Data} from "@angular/router";
 import {createChecklist, products} from "../models/products";
+import {GameService} from "../services/game.service";
 
 
 
@@ -15,6 +16,7 @@ import {createChecklist, products} from "../models/products";
 })
 export class DepartmentComponent {
   ds: DataService;
+  gs: GameService;
 
   department: Department = {} as Department;
   departments: Department[] = departments;
@@ -23,9 +25,18 @@ export class DepartmentComponent {
   gameVisibility = false;
 
   productIndex: number = 0;
-  constructor(ds: DataService) {
+  constructor(ds: DataService, gs: GameService) {
     this.ds = ds;
+    this.gs = gs;
   }
+
+  // updateChildButtonIndex() {
+  //   // Loop through the departments and update the buttonIndex for each child component
+  //   for (const department of this.departments) {
+  //     department.buttonIndex = this.buttonIndex;
+  //   }
+  // }
+
 
   createDepartment(id: number, name: string, description: string): Department {
     return { id, name, description };
@@ -50,13 +61,53 @@ export class DepartmentComponent {
 
 
   //RULES
+  // 1 - Client
+  // 2 - Buyer
+  // 3 - Financier
+  // 4 - Shipper
+  // 5 - Producer
   handleChecklist(department: Department, isApproved: boolean, checklist: Checklist) {
-    if (department && department.id === 2 && isApproved) {
+    if (department && isApproved && department.id === 1) {
       Checklist.firstStepDone(checklist);
     }
-    if (checklist.hasProduct && department && department.id === 3 && isApproved) {
+    if (department && checklist.hasProduct && isApproved && department.id === 2) {
       Checklist.secondStepDone(checklist);
     }
+    if (department && checklist.buyerToFinance && isApproved && department.id === 3) {
+      Checklist.thirdStepDone(checklist);
+    }
+    if (department && checklist.financeToBuyer && isApproved && department.id === 2) {
+      Checklist.fourthStepDone(checklist);
+    }
+    if (department && checklist.buyerToProducer && isApproved && department.id === 5) {
+      Checklist.fifthStepDone(checklist);
+    }
+    if (department && checklist.producerToFinance && isApproved && department.id === 3) {
+      Checklist.sixthStepDone(checklist);
+    }
+    if (department && checklist.financeToProducer && isApproved && department.id === 5) {
+      Checklist.seventhStepDone(checklist);
+    }
+    if (department && checklist.producerToShipper && isApproved && department.id === 4) {
+      Checklist.eighthStepDone(checklist);
+    }
+    if (department && checklist.shipperToFinance && isApproved && department.id === 3) {
+      Checklist.ninthStepDone(checklist);
+    }
+    if (department && checklist.financeToShipper && isApproved && department.id === 4) {
+      Checklist.tenthStepDone(checklist);
+    }
+    if (department && checklist.shipperToProducer && isApproved && department.id === 5) {
+      Checklist.eleventhStepDone(checklist);
+    }
+    if (department && checklist.producerToBuyer && isApproved && department.id === 2) {
+      Checklist.twelfthStepDone(checklist);
+    }
+    if (department && checklist.buyerToClient && isApproved && department.id === 2) {
+      Checklist.secondStepDone(checklist);
+    }
+
+
   }
 
 

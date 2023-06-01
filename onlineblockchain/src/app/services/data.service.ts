@@ -43,6 +43,7 @@ export class DataService {
       name: blockData.product.name,
       description: blockData.product.description,
     };
+
     const checklist = createChecklist(product.id);
 
     const block: Block = {
@@ -55,12 +56,45 @@ export class DataService {
     };
 
     // Update the checklist properties based on the blockData
-    if (blockData.checklist.hasProduct) {
-      Checklist.firstStepDone(block.checklist);
+    if (blockData.checklist) {
+      if (blockData.checklist.hasProduct) {
+        Checklist.firstStepDone(block.checklist);
+      }
+      if (blockData.checklist.buyerToFinance) {
+        Checklist.secondStepDone(block.checklist);
+      }
+      if (blockData.checklist.financeToBuyer) {
+        Checklist.thirdStepDone(block.checklist);
+      }
+      if (blockData.checklist.buyerToProducer) {
+        Checklist.fourthStepDone(block.checklist);
+      }
+      if (blockData.checklist.producerToFinance) {
+        Checklist.fifthStepDone(block.checklist);
+      }
+      if (blockData.checklist.financeToProducer) {
+        Checklist.sixthStepDone(block.checklist);
+      }
+      if (blockData.checklist.producerToShipper) {
+        Checklist.seventhStepDone(block.checklist);
+      }
+      if (blockData.checklist.shipperToFinance) {
+        Checklist.eighthStepDone(block.checklist);
+      }
+      if (blockData.checklist.financeToShipper) {
+        Checklist.ninthStepDone(block.checklist);
+      }
+      if (blockData.checklist.shipperToProducer) {
+        Checklist.tenthStepDone(block.checklist);
+      }
+      if (blockData.checklist.producerToBuyer) {
+        Checklist.eleventhStepDone(block.checklist);
+      }
+      if (blockData.checklist.buyerToClient) {
+        Checklist.twelfthStepDone(block.checklist);
+      }
     }
-    if (blockData.checklist.hasProduct && blockData.checklist.approvedByFinance) {
-      Checklist.secondStepDone(block.checklist);
-    }
+
 
     return block;
   }

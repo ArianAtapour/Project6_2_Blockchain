@@ -14,7 +14,7 @@ export namespace Department {
       case 3: return '#FF945E'; // Updated slightly less vibrant pastel orange
       case 4: return '#B07AC4'; // Vibrant pastel purple
       case 5: return '#78C5A9'; // Vibrant pastel green
-      default: return 'black';
+      default: return 'white';
     }
   }
   export function getId(department: Department) {
@@ -28,17 +28,70 @@ export namespace Department {
   }
 }
 export interface Checklist {
-  hasProduct: boolean;
-  approvedByFinance: boolean;
+  hasProduct: boolean; //1
+  buyerToFinance: boolean; //2
+  financeToBuyer: boolean; //3
+  buyerToProducer: boolean; //2
+  producerToFinance: boolean; //5
+  financeToProducer: boolean; //3
+  producerToShipper: boolean; //5
+  shipperToFinance: boolean; //4
+  financeToShipper: boolean; //3
+  shipperToProducer: boolean; //4
+  producerToBuyer: boolean; //5
+  buyerToClient: boolean; //2
 }
+
 export namespace Checklist {
   export function firstStepDone(checklist: Checklist) {
     checklist.hasProduct = true;
   }
+
   export function secondStepDone(checklist: Checklist) {
-    checklist.approvedByFinance = true;
+    checklist.buyerToFinance = true;
+  }
+
+  export function thirdStepDone(checklist: Checklist) {
+    checklist.financeToBuyer = true;
+  }
+
+  export function fourthStepDone(checklist: Checklist) {
+    checklist.buyerToProducer = true;
+  }
+
+  export function fifthStepDone(checklist: Checklist) {
+    checklist.producerToFinance = true;
+  }
+
+  export function sixthStepDone(checklist: Checklist) {
+    checklist.financeToProducer = true;
+  }
+
+  export function seventhStepDone(checklist: Checklist) {
+    checklist.producerToShipper = true;
+  }
+
+  export function eighthStepDone(checklist: Checklist) {
+    checklist.shipperToFinance = true;
+  }
+
+  export function ninthStepDone(checklist: Checklist) {
+    checklist.financeToShipper = true;
+  }
+
+  export function tenthStepDone(checklist: Checklist) {
+    checklist.shipperToProducer = true;
+  }
+
+  export function eleventhStepDone(checklist: Checklist) {
+    checklist.producerToBuyer = true;
+  }
+
+  export function twelfthStepDone(checklist: Checklist) {
+    checklist.buyerToClient = true;
   }
 }
+
 
 export interface Product {
   id: number;
