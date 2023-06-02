@@ -7,6 +7,8 @@ import { StartPageComponent } from './start-page/start-page.component';
 import { RulesPageComponent } from './rules-page/rules-page.component';
 import { CharacterNameComponent } from './character-name/character-name.component';
 import { MainComponent } from './main/main.component';
+import { GameOverComponent } from './game-over/game-over.component';
+import { QuestionComponent } from './question/question.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { MainComponent } from './main/main.component';
     StartPageComponent,
     RulesPageComponent,
     CharacterNameComponent,
-    MainComponent
+    MainComponent,
+    GameOverComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,

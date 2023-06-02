@@ -11,15 +11,11 @@
         <div class="big-box"></div>
         <div class="notification-center">
             <button (click)="goToRules()" class="custom-button">Game Rules</button>
-            <button  class="custom-button"></button>
-            <div class="textBox">
-                <textarea id="messageInput" placeholder="Enter your message"></textarea>
-            </div>
+            <button class="custom-button">Messages</button>
         </div>
     </div>
     <div class="textBox"></div>
 <script>
-    // JavaScript code to update the timer dynamically
     function startTimer() {
         const timerElement = document.getElementById('timer');
         let seconds = 0;
@@ -36,9 +32,7 @@
         }, 1000);
     }
 
-    // Define the goToNext function within the Angular component
     function goToNext() {
-        // Add your logic here to navigate to the next page or perform any desired action
         console.log('Button clicked!');
     }
 
