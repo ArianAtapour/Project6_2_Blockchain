@@ -4,8 +4,6 @@
     </div>
     <div class="info-box">
         <p>Players: 5</p>
-        <p>Chains: 1</p>
-        <p>Timer: <span id="timer">00:00</span></p>
     </div>
     <div class="big-box">
         <div class="frame">
@@ -25,7 +23,7 @@
 </div>
 
 <script>
-    // JavaScript code to update the timer dynamically
+
     function startTimer() {
         const timerElement = document.getElementById('timer');
         let seconds = 0;
@@ -41,10 +39,7 @@
             timerElement.textContent = `${formatTime(minutes)}:${formatTime(remainingSeconds)}`;
         }, 1000);
     }
-
-    // Define the goToNext function within the Angular component
     function goToNext() {
-        // Add your logic here to navigate to the next page or perform any desired action
         console.log('Button clicked!');
     }
 

@@ -28,7 +28,8 @@
 
 .info-box {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   margin-top: 70px;
   padding: 10px;

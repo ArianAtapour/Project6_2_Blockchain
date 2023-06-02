@@ -4,11 +4,8 @@
 </div>
 <div class="info-box">
     <p>Players: 5</p>
-    <p>Chains: 1</p>
-    <p>Timer: <span id="timer">00:00</span></p>
 </div>
 <script>
-    // JavaScript code to create a timer
     function startTimer() {
         const timerElement = document.getElementById('timer');
         let seconds = 0;
@@ -24,8 +21,6 @@
             timerElement.textContent = `${formatTime(minutes)}:${formatTime(remainingSeconds)}`;
         }, 1000);
     }
-
-    // Call the startTimer function after the DOM has loaded
     document.addEventListener('DOMContentLoaded', startTimer);
 </script>
     <div class="big-box">
