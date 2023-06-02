@@ -51,16 +51,17 @@
 <!-- Element 3 -->
 <div *ngIf="showFinancier">
   <label>Financier:</label><br>
-  <ul [(ngModel)]="receiverFinancier">
-    <li *ngFor="let item of messages">
-      <span *ngIf="isMessageVisible(item)">{{ item.text }}</span>
-    </li>
+  <ul>
+    <ng-container *ngFor="let item of messages">
+      <li *ngIf="isMessageVisible(item)">
+        <span *ngIf="item.text">{{ item.text }}</span>
+      </li>
+    </ng-container>
   </ul>
   <input type="text" [(ngModel)]="senderFinancier"><br>
-  <button (click)="pushTextWithRole('senderFinancier','buyer')">Send to buyer</button>
-  <button (click)="moveValue('receiverFinancier', 'receiverShipper')">Send to shipper</button>
-  <button (click)="moveValue('receiverFinancier', 'receiverProducer')">Send to producer</button>
-
+  <button (click)="pushTextWithRole('senderFinancier', 'buyer')">Send to buyer</button>
+  <!-- <button (click)="moveValue('receiverFinancier', 'receiverShipper')">Send to shipper</button>
+  <button (click)="moveValue('receiverFinancier', 'receiverProducer')">Send to producer</button> -->
 </div>
 
 <!-- Element 4 -->
