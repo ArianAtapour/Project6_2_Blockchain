@@ -4,7 +4,6 @@ export class Player {
 
   private _id : string = "";
   private _name : string = "";
-  private _message : string = "";
   private _role : Role = Role.None;
 
   private constructor(){}

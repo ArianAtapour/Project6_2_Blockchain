@@ -3,6 +3,7 @@ import {AngularFireDatabase} from "@angular/fire/compat/database";
 import {FireConectionService} from "./fire-conection.service";
 import {Observable, of, Subscription} from "rxjs";
 import {Player} from "../player";
+import { FirebaseService } from './firebase.service';
 
 @Component({
   selector: 'app-root',
@@ -12,25 +13,16 @@ import {Player} from "../player";
 
 export class AppComponent {
   dataBase : AngularFireDatabase;
-  gameData$: Observable<any[]> = of([]);
-  gameDataM$: Observable<any[]> = of([]);
   data : any[] | undefined;
-  gameDataSubscription: Subscription | undefined;
-  gameDataSubscriptionM: Subscription | undefined;
-  previousName : string = "";
+  msgData : any[] | undefined;
+  private messagesSubscription: Subscription | undefined;
+  messages: any[] = [];
+  currentRole : string = "";
 
-  //warning strings
-  nameTakenWarning: any;
-  roleTakenWarning: any;
-
-  //flag for if username is taken
-  nameIsTaken = false;
-  //flag for if role is taken
-  roleIsTaken = false;
-
-  constructor(private db: AngularFireDatabase, private fireConnectionService: FireConectionService) {
+  constructor(private db: AngularFireDatabase, private fireConnectionService: FireConectionService, private firebaseService: FirebaseService) {
     //initialize database
     this.dataBase = db;
+    const messageRef = this.db.list("messages");
   }
 
   async ngOnInit(){
@@ -62,94 +54,11 @@ export class AppComponent {
     this.fireConnectionService.deleteUserNodeOnDisconnect();
 
     //retrieve and subscribe to user data table
-    this.retrieveGameData();
-    this.retrieveGameDataM();
-  }
-  //update the table and subscribe to the change event if not done yet
-  retrieveGameData(){
-    //create the reference towards the data list
-    const playerRef = this.db.list("users");
-    //define the table as the data of the users table
-    this.gameData$ = playerRef.valueChanges();
-
-    //if the data subscription is not subbed yet then sub
-    if(!this.gameDataSubscription){
-      this.gameDataSubscription = this.gameData$.subscribe((data) => {
-        console.log('Data updated:', data);
-        //update method
-        this.data = data;
-      });
-    }
-    //update method
-  }
-  retrieveGameDataM(){
-    //create the reference towards the data list
-    const msgRef = this.db.list("msgTable");
-    //define the table as the data of the users table
-    this.gameDataM$ = msgRef.valueChanges();
-
-    //if the data subscription is not subbed yet then sub
-    if(!this.gameDataSubscriptionM){
-      this.gameDataSubscriptionM = this.gameDataM$.subscribe((data) => {
-        console.log('Data updated:', data);
-        //update method
-        this.data = data;
-      });
-    }
-    //update method
-  }
-
-  //add the players data, first check if possibilities are not taken
-  onSubmit(value: any) {
-    this.nameIsTaken = false;
-    this.roleIsTaken = false;
-
-    //check to see if username or role was taken
-    if (this.data) {
-      this.data.forEach((playerData) => {
-        //check name
-        if(value.name == this.previousName){
-
-        } else {
-          if(playerData.name == value.name){
-            this.nameIsTaken = true;
-            console.log("playerName: " + playerData.name);
-            console.log("valueName: " + value.name);
-            //this.nameTakenWarning = "username already taken, please pick another name"
-          }
-
-          //check role
-          if(playerData.role == value.role){
-            this.roleIsTaken = true;
-            console.log("playerRole: " + playerData.role);
-            console.log("valueRole: " + value.role);
-            //this.roleTakenWarning = "role already taken, please pick another role"
-          }
-        }
-      });
-    }
-
-    if(this.nameIsTaken){
-      this.nameTakenWarning = "name is taken, please try another";
-    } else {
-      this.previousName = value.name;
-      this.nameTakenWarning = "";
-    }
-
-    if(this.roleIsTaken){
-      this.roleTakenWarning = "role is taken, please try another";
-    } else {
-      this.roleTakenWarning = "";
-    }
-
-    //if both role and name is taken are false then add them to the DB
-    if(!this.nameIsTaken && !this.roleIsTaken){
-      this.fireConnectionService.updateUserData({
-        name: value.name,
-        role: value.role
-      })
-      console.log("Data sent: " + value.name + " and " + value.role);
-    }
+    this.messagesSubscription = this.firebaseService.getItemsFromDatabase().subscribe(
+      (items: any[]) => {
+        this.messages = items;
+      }
+    );
   }
   showForm: boolean = true;
   showGM: boolean = false;
@@ -169,6 +78,7 @@ export class AppComponent {
           role: value
         })
         console.log("Data sent: " + value.role);
+        this.currentRole = value;
         break;
 
       case "buyer":
@@ -177,6 +87,7 @@ export class AppComponent {
           role: value
         })
         console.log("Data sent: " + value.role);
+        this.currentRole = value;
         break;
 
       case "financier":
@@ -185,6 +96,7 @@ export class AppComponent {
           role: value
         })
         console.log("Data sent: " + value.role);
+        this.currentRole = value;
         break;
 
       case "shipper":
@@ -193,6 +105,7 @@ export class AppComponent {
           role: value
         })
         console.log("Data sent: " + value.role);
+        this.currentRole = value;
         break;
 
       case "producer":
@@ -201,6 +114,7 @@ export class AppComponent {
           role: value
         })
         console.log("Data sent: " + value.role);
+        this.currentRole = value;
         break;
     }
     this.showForm = false;
@@ -212,11 +126,11 @@ export class AppComponent {
   senderBuyer : string = "";
   senderShipper : string = "";
   senderProducer : string = "";
-  receiverGMaster : string = "";
-  receiverBuyer : string = "";
+  receiverGMaster : string[] = [];
+  receiverBuyer : string[] = [];
   receiverShipper : string = "";
   receiverProducer : string = "";
-  receiverFinancier : string = "";
+  receiverFinancier : string[] = [];
 
   goodNumber : number = 0;
   badNumber : number = 0;
@@ -230,7 +144,15 @@ export class AppComponent {
     // @ts-ignore
     this[sourceProperty] = '';
   }
-
+  pushTextWithRole(text: string, role: string) {
+    // @ts-ignore
+    text = this[text];
+    this.firebaseService.addItemToDatabase(text, role);
+  }
+  isMessageVisible(item?: any): boolean {
+    // Check if the user's role allows viewing the item
+    return this.selectedRole === item.role;
+  }
 
   ProductGood()
   {

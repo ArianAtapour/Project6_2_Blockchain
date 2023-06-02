@@ -23,7 +23,9 @@
   <button (click)="moveValue('value1', 'value2')">Move Value</button>
 
   <label>Game master:</label><br>
-  <textarea readonly rows="5" cols="50" [(ngModel)]="receiverGMaster" *ngFor="let msgTable of data">{{msgTable.message}}</textarea><br>
+  <ul [(ngModel)]="receiverGMaster">
+    <li *ngFor="let item of messages">{{ item.text }}</li>
+  </ul>
   <input type="text" [(ngModel)]="senderGMaster"><br>
   <button (click)="moveValue('senderGMaster', 'receiverBuyer')">Send to buyer</button>
   <button (click)="ProductGood()">Product was good</button>
@@ -35,9 +37,13 @@
 <!-- Element 2 -->
 <div *ngIf="showBuyer">
   <label>Buyer:</label><br>
-  <textarea readonly rows="5" cols="50" [(ngModel)]="receiverBuyer"></textarea><br>
+  <ul [(ngModel)]="receiverBuyer">
+    <li *ngFor="let item of messages">
+      <span *ngIf="isMessageVisible(item)">{{ item.text }}</span>
+    </li>
+  </ul>
   <input type="text" [(ngModel)]="senderBuyer"><br>
-  <button (click)="moveValue('senderBuyer', 'receiverFinancier')">Send for financier's approval</button>
+  <button (click)="pushTextWithRole('senderBuyer','financier')">Send for financier's approval</button>
   <button (click)="moveValue('senderBuyer', 'receiverShipper')">Send to the shipper</button>
   <button (click)="moveValue('senderBuyer', 'receiverGMaster')">Send to the client</button>
 </div>
@@ -45,9 +51,13 @@
 <!-- Element 3 -->
 <div *ngIf="showFinancier">
   <label>Financier:</label><br>
-  <textarea readonly rows="5" cols="50" [(ngModel)]="receiverFinancier"></textarea><br>
+  <ul [(ngModel)]="receiverFinancier">
+    <li *ngFor="let item of messages">
+      <span *ngIf="isMessageVisible(item)">{{ item.text }}</span>
+    </li>
+  </ul>
   <input type="text" [(ngModel)]="senderFinancier"><br>
-  <button (click)="moveValue('receiverFinancier', 'receiverBuyer')">Send to buyer</button>
+  <button (click)="pushTextWithRole('senderFinancier','buyer')">Send to buyer</button>
   <button (click)="moveValue('receiverFinancier', 'receiverShipper')">Send to shipper</button>
   <button (click)="moveValue('receiverFinancier', 'receiverProducer')">Send to producer</button>
 
