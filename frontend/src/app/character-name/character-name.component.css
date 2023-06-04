@@ -1,3 +1,9 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 .container {
   background-color: #303B44;
   height: 100vh;
@@ -8,6 +14,11 @@
   color: white;
   font-family: 'Hind', sans-serif;
   font-size: 24px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .rules-container {
@@ -75,9 +86,7 @@
     border: 3px solid #FFD215;
     border-radius: 20px;
     width: 600px;
-    margin-top: 70px;
     height: 250px;
-    padding: 20px;
     background-color: #FFFFFF;
     color: #6C47F6;
     font-family: 'Hind', sans-serif;
@@ -101,4 +110,28 @@
     border: 1px solid #FFD215;
     border-radius: 4px;
     margin: 20px;
+}
+
+.table {
+    margin-top: 30px;
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 20px;
+    overflow: hidden; 
+}
+
+.table th,
+.table td {
+    border: 1px solid #FFD215;
+    padding: 8px;
+    text-align: center;
+}
+
+.table th {
+    background-color: #6C47F6;
+    color: white;
+}
+
+.table td {
+    color: #6C47F6;
 }
