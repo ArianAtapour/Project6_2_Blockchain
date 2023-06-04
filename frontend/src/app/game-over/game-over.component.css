@@ -1,19 +1,44 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 .container {
   background-color: #303B44;
   height: 100vh;
   display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   color: white;
   font-family: 'Hind', sans-serif;
   font-size: 24px;
+  filter: blur(1px); 
 }
 
-.gamescreen {
-  background-color: rgba(108, 71, 246, 0.6);
+
+.gamscreen {
+  position: absolute;
   height: 100vh;
+  background-color: rgba(108, 71, 246, 0.6);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  filter: blur(5px); 
 }
 
 .rules-container {
@@ -86,7 +111,7 @@
     font-family: 'Hind', sans-serif;
     font-size: 24px;
     width: 100px;
-    height: 90px;
+    height: 110px;
 }
 
 .custom-button {
@@ -138,4 +163,65 @@
 
 .textBox textarea:focus {
   outline: none;
+}
+
+.overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    width: 30em;
+    height: 15em;
+    padding: 10px;
+    background-color: #FFEE50;
+    z-index: 999;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.timer-bar {
+  width: 80%;
+  height: 20px;
+  background-color: grey;
+  border-radius: 10px;
+  position: relative;
+  margin: 40px;
+}
+
+.progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background-color: #FFD215;
+  border-radius: 10px;
+  transition: width 1s linear;
+}
+
+.question-text {
+  text-align: center;
+  font-size: 24px;
+  font-family: 'Hind', sans-serif;
+  font-size: 23px;
+  color: #6C47F6;
+  font-weight: 900;
+  margin-bottom: 40px;
+}
+
+.red-timer {
+    text-align: center;
+    font-size: 24px;
+    color: red;
+    margin-bottom: 10px;
+    font-family: 'Hind', sans-serif;
+    position: absolute;
+    top: 1px;
+    left: 50%;
+    padding: 5px;
+    transform: translateX(-50%);
+    font-weight: 900;
 }
