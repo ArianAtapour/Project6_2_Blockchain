@@ -13,6 +13,6 @@ export class RulesPageComponent {
   }
 
   goToNext() {
-    this.router.navigate(['/game-over']);
+    this.router.navigate(['/main']);
   }
 }
