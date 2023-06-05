@@ -126,24 +126,10 @@ export class AppComponent {
   senderBuyer : string = "";
   senderShipper : string = "";
   senderProducer : string = "";
-  receiverGMaster : string[] = [];
-  receiverBuyer : string[] = [];
-  receiverShipper : string = "";
-  receiverProducer : string = "";
-  receiverFinancier : string[] = [];
 
   goodNumber : number = 0;
   badNumber : number = 0;
-  //Text transfer methods, all separate because I didn't figure it out yet
 
-  value1: string = "";
-  value2: string = "";
-  moveValue(sourceProperty: string, targetProperty: string) {
-    // @ts-ignore
-    this[targetProperty] += this[sourceProperty] + "\n";
-    // @ts-ignore
-    this[sourceProperty] = '';
-  }
   pushTextWithRole(text: string, role: string) {
     // @ts-ignore
     text = this[text];
