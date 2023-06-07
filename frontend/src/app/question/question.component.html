@@ -1,1 +1,67 @@
-<p>question works!</p>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cargo Quest</title>
+    <link rel="stylesheet" type="text/css" href="question.component.css">
+</head>
+
+<body>
+    <div class="overlay">
+        <div class="red-timer">
+            <span id="redTimer">Timer</span>
+        </div>
+        <div class="timer-bar">
+            <div class="progress"></div>
+        </div>
+        <div class="question-text">
+            <p>Question:</p>
+            <p>What is the capital of France?</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="gamscreen">
+            <div class="rules-container">
+                <span class="rules-text">CARGO QUEST</span>
+            </div>
+            <div class="info-box">
+                <p>Players: 5</p>
+                <p>Chains: 1</p>
+                <p>Timer: <span id="timer">00:00</span></p>
+            </div>
+            <div class="main">
+                <div class="big-box"></div>
+                <div class="notification-center">
+                    <button class="custom-button">Game Rules</button>
+                    <button class="custom-button">Messages</button>
+                </div>
+            </div>
+            <div class="textBox"></div>
+        </div>
+    </div>
+    <script>
+        function startTimer() {
+            const timerElement = document.getElementById('timer');
+            let seconds = 0;
+
+            function formatTime(time) {
+                return time < 10 ? `0${time}` : time;
+            }
+
+            setInterval(() => {
+                seconds++;
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = seconds % 60;
+                timerElement.textContent = `${formatTime(minutes)}:${formatTime(remainingSeconds)}`;
+            }, 1000);
+        }
+
+        function goToNext() {
+            console.log('Button clicked!');
+        }
+
+        document.addEventListener('DOMContentLoaded', startTimer);
+    </script>
+</body>
+
+</html>
