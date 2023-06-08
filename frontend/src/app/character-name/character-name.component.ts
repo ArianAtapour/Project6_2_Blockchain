@@ -3,7 +3,7 @@ import { CommonModule} from "@angular/common";
 import { Router } from '@angular/router';
 import {AngularFireDatabase} from "@angular/fire/compat/database";
 import {FireConectionService} from "../fire-conection.service";
-import {Player} from "../../player";
+import {Player, Role} from "../../player";
 
 import {Observable, of, Subscription} from "rxjs";
 
@@ -19,6 +19,7 @@ export class CharacterNameComponent {
   data : any[] | undefined;
   gameDataSubscription: Subscription | undefined;
   previousName : string = "";
+  readyPlayers : number = 0;
 
   //warning strings
   nameTakenWarning: any;
@@ -79,6 +80,16 @@ export class CharacterNameComponent {
         console.log('Data updated:', data);
         //update method
         this.data = data;
+
+        //add number of valid players
+        if(this.data){
+          this.readyPlayers = 0;
+          this.data.forEach((playerData) => {
+            if(playerData.name != "" && playerData.role != ""){
+              this.readyPlayers++
+            }
+          });
+        }
       });
     }
   }
@@ -97,22 +108,21 @@ export class CharacterNameComponent {
       this.data.forEach((playerData) => {
         //check name
         if(value.name == this.previousName){
-
+          //don't check name
         } else {
-          if(playerData.name == value.name){
-            this.nameIsTaken = true;
-            console.log("playerName: " + playerData.name);
-            console.log("valueName: " + value.name);
-            this.nameTakenWarning = "username already taken, please pick another name"
+            if(playerData.name == value.name){
+              this.nameIsTaken = true;
+              console.log("playerName: " + playerData.name);
+              console.log("valueName: " + value.name);
+              this.nameTakenWarning = "username already taken, please pick another name"
+            }
           }
-
-          //check role
-          if(playerData.role == value.role){
-            this.roleIsTaken = true;
-            console.log("playerRole: " + playerData.role);
-            console.log("valueRole: " + value.role);
-            this.roleTakenWarning = "role already taken, please pick another role"
-          }
+        //check role
+        if(playerData.role == value.role){
+          this.roleIsTaken = true;
+          console.log("playerRole: " + playerData.role);
+          console.log("valueRole: " + value.role);
+          this.roleTakenWarning = "role already taken, please pick another role"
         }
       });
     }
@@ -122,22 +132,52 @@ export class CharacterNameComponent {
     } else {
       this.previousName = value.name;
       this.nameTakenWarning = "";
+      Player.getInstance().name = "";
     }
-
     if(this.roleIsTaken){
       this.roleTakenWarning = "role is taken, please try another";
     } else {
       this.roleTakenWarning = "";
+      Player.getInstance().role = Role.None;
     }
 
-    //if both role and name is taken are false then add them to the DB
+    //if both role and name is taken are false then add them to the DB and add to local player
     if(!this.nameIsTaken && !this.roleIsTaken){
       this.fireConnectionService.updateUserData({
         name: value.name,
         role: value.role
       })
+      Player.getInstance().name = value.name;
+      Player.getInstance().role = value.role;
       console.log("Data sent: " + value.name + " and " + value.role);
     }
+  }
+
+  onStaticGameClick() {
+    //check if role and name is in db if so add vote
+    if(this.checkIfNameAndRole()){
+      let text = 0;
+      this.fireConnectionService.updateUserData({vote: text});
+      console.log("added vote");
+    } else {
+      console.log("invalid vote");
+    }
+  }
+
+  onBlockchainGameClick() {
+    //check if role and name is in db if so add vote
+    if(this.checkIfNameAndRole()){
+      let text = 1;
+      this.fireConnectionService.updateUserData({vote: text});
+      console.log("added vote");
+    } else {
+      console.log("invalid vote");
+    }
+  }
+
+  //checks to see if player has a role and a name
+  checkIfNameAndRole(){
+    return Player.getInstance().name != "" && Player.getInstance().role != Role.None;
   }
 }
 

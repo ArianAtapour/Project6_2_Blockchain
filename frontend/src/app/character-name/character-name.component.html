@@ -3,7 +3,7 @@
         <span class="rules-text">CARGO QUEST</span>
     </div>
     <div class="info-box">
-        <p>Players: 5</p>
+        <p>Players: {{readyPlayers}}</p>
     </div>
     <div class="big-box">
       <div class="frame">
@@ -20,7 +20,7 @@
             </select>
             <input type="submit" class="input-button" value="Choose Role and Game">
             <i class="warning-Text" *ngIf="nameTakenWarning">{{nameTakenWarning}}</i>
-            <i class="warning-Text" *ngIf="nameTakenWarning">{{nameTakenWarning}}</i>
+            <i class="warning-Text" *ngIf="roleTakenWarning">{{roleTakenWarning}}</i>
           </form>
       </div>
       <div class="player-table-box">
@@ -38,6 +38,12 @@
           </tr>
           </tbody>
         </table>
+      </div>
+      <div class="static-game-box">
+        <button (click)="onStaticGameClick()">Static Game</button>
+      </div>
+      <div class="blockchain-game-box">
+        <button (click)="onBlockchainGameClick()">Blockchain Game</button>
       </div>
     </div>
 </div>

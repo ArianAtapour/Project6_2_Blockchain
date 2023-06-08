@@ -21,7 +21,8 @@ export class FireConectionService {
     const userData = {
       //users coordinates
       name: "",
-      role: ""
+      role: "",
+      vote: ""
     }
     console.log("userID: ", uid);
     // Create a new node with the key and set the user data
