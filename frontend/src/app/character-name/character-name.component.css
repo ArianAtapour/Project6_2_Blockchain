@@ -3,10 +3,8 @@ html, body {
   padding: 0;
   height: 100%;
 }
-
 .container {
   background-color: #303B44;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -20,7 +18,9 @@ html, body {
   width: 100%;
   height: 100%;
 }
+.warning-Text{
 
+}
 .rules-container {
   padding: 10px;
   position: absolute;
@@ -30,13 +30,11 @@ html, body {
   margin-top: 20px;
   margin-left: 20px;
 }
-
 .rules-text {
   color: #FFD215;
   font-size: 24px;
   font-weight: bold;
 }
-
 .info-box {
   display: flex;
   flex-direction: column;
@@ -49,14 +47,13 @@ html, body {
   height: 40px;
   border-color: #FFD215;
   border-width: 3px;
-  border-style: solid; 
+  border-style: solid;
   border-radius: 20px;
 }
-
 .big-box {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: baseline;
   margin-top: 100px;
   padding: 15px;
   background-color: white;
@@ -68,7 +65,6 @@ html, body {
   font-size: 24px;
   text-align: center;
 }
-
 .big-box button {
   background-color: #6C47F6;
   color: #FFFFFF;
@@ -77,47 +73,64 @@ html, body {
   border-radius: 20px;
   cursor: pointer;
   position: absolute;
- bottom: 130px;
+  bottom: 130px;
   right: 220px;
   font-family: 'Hind', sans-serif;
   font-size: 24px;
-} 
+}
 .frame {
     border: 3px solid #FFD215;
     border-radius: 20px;
-    width: 600px;
-    height: 250px;
+    width: 450px;
+    height: 400px;
     background-color: #FFFFFF;
     color: #6C47F6;
+    margin-left: 25px;
+    margin-right: 25px;
     font-family: 'Hind', sans-serif;
     font-size: 22px;
 }
 .label {
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
+    margin-top: 15px;
 }
 .input-field {
-    width: 450px;
+    width: 400px;
     padding: 10px;
-    margin: 20px;
+    margin: 15px;
     border: 1px solid #FFD215;
     border-radius: 4px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+}
+.input-button {
+  width: 150px;
+  padding: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 30px;
+  margin-right: 30px;
+  border: 1px solid #FFD215;
+  border-radius: 4px;
+
 }
 .dropdown {
-    width: 450px;
+    width: 425px;
     padding: 10px;
+    margin: 15px;
     border: 1px solid #FFD215;
     border-radius: 4px;
-    margin: 20px;
 }
-
 .table {
     margin-top: 30px;
-    width: 100%;
+    width: 450px;
     border-collapse: collapse;
     border-radius: 20px;
-    overflow: hidden; 
+    overflow: hidden;
+}
+.player-table-box{
+  align-self: auto;
+  width: 450px;
 }
 
 .table th,
