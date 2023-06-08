@@ -62,10 +62,10 @@ export class AppComponent {
   }
   showForm: boolean = true;
   showGM: boolean = false;
-  showBuyer: boolean = false;
+  showStore: boolean = false;
   showFinancier: boolean = false;
-  showShipper: boolean = false;
-  showProducer: boolean = false;
+  showFactory: boolean = false;
+  showDelivery: boolean = false;
   selectedRole: string = "";
 
   toggleDiv(value: any) {
@@ -81,8 +81,8 @@ export class AppComponent {
         this.currentRole = value;
         break;
 
-      case "buyer":
-        this.showBuyer = true;
+      case "store":
+        this.showStore = true;
         this.fireConnectionService.updateUserData({
           role: value
         })
@@ -99,8 +99,8 @@ export class AppComponent {
         this.currentRole = value;
         break;
 
-      case "shipper":
-        this.showShipper = true;
+      case "factory":
+        this.showFactory = true;
         this.fireConnectionService.updateUserData({
           role: value
         })
@@ -108,8 +108,8 @@ export class AppComponent {
         this.currentRole = value;
         break;
 
-      case "producer":
-        this.showProducer = true;
+      case "delivery":
+        this.showDelivery = true;
         this.fireConnectionService.updateUserData({
           role: value
         })
@@ -123,9 +123,9 @@ export class AppComponent {
   title = 'SupplyChain';
   senderGMaster : string = "";
   senderFinancier : string = "";
-  senderBuyer : string = "";
-  senderShipper : string = "";
-  senderProducer : string = "";
+  senderStore : string = "";
+  senderFactory : string = "";
+  senderDelivery : string = "";
 
   goodNumber : number = 0;
   badNumber : number = 0;
