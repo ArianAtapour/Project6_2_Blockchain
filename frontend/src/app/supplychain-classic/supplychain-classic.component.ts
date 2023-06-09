@@ -43,7 +43,7 @@ export class SupplychainClassicComponent {
         this.messages = items;
       }
     );
-    this.value = Player.getInstance().id;
+    this.value = Player.getInstance().role;
     console.log(this.value);
     switch (this.value) {
       case "gamemaster":
