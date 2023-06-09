@@ -26,30 +26,6 @@ export class SupplychainClassicComponent {
   }
 
   async ngOnInit(){
-    //connect to the firebase database as an anonymous user
-    await this.fireConnectionService.loginAnonymously().then((userCredential) => {
-      //successfully made a user
-      const user = userCredential.user;
-      //if the user isn't null save the uid in a separate variable
-      if (user) {
-        Player.getInstance().id = user.uid;
-        console.log("user logged");
-      }
-      console.log('logged in succesfully', user);
-    }).catch((error : any) => {
-      console.error('login failed', error);
-    });
-
-    //create the user and update the table accordingly
-    console.log(Player.getInstance().id);
-    this.fireConnectionService.createUserData(Player.getInstance().id)
-      .then(() => {
-        console.log('User data created successfully');
-      })
-      .catch((error : any) => {
-        console.error('Failed to create user data:', error);
-      });
-
     //removes the node when the user leaves the webpage or disconnects
     this.fireConnectionService.deleteUserNodeOnDisconnect();
 
