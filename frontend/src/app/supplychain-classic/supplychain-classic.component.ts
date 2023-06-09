@@ -18,6 +18,14 @@ export class SupplychainClassicComponent {
   private messagesSubscription: Subscription | undefined;
   messages: any[] = [];
   currentRole : string = "";
+  value : any | undefined;
+  showForm: boolean = false;
+  showGM: boolean = false;
+  showStore: boolean = false;
+  showFinancier: boolean = false;
+  showFactory: boolean = false;
+  showDelivery: boolean = false;
+  selectedRole: string = "";
 
   constructor(private db: AngularFireDatabase, private fireConnectionService: FireConectionService, private firebaseService: FirebaseService) {
     //initialize database
@@ -25,7 +33,7 @@ export class SupplychainClassicComponent {
     const messageRef = this.db.list("messages");
   }
 
-  async ngOnInit(){
+  async ngOnInit() {
     //removes the node when the user leaves the webpage or disconnects
     this.fireConnectionService.deleteUserNodeOnDisconnect();
 
@@ -35,22 +43,41 @@ export class SupplychainClassicComponent {
         this.messages = items;
       }
     );
+    this.value = Player.getInstance().id;
+    console.log(this.value);
+    switch (this.value) {
+      case "gamemaster":
+        this.showGM = true;
+        this.currentRole = this.value;
+        break;
+
+      case "store":
+        this.showStore = true;
+        this.currentRole = this.value;
+        break;
+
+      case "financier":
+        this.showFinancier = true;
+        this.currentRole = this.value;
+        break;
+
+      case "factory":
+        this.showFactory = true;
+        this.currentRole = this.value;
+        break;
+
+      case "delivery":
+        this.showDelivery = true;
+        this.currentRole = this.value;
+        break;
+    }
   }
-
-  incrementNumber() {
-    this.db.object('counter').query.ref.transaction((currentValue) => {
-      return (currentValue || 0) + 1;
-    });
-  }
-
-  showForm: boolean = true;
-  showGM: boolean = false;
-  showStore: boolean = false;
-  showFinancier: boolean = false;
-  showFactory: boolean = false;
-  showDelivery: boolean = false;
-  selectedRole: string = "";
-
+    incrementNumber()
+    {
+      this.db.object('counter').query.ref.transaction((currentValue) => {
+        return (currentValue || 0) + 1;
+      });
+    }
   toggleDiv(value: any) {
     console.log(value);
     switch (value)
