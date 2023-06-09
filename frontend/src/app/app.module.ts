@@ -13,6 +13,7 @@ import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import {AngularFireModule} from "@angular/fire/compat";
 import {QuestionComponent} from "./question/question.component";
 import {GameOverComponent} from "./game-over/game-over.component";
+import {SupplychainClassicComponent} from "./supplychain-classic/supplychain-classic.component";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {GameOverComponent} from "./game-over/game-over.component";
     CharacterNameComponent,
     MainComponent,
     GameOverComponent,
-    QuestionComponent
+    QuestionComponent,
+    SupplychainClassicComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase} from "@angular/fire/compat/database";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import {Player} from "../player";
+import {Player} from "../../player";
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +22,8 @@ export class FireConectionService {
       //users coordinates
       name: "",
       role: "",
-      message: ""
+      message: "",
+      test: "1"
     }
     console.log("userID: ", uid);
     // Create a new node with the key and set the user data
@@ -31,6 +32,8 @@ export class FireConectionService {
 
   updateUserData(newData: any) {
     //update user data
+      this.db.database.ref(`users/`).once('value').then((snapshot) =>
+        console.log(snapshot.numChildren()));
     return this.db.object(`users/${Player.getInstance().id}`).update(newData);
   }
 

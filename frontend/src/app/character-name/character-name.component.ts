@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule} from "@angular/common";
-import { Router } from '@angular/router';
+import { Router, Routes } from '@angular/router';
 import {AngularFireDatabase} from "@angular/fire/compat/database";
 import {FireConectionService} from "../fire-conection.service";
 import {Player, Role} from "../../player";
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 import {Observable, of, Subscription, timer} from "rxjs";
+import {SupplychainClassicComponent} from "../supplychain-classic/supplychain-classic.component";
 
 @Component({
   selector: 'app-character-name',
@@ -94,7 +98,7 @@ export class CharacterNameComponent {
                 console.log(this.playersWhoVoted + " boys");
               }
               //replace with 2 to test easier
-              if(this.playersWhoVoted >= 5)
+              if(this.playersWhoVoted >= 4)
               {
                 this.startGame();
               }
@@ -212,13 +216,11 @@ export class CharacterNameComponent {
       if(this.vote0Count > this.vote1Count)
       {
         console.log("Navigating to classic");
-        //does not work
-        this.router.navigateByUrl('../supply-chain-classic/src/app/app-component.html');
+        this.router.navigate(['../supplychain-classic']);
       }
       else
       {
-        //should be same as above
-        console.log("Navigating to blockchain");
+        this.router.navigate(['../supplychain-classic']);
       }
     });
   }

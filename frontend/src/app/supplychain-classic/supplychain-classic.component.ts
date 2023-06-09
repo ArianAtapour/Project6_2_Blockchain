@@ -2,16 +2,16 @@ import { Component } from '@angular/core';
 import {AngularFireDatabase} from "@angular/fire/compat/database";
 import {FireConectionService} from "./fire-conection.service";
 import {Observable, of, Subscription} from "rxjs";
-import {Player} from "../player";
+import {Player} from "../../player";
 import { FirebaseService } from './firebase.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'supplychain-classic',
+  templateUrl: './supplychain-classic.html',
+  styleUrls: ['./supplychain-classic.component.css']
 })
 
-export class AppComponent {
+export class SupplychainClassicComponent {
   dataBase : AngularFireDatabase;
   data : any[] | undefined;
   msgData : any[] | undefined;
@@ -60,6 +60,13 @@ export class AppComponent {
       }
     );
   }
+
+  incrementNumber() {
+    this.db.object('counter').query.ref.transaction((currentValue) => {
+      return (currentValue || 0) + 1;
+    });
+  }
+
   showForm: boolean = true;
   showGM: boolean = false;
   showStore: boolean = false;
@@ -120,12 +127,17 @@ export class AppComponent {
     this.showForm = false;
   }
 
-  title = 'SupplyChain';
-  senderGMaster : string = "";
-  senderFinancier : string = "";
-  senderStore : string = "";
-  senderFactory : string = "";
-  senderDelivery : string = "";
+  titles = 'SupplyChain';
+  // @ts-ignore
+  senderGMaster : any;
+  // @ts-ignore
+  senderFinancier : any;
+  // @ts-ignore
+  senderStore: any;
+  // @ts-ignore
+  senderFactory: any;
+  // @ts-ignore
+  senderDelivery: any;
 
   goodNumber : number = 0;
   badNumber : number = 0;
@@ -139,7 +151,6 @@ export class AppComponent {
     // Check if the user's role allows viewing the item
     return this.selectedRole === item.role;
   }
-
   ProductGood()
   {
     this.goodNumber++;
