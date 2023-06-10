@@ -15,4 +15,8 @@ export class RulesPageComponent {
   goToNext() {
     this.router.navigate(['/character-name']);
   }
+
+  goToHomepage(){
+   this.router.navigate(['']);
+  }
 }

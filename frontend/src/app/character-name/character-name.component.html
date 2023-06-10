@@ -1,13 +1,17 @@
 <div class="container">
     <div class="rules-container">
-        <span class="rules-text">CARGO QUEST</span>
+        <span class="rules-text" (click)="goToHomepage()">CARGO QUEST</span>
     </div>
     <div class="info-box">
         <p>Players: {{readyPlayers}}</p>
+        <p>|</p>
+        <p>Votes Static Game: {{counterStatic}}</p>
+        <p>|</p>
+        <p>Votes Blockchain Game: {{counterBlock}}</p>
     </div>
     <div class="big-box">
       <div class="frame">
-          <form #roleForm="ngForm" (ngSubmit)="onSubmit(roleForm.value)">
+          <form #roleForm="ngForm" (ngSubmit)="onSubmit(roleForm.value)" class="roleSelForm">
             <p class="label"><strong>Character Name:</strong></p>
             <input type="text" class="input-field" placeholder="Enter character name" id="name" name="name" ngModel>
             <p class="label"><strong>Character Role:</strong></p>

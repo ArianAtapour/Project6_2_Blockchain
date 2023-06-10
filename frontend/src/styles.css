@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+/* CSS RESET AND BACKGROUND COLOR */
+*{
+  margin:0;
+  padding:0;
+  background-color: #303B44;
+}
+
+.container {
+  display: grid;
+  justify-content: center; /* we need this so the button does not go across the entire page */
+  align-content: center;
+  min-height: 100vh;
+  font-family: 'Hind', sans-serif;
+  font-size: 24px;
+}

@@ -25,6 +25,8 @@ export class CharacterNameComponent {
   previousName : string = "";
   playersWhoVoted : number = 0;
   readyPlayers : number = 0;
+  counterStatic:number = 0;
+  counterBlock:number = 0;
 
   //warning strings
   nameTakenWarning: any;
@@ -89,6 +91,8 @@ export class CharacterNameComponent {
         if(this.data){
           this.readyPlayers = 0;
           this.playersWhoVoted = 0;
+          this.counterStatic = 0;
+          this.counterBlock= 0;
           this.data.forEach((playerData) => {
             if(playerData.name != "" && playerData.role != ""){
               this.readyPlayers++;
@@ -97,6 +101,15 @@ export class CharacterNameComponent {
                 this.playersWhoVoted++;
                 console.log(this.playersWhoVoted + " boys");
               }
+
+              if(playerData.vote == "0"){
+                this.counterStatic++;
+              }
+
+              if(playerData.vote=="1"){
+                this.counterBlock++;
+              }
+
               //replace with 2 to test easier
               if(this.playersWhoVoted >= 4)
               {
@@ -253,8 +266,10 @@ export class CharacterNameComponent {
       }
     });
   }
+  goToHomepage(){
+    this.router.navigate(['']);
+  }
 }
-
 //bring the page to the main after making name
 //TODO wait for 5 members before doing this also make it a different button
 //this.router.navigate(['/main']);

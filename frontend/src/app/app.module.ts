@@ -14,6 +14,7 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {QuestionComponent} from "./question/question.component";
 import {GameOverComponent} from "./game-over/game-over.component";
 import {SupplychainClassicComponent} from "./supplychain-classic/supplychain-classic.component";
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -26,14 +27,15 @@ import {SupplychainClassicComponent} from "./supplychain-classic/supplychain-cla
     QuestionComponent,
     SupplychainClassicComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule,
-    FormsModule,
-    FormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireDatabaseModule,
+        FormsModule,
+        FormsModule,
+        NgOptimizedImage
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

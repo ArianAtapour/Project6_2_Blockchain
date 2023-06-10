@@ -1,35 +1,14 @@
-<div class="container">
 <div class="rules-container">
-    <span class="rules-text">CARGO QUEST</span>
+  <span class="rules-text" (click)="goToHomepage()">CARGO QUEST</span>
 </div>
-<div class="info-box">
-    <p>Players: 5</p>
-</div>
-<script>
-    function startTimer() {
-        const timerElement = document.getElementById('timer');
-        let seconds = 0;
-
-        function formatTime(time) {
-            return time < 10 ? `0${time}` : time;
-        }
-
-        setInterval(() => {
-            seconds++;
-            const minutes = Math.floor(seconds / 60);
-            const remainingSeconds = seconds % 60;
-            timerElement.textContent = `${formatTime(minutes)}:${formatTime(remainingSeconds)}`;
-        }, 1000);
-    }
-    document.addEventListener('DOMContentLoaded', startTimer);
-</script>
+<div class="container">
     <div class="big-box">
-        <h2>Welcome to Cargo Quest!</h2>
-        <p>The ultimate logistics supply game where you'll embark on an exciting journey to test your strategic
+        <h2 style="background-color: white">Welcome to Cargo Quest!</h2>
+        <p style="background-color: white">The ultimate logistics supply game where you'll embark on an exciting journey to test your strategic
             thinking, decision-making skills, and ability to manage complex supply chains. Are you ready to become a
             logistics maestro?</p>
-        <img src="frontend/src/app/rules-page/Screenshot 2023-06-04 at 13.27.45.png" alt="Roles Image">
-        <div class="roles">
+        <img ngSrc="assets/rulesImg.png" alt="Roles Image" height="200" width="800">
+        <div class="roles" style="background-color: white">
             <div>
                 <h4>Client</h4>
                 <p>Requesting Party</p>
