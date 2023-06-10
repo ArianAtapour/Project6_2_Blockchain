@@ -16,11 +16,11 @@
             <input type="text" class="input-field" placeholder="Enter character name" id="name" name="name" ngModel>
             <p class="label"><strong>Character Role:</strong></p>
             <select class="dropdown" id="role" name="role" ngModel>
-                <option value="gamemaster">Producer</option>
-                <option value="store">Buyer</option>
-                <option value="factory">Shipper</option>
+                <option value="producer">Producer</option>
+                <option value="buyer">Buyer</option>
+                <option value="shipper">Shipper</option>
                 <option value="financier">Financier</option>
-                <option value="delivery">Company</option>
+                <option value="company">Company</option>
             </select>
             <input type="submit" class="input-button" value="Choose Role and Game">
             <i class="warning-Text" *ngIf="nameTakenWarning">{{nameTakenWarning}}</i>

@@ -18,6 +18,10 @@ input{
   background-color: white;
 }
 
+.dropdown > option{
+  background-color: white;
+}
+
 .rules-container {
   padding: 10px;
   position: absolute;
