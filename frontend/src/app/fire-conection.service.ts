@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import {AngularFireDatabase} from "@angular/fire/compat/database";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {Player} from "../player";
+import {getBoolean} from "@angular/fire/remote-config";
 
 @Injectable({
   providedIn: 'root',
 })
 export class FireConectionService {
   dataBase : AngularFireDatabase;
+  orderC = 0;
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
     this.dataBase = db;
   }
@@ -46,4 +48,43 @@ export class FireConectionService {
         console.error("Failed to set up onDisconnect function", error);
       });
   }
+
+  createOrder(manuf:string, cpu:string, gpu:string, orderC:number, orderConfirm:boolean){
+    //default beginning data
+    this.orderC = orderC;
+
+    const orderData = {
+      //users coordinates
+      manuf: manuf,
+      cpu: cpu,
+      gpu: gpu,
+      orderC:orderC,
+      orderConfirm:orderConfirm
+    }
+    console.log("Manuf: " + manuf + "CPU: " + cpu + "GPU " + gpu);
+    // Create a new node with the key and set the user data
+    //this.orderC++;
+    return this.db.object("orders/" + this.orderC).set(orderData);
+  }
+
+  approveOrder(orderNr:number){
+    return this.db.object(`orders/${orderNr}`).update({orderConfirm:true});
+  }
+
+  dissapproveOrder(orderNr:number){
+    return this.db.object(`orders/${orderNr}`).update({orderConfirm:false});
+  }
+  deleteOrdersOnDisconnect() {
+    const orders = this.db.database.ref('orders/');
+
+    orders.onDisconnect().remove()
+      .then(() => {
+        console.log("Orders data deleted on disconnect");
+      })
+      .catch(error => {
+        console.error("Failed to set up onDisconnect function", error);
+      });
+  }
 }
+
+

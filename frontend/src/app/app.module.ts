@@ -15,6 +15,7 @@ import {QuestionComponent} from "./question/question.component";
 import {GameOverComponent} from "./game-over/game-over.component";
 import {SupplychainClassicComponent} from "./supplychain-classic/supplychain-classic.component";
 import {NgOptimizedImage} from "@angular/common";
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {NgOptimizedImage} from "@angular/common";
     MainComponent,
     GameOverComponent,
     QuestionComponent,
-    SupplychainClassicComponent
+    SupplychainClassicComponent,
+    OrdersComponent
   ],
     imports: [
         BrowserModule,

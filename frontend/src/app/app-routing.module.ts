@@ -6,6 +6,7 @@ import { CharacterNameComponent } from './character-name/character-name.componen
 import { MainComponent } from './main/main.component';
 import { GameOverComponent } from './game-over/game-over.component';
 import { SupplychainClassicComponent} from "./supplychain-classic/supplychain-classic.component";
+import {OrdersComponent} from "./orders/orders.component";
 
 const routes: Routes = [
   { path: '', component: StartPageComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'character-name', component: CharacterNameComponent },
   { path: 'main', component: MainComponent },
   { path: 'game-over', component: GameOverComponent},
-  { path: 'supplychain-classic', component: SupplychainClassicComponent }
+  { path: 'supplychain-classic', component: SupplychainClassicComponent },
+  {path:'orders', component:OrdersComponent}
 
 ];
 
