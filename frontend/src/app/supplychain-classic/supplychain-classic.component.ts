@@ -46,7 +46,7 @@ export class SupplychainClassicComponent {
     this.value = Player.getInstance().role;
     console.log(this.value);
     switch (this.value) {
-      case "gamemaster":
+      case "buyer":
         this.showGM = true;
         this.currentRole = this.value;
         break;
@@ -61,7 +61,7 @@ export class SupplychainClassicComponent {
         this.currentRole = this.value;
         break;
 
-      case "factory":
+      case "manufacturer":
         this.showFactory = true;
         this.currentRole = this.value;
         break;
@@ -82,7 +82,7 @@ export class SupplychainClassicComponent {
     console.log(value);
     switch (value)
     {
-      case "gamemaster":
+      case "buyer":
         this.showGM = true;
         this.fireConnectionService.updateUserData({
           role: value

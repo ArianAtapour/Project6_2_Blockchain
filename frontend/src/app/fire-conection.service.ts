@@ -49,6 +49,16 @@ export class FireConectionService {
       });
   }
 
+  createMoneyNode(money:number, role:string){
+    //default beginning data
+    const moneyData = {
+      //users coordinates
+      money: 0,
+    }
+    // Create a new node with the key and set the user data
+    return this.db.object(`money/${role}`).set(moneyData);
+  }
+
   createOrder(manuf:string, cpu:string, gpu:string, orderC:number, orderConfirm:boolean){
     //default beginning data
     this.orderC = orderC;
@@ -86,5 +96,3 @@ export class FireConectionService {
       });
   }
 }
-
-
