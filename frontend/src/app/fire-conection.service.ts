@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import {AngularFireDatabase} from "@angular/fire/compat/database";
+import {AngularFireDatabase, AngularFireList} from "@angular/fire/compat/database";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {Player} from "../player";
 import {getBoolean} from "@angular/fire/remote-config";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +11,10 @@ import {getBoolean} from "@angular/fire/remote-config";
 export class FireConectionService {
   dataBase : AngularFireDatabase;
   orderC = 0;
+  private mgRef: AngularFireList<any>;
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
     this.dataBase = db;
+    this.mgRef = db.list('textsWithRoles');
   }
 
   loginAnonymously() {
@@ -36,6 +39,18 @@ export class FireConectionService {
     return this.db.object(`users/${Player.getInstance().id}`).update(newData);
   }
 
+  addTextToDatabase(text: any, role: any): void {
+    const data = {
+      // @ts-ignore
+      text : text,
+      role: role
+    };
+
+    this.mgRef.push(data);
+  }
+  getMessagesFromDatabase(): Observable<any[]> {
+    return this.mgRef.valueChanges();
+  }
   //deletes the user when they disconnect from the firebase database
   deleteUserNodeOnDisconnect() {
     const userNodeRef = this.db.database.ref(`users/${Player.getInstance().id}`);
