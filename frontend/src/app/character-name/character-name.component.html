@@ -8,6 +8,8 @@
         <p>Votes Static Game: {{counterStatic}}</p>
         <p>|</p>
         <p>Votes Blockchain Game: {{counterBlock}}</p>
+        <p>|</p>
+        <p>Timer: {{timeleft}}</p>
     </div>
     <div class="big-box">
       <div class="frame">
@@ -52,25 +54,4 @@
     </div>
 </div>
 <script>
-
-    function startTimer() {
-        const timerElement = document.getElementById('timer');
-        let seconds = 0;
-
-        function formatTime(time) {
-            return time < 10 ? `0${time}` : time;
-        }
-
-        setInterval(() => {
-            seconds++;
-            const minutes = Math.floor(seconds / 60);
-            const remainingSeconds = seconds % 60;
-            timerElement.textContent = `${formatTime(minutes)}:${formatTime(remainingSeconds)}`;
-        }, 1000);
-    }
-    function goToNext() {
-        console.log('Button clicked!');
-    }
-
-    document.addEventListener('DOMContentLoaded', startTimer);
 </script>

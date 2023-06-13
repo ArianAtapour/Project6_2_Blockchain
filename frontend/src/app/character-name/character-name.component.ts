@@ -27,6 +27,7 @@ export class CharacterNameComponent {
   readyPlayers : number = 0;
   counterStatic:number = 0;
   counterBlock:number = 0;
+  timeleft:number=5;
 
   //warning strings
   nameTakenWarning: any;
@@ -222,6 +223,11 @@ export class CharacterNameComponent {
 
     // Start a new timer that emits a value after 5 seconds
     this.timerSubscription = timer(5000).subscribe(() => {
+      if(this.timeleft > 0) {
+        this.timeleft--;
+      } else {
+        this.timeleft = 5;
+      }
       this.fetchVotes();
       console.log("votes fetched");
       this.countVotes();
