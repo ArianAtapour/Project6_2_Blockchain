@@ -77,13 +77,13 @@ export class FireConectionService {
     //default beginning data
     const moneyData = {
       //users coordinates
-      money: 0,
+      money: money,
     }
     // Create a new node with the key and set the user data
     return this.db.object(`money/${role}`).set(moneyData);
   }
 
-  createOrder(manuf:string, cpu:string, gpu:string, orderC:number, orderConfirm:boolean){
+  createOrder(manuf:string, cpu:string, gpu:string, orderC:number, orderConfirm:boolean, price:number){
     //default beginning data
     this.orderC = orderC;
 
@@ -93,9 +93,9 @@ export class FireConectionService {
       cpu: cpu,
       gpu: gpu,
       orderC:orderC,
-      orderConfirm:orderConfirm
+      orderConfirm:orderConfirm,
+      price:price
     }
-    console.log("Manuf: " + manuf + "CPU: " + cpu + "GPU " + gpu);
     // Create a new node with the key and set the user data
     //this.orderC++;
     return this.db.object("orders/" + this.orderC).set(orderData);

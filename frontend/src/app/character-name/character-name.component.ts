@@ -7,7 +7,6 @@ import {Player, Role} from "../../player";
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 import {Observable, of, Subscription, timer} from "rxjs";
 import {SupplychainClassicComponent} from "../supplychain-classic/supplychain-classic.component";
 
@@ -53,16 +52,13 @@ export class CharacterNameComponent {
         Player.getInstance().id = user.uid;
         console.log("user logged");
       }
-      console.log('logged in succesfully', user);
     }).catch((error) => {
       console.error('login failed', error);
     });
 
     //create the user and update the table accordingly
-    console.log(Player.getInstance().id);
     this.fireConnectionService.createUserData(Player.getInstance().id)
       .then(() => {
-        console.log('User data created successfully');
       })
       .catch((error) => {
         console.error('Failed to create user data:', error);
@@ -85,7 +81,6 @@ export class CharacterNameComponent {
     //if the data subscription is not subbed yet then sub
     if(!this.gameDataSubscription){
       this.gameDataSubscription = this.gameData$.subscribe((data) => {
-        console.log('Data updated:', data);
         //update method
         this.data = data;
 
@@ -101,7 +96,6 @@ export class CharacterNameComponent {
               if(playerData.vote != "")
               {
                 this.playersWhoVoted++;
-                console.log(this.playersWhoVoted + " boys");
               }
 
               if(playerData.vote == "0"){
@@ -142,16 +136,12 @@ export class CharacterNameComponent {
         } else {
             if(playerData.name == value.name){
               this.nameIsTaken = true;
-              console.log("playerName: " + playerData.name);
-              console.log("valueName: " + value.name);
               this.nameTakenWarning = "username already taken, please pick another name"
             }
           }
         //check role
         if(playerData.role == value.role){
           this.roleIsTaken = true;
-          console.log("playerRole: " + playerData.role);
-          console.log("valueRole: " + value.role);
           this.roleTakenWarning = "role already taken, please pick another role"
         }
       });
@@ -172,14 +162,13 @@ export class CharacterNameComponent {
     }
 
     //if both role and name is taken are false then add them to the DB and add to local player
-    if(!this.nameIsTaken && !this.roleIsTaken){
+    if(!this.nameIsTaken && !this.roleIsTaken && value.name != ""){
       this.fireConnectionService.updateUserData({
         name: value.name,
         role: value.role
       })
       Player.getInstance().name = value.name;
       Player.getInstance().role = value.role;
-      console.log("Data sent: " + value.name + " and " + value.role);
     }
   }
 
@@ -189,7 +178,6 @@ export class CharacterNameComponent {
       let text = "0";
       this.fireConnectionService.updateUserData({vote: text});
       this.resetTimer();
-      console.log("added vote");
     } else {
       console.log("invalid vote");
     }
@@ -201,7 +189,6 @@ export class CharacterNameComponent {
       let text = 1;
       this.fireConnectionService.updateUserData({vote: text});
       this.resetTimer();
-      console.log("added vote");
     } else {
       console.log("invalid vote");
     }
@@ -230,12 +217,10 @@ export class CharacterNameComponent {
         this.timeleft = 5;
       }
       this.fetchVotes();
-      console.log("votes fetched");
       this.countVotes();
       console.log(this.votes);
       if(this.vote0Count > this.vote1Count)
       {
-        console.log("Navigating to classic");
         this.router.navigate(['../supplychain-classic']);
       }
       else

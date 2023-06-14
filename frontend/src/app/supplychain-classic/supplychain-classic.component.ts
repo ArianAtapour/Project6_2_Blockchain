@@ -38,7 +38,6 @@ export class SupplychainClassicComponent {
       }
     );
     this.value = Player.getInstance().role;
-    console.log(this.value);
     switch (this.value) {
       case "buyer":
         this.showGM = true;
@@ -48,6 +47,7 @@ export class SupplychainClassicComponent {
       case "store":
         this.showStore = true;
         this.currentRole = this.value;
+        this.fireConnectionService.createMoneyNode(500, this.value);
         break;
 
       case "financier":
@@ -58,6 +58,7 @@ export class SupplychainClassicComponent {
       case "manufacturer":
         this.showFactory = true;
         this.currentRole = this.value;
+        this.fireConnectionService.createMoneyNode(350, this.value);
         break;
 
       case "delivery":
