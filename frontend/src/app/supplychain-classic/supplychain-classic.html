@@ -5,17 +5,6 @@
 </head>
 <body>
 <h1>Supply chain classic multiplayer edition</h1>
-<form *ngIf="showForm" #roleForm="ngForm" (ngSubmit)="toggleDiv(selectedRole)">
-  <label>Role</label><br>
-  <select [(ngModel)]="selectedRole" name="role">
-    <option value="gamemaster">Client</option>
-    <option value="store">Store</option>
-    <option value="financier">Financier</option>
-    <option value="factory">Factory</option>
-    <option value="delivery">Delivery</option>
-  </select>
-  <button type="submit">Take role</button>
-</form>
 
 <div *ngIf="showGM">
   <label>Client:</label><br>

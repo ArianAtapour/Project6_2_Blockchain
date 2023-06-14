@@ -16,7 +16,6 @@ export class SupplychainClassicComponent {
   messages: any[] = [];
   currentRole : string = "";
   value : any | undefined;
-  showForm: boolean = false;
   showGM: boolean = false;
   showStore: boolean = false;
   showFinancier: boolean = false;
@@ -67,58 +66,6 @@ export class SupplychainClassicComponent {
         break;
     }
   }
-  toggleDiv(value: any) {
-    console.log(value);
-    switch (value)
-    {
-      case "buyer":
-        this.showGM = true;
-        this.fireConnectionService.updateUserData({
-          role: value
-        })
-        console.log("Data sent: " + value.role);
-        this.currentRole = value;
-        break;
-
-      case "store":
-        this.showStore = true;
-        this.fireConnectionService.updateUserData({
-          role: value
-        })
-        console.log("Data sent: " + value.role);
-        this.currentRole = value;
-        break;
-
-      case "financier":
-        this.showFinancier = true;
-        this.fireConnectionService.updateUserData({
-          role: value
-        })
-        console.log("Data sent: " + value.role);
-        this.currentRole = value;
-        break;
-
-      case "factory":
-        this.showFactory = true;
-        this.fireConnectionService.updateUserData({
-          role: value
-        })
-        console.log("Data sent: " + value.role);
-        this.currentRole = value;
-        break;
-
-      case "delivery":
-        this.showDelivery = true;
-        this.fireConnectionService.updateUserData({
-          role: value
-        })
-        console.log("Data sent: " + value.role);
-        this.currentRole = value;
-        break;
-    }
-    this.showForm = false;
-  }
-
   titles = 'SupplyChain';
   // @ts-ignore
   senderGMaster : any;
