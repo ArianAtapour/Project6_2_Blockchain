@@ -1,0 +1,48 @@
+<div class="containerFlex">
+  <div class="canvas">
+      <canvas #canvas id="canvas"></canvas>
+    </div>
+    <div class="arrow">
+      <span>--></span>
+    </div>
+    <div class="canvas">
+      <canvas #canvasTwo id="canvasTwo"></canvas>
+    </div>
+    <div class="arrow">
+      <p>-----></p>
+    </div>
+    <div class="canvas">
+      <canvas #canvasThree id="canvasThree"></canvas>
+    </div>
+    <div class="arrow">
+      <p>-----></p>
+    </div>
+    <div class="canvas">
+      <canvas #canvasFour id="canvasFour"></canvas>
+    </div>
+    <div class="arrow">
+      <p>-----></p>
+    </div>
+    <div class="canvasFive">
+      <canvas #canvasFive id="canvasFive"></canvas>
+    </div>
+    <div class="arrow">
+      <p>-----></p>
+    </div>
+    <div class="canvas">
+      <canvas #canvasSix id="canvasSix"></canvas>
+    </div>
+</div>
+<div class="containerTest">
+  <div *ngFor="let order of data" class="order-item">
+    <p>{{order.manuf}}</p>
+    <p>{{order.cpu}}</p>
+    <p>{{order.gpu}}</p>
+  </div>
+</div>
+
+<!--
+Would be awesome if I could make each block collapsible and with the default text of Block and then upon
+expanding it I can see the info inside.
+What I want is to have both the canvases centered nicely and also the containerTest centered, also each new div has to go downwards
+-->
