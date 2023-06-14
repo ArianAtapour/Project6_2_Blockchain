@@ -22,7 +22,6 @@ export class SupplychainClassicComponent {
   showFinancier: boolean = false;
   showFactory: boolean = false;
   showDelivery: boolean = false;
-  selectedRole: string = "";
 
   constructor(private db: AngularFireDatabase, private fireConnectionService: FireConectionService) {
     //initialize database
@@ -142,7 +141,7 @@ export class SupplychainClassicComponent {
   }
   isMessageVisible(item?: any): boolean {
     // Check if the user's role allows viewing the item
-    return this.selectedRole === item.role;
+    return this.currentRole === item.role;
   }
   ProductGood()
   {
