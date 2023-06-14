@@ -16,6 +16,7 @@ import {GameOverComponent} from "./game-over/game-over.component";
 import {SupplychainClassicComponent} from "./supplychain-classic/supplychain-classic.component";
 import {NgOptimizedImage} from "@angular/common";
 import { OrdersComponent } from './orders/orders.component';
+import { BlockchainGameComponent } from './blockchain-game/blockchain-game.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { OrdersComponent } from './orders/orders.component';
     GameOverComponent,
     QuestionComponent,
     SupplychainClassicComponent,
-    OrdersComponent
+    OrdersComponent,
+    BlockchainGameComponent
   ],
     imports: [
         BrowserModule,

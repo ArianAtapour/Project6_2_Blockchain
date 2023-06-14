@@ -7,6 +7,7 @@ import { MainComponent } from './main/main.component';
 import { GameOverComponent } from './game-over/game-over.component';
 import { SupplychainClassicComponent} from "./supplychain-classic/supplychain-classic.component";
 import {OrdersComponent} from "./orders/orders.component";
+import {BlockchainGameComponent} from "./blockchain-game/blockchain-game.component";
 
 const routes: Routes = [
   { path: '', component: StartPageComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'main', component: MainComponent },
   { path: 'game-over', component: GameOverComponent},
   { path: 'supplychain-classic', component: SupplychainClassicComponent },
-  {path:'orders', component:OrdersComponent}
+  {path:'orders', component:OrdersComponent},
+  {path:'blockchain', component:BlockchainGameComponent}
 
 ];
 

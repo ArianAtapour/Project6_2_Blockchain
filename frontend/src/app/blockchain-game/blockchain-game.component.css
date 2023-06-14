@@ -1,0 +1,25 @@
+.containerTest{
+  display: flex;
+  flex-direction: column;
+  height:200px;
+  width: 600px;
+}
+
+.order-item{
+  background-color: green;
+  height:200px;
+  width: 600px;
+}
+
+.containerFlex{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+}
+
+.canvas{
+  height: 200px;
+  width: 200px;
+}
+
