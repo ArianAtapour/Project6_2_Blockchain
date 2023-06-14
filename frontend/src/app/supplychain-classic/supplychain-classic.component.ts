@@ -30,7 +30,7 @@ export class SupplychainClassicComponent {
   async ngOnInit() {
     //removes the node when the user leaves the webpage or disconnects
     this.fireConnectionService.deleteUserNodeOnDisconnect();
-
+    this.fireConnectionService.deleteMessageNodeOnDisconnect();
     //retrieve and subscribe to user data table
     this.messagesSubscription = this.fireConnectionService.getMessagesFromDatabase().subscribe(
       (items: any[]) => {

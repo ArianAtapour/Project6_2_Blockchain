@@ -54,7 +54,6 @@ export class FireConectionService {
   //deletes the user when they disconnect from the firebase database
   deleteUserNodeOnDisconnect() {
     const userNodeRef = this.db.database.ref(`users/${Player.getInstance().id}`);
-
     userNodeRef.onDisconnect().remove()
       .then(() => {
         console.log("User node delete on disconnect");
@@ -64,6 +63,16 @@ export class FireConectionService {
       });
   }
 
+  deleteMessageNodeOnDisconnect() {
+    const messageNodeRef = this.db.database.ref(`textsWithRoles/`);
+    messageNodeRef.onDisconnect().remove()
+      .then(() => {
+        console.log("Message node delete on disconnect");
+      })
+      .catch(error => {
+        console.error("Failed to set up onDisconnect function", error);
+      });
+  }
   createMoneyNode(money:number, role:string){
     //default beginning data
     const moneyData = {
