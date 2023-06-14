@@ -70,6 +70,7 @@ export class CharacterNameComponent {
 
     //removes the node when the user leaves the webpage or disconnects
     this.fireConnectionService.deleteUserNodeOnDisconnect();
+    this.fireConnectionService.deleteMessageNodeOnDisconnect();
     //retrieve and subscribe to user data table
     this.retrieveGameData();
   }
