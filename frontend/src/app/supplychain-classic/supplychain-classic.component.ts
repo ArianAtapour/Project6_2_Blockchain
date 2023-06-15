@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import {AngularFireDatabase} from "@angular/fire/compat/database";
 import {FireConectionService} from "../fire-conection.service";
-import {Observable, of, Subscription} from "rxjs";
+import {Observable, of, Subscription, timer} from "rxjs";
 import {Player} from "../../player";
 import {OrdersComponent} from "../orders/orders.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'supplychain-classic',
@@ -33,7 +34,7 @@ export class SupplychainClassicComponent {
   orderCount : number = 0;
   orderPrice : number = 0;
 
-  constructor(private db: AngularFireDatabase, private fireConnectionService: FireConectionService) {
+  constructor(private db: AngularFireDatabase, private fireConnectionService: FireConectionService, private router: Router) {
     //initialize database
     this.dataBase = db;
   }
@@ -128,6 +129,7 @@ export class SupplychainClassicComponent {
         break;
     }
     this.retrieveGameData();
+    this.startGameTimer();
   }
   titles = 'SupplyChain';
   // @ts-ignore
@@ -168,17 +170,35 @@ export class SupplychainClassicComponent {
 
     this.fireConnectionService.updateMoney({money: manufMoney}, "manufacturer");
   }
-
+  timerSubscription: Subscription | undefined;
   isMessageVisible(item?: any): boolean {
     // Check if the user's role allows viewing the item
     return this.currentRole === item.role;
   }
-  ProductGood()
+  gameTimeMin: number = 10;
+  gameTimeSec: number = 0;
+  intervalId: any;
+  startGameTimer()
   {
-    this.goodNumber++;
-  }
-  ProductBad()
-  {
-    this.badNumber++;
+    this.intervalId = setInterval(() => {
+      if(this.gameTimeSec == 0)
+      {
+        this.gameTimeMin--;
+        this.gameTimeSec = 59;
+      }
+      else
+      {
+        this.gameTimeSec--;
+      }
+      if (this.gameTimeMin == 0 && this.gameTimeSec == 1) {
+        clearInterval(this.intervalId);
+        // Unsubscribe from any existing timer subscription
+        this.timerSubscription?.unsubscribe();
+
+        this.timerSubscription = timer(1000).subscribe(() => {
+            this.router.navigate(['end-game']);
+          });
+      }
+    }, 1000);
   }
 }
