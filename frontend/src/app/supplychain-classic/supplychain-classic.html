@@ -9,6 +9,13 @@
 <div *ngIf="showGM">
   <label>Client:</label><br>
   <app-orders></app-orders>
+  <ul>
+    <ng-container *ngFor="let item of messages">
+      <li *ngIf="isMessageVisible(item)">
+        <span *ngIf="item.text">{{ item.text }}</span>
+      </li>
+    </ng-container>
+  </ul>
 </div>
 
 <!-- Element 2 -->
@@ -57,7 +64,7 @@
   </ul>
   <input [(ngModel)]="senderManufacturer" type="text"><br>
   <button (click)="pushTextWithRole('senderManufacturer', 'financier')">Send for financier's approval</button>
-  <button (click)="pushTextWithRole('senderManufacturer', 'delivery')">Send to delivery</button>
+  <button (click)="pushTextWithRole('senderManufacturer', 'shipper')">Send to delivery</button>
 </div>
 
 <!-- Element 5 -->
@@ -72,7 +79,7 @@
   </ul>
   <input type="text" [(ngModel)]="senderShipper"><br>
   <button (click)="pushTextWithRole('senderShipper', 'financier')">Send for financier's approval</button>
-  <button (click)="pushTextWithRole('senderShipper', 'store')">Send to buyer</button>
+  <button (click)="pushTextWithRole('senderShipper', 'store')">Send to store</button>
 </div>
 </body>
 </html>
