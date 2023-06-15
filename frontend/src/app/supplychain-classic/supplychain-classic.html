@@ -23,8 +23,8 @@
   </ul>
   <input type="text" [(ngModel)]="senderStore"><br>
   <button (click)="pushTextWithRole('senderStore','financier')">Send for financier's approval</button>
-  <button (click)="pushTextWithRole('senderStore', 'factory')">Send to the factory</button>
-  <button (click)="pushTextWithRole('senderStore', 'gamemaster')">Send to the client</button>
+  <button (click)="pushTextWithRole('senderStore', 'manufacturer')">Send to the factory</button>
+  <button (click)="pushTextWithRole('senderStore', 'buyer')">Send to the client</button>
 </div>
 
 <!-- Element 3 -->
@@ -39,7 +39,7 @@
   </ul>
   <input type="text" [(ngModel)]="senderFinancier"><br>
   <button (click)="pushTextWithRole('senderFinancier', 'store')">Send to the store</button>
-  <button (click)="pushTextWithRole('senderFinancier', 'factory')">Send to the factory</button>
+  <button (click)="pushTextWithRole('senderFinancier', 'manufacturer')">Send to the factory</button>
   <button (click)="pushTextWithRole('senderFinancier', 'delivery')">Send to delivery</button>
 </div>
 

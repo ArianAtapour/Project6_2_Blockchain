@@ -95,18 +95,12 @@ export class FireConectionService {
       }
     );
   }
-  async getMoney(role:string)
-  {
+
+  updateMoney(newData: any, role:string) {
+    //update user data
+    return this.db.object(`money/${role}`).update(newData);
   }
-  addMoneyToNode(money:number, role:string) {
-    // @ts-ignore
-    let addedMoney: number = money + this.getMoney(role);
-    const moneyData = {
-      money: addedMoney,
-    }
-    // @ts-ignore
-    return this.db.object(`money/${role}`).update(moneyData);
-  }
+
   createOrder(manuf:string, cpu:string, gpu:string, orderC:number, orderConfirm:boolean, price:number){
     //default beginning data
     this.orderC = orderC;
@@ -140,6 +134,18 @@ export class FireConectionService {
     const orders = this.db.database.ref('orders/');
 
     orders.onDisconnect().remove()
+      .then(() => {
+        console.log("Orders data deleted on disconnect");
+      })
+      .catch(error => {
+        console.error("Failed to set up onDisconnect function", error);
+      });
+  }
+
+  deleteMoneyOnDisconnect() {
+    const money = this.db.database.ref('money/');
+
+    money.onDisconnect().remove()
       .then(() => {
         console.log("Orders data deleted on disconnect");
       })

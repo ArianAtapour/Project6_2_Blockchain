@@ -13,7 +13,13 @@ import {OrdersComponent} from "../orders/orders.component";
 
 export class SupplychainClassicComponent {
   dataBase : AngularFireDatabase;
-  private messagesSubscription: Subscription | undefined;
+  orderData$: Observable<any[]> = of([]);
+  orderData : any[] | undefined;
+  moneyData$: Observable<any[]> = of([]);
+  moneyData : any[] | undefined;
+  moneyDataSubscription: Subscription | undefined;
+  orderDataSubscription: Subscription | undefined;
+  messagesSubscription: Subscription | undefined;
   messages: any[] = [];
   currentRole : string = "";
   value : any | undefined;
@@ -22,22 +28,76 @@ export class SupplychainClassicComponent {
   showFinancier: boolean = false;
   showFactory: boolean = false;
   showDelivery: boolean = false;
+  storeMoney : number = 0;
+  manufactureMoney : number = 0;
+  orderCount : number = 0;
+  orderPrice : number = 0;
 
   constructor(private db: AngularFireDatabase, private fireConnectionService: FireConectionService) {
     //initialize database
     this.dataBase = db;
   }
 
-  async ngOnInit() {
-    //removes the node when the user leaves the webpage or disconnects
-    this.fireConnectionService.deleteUserNodeOnDisconnect();
-    this.fireConnectionService.deleteMessageNodeOnDisconnect();
-    //retrieve and subscribe to user data table
+  retrieveGameData(){
+    //create the reference towards the data list
+    const orderRef = this.db.list("orders ");
+    //define the table as the data of the users table
+    this.orderData$ = orderRef.valueChanges();
+
+    //if the data subscription is not subbed yet then sub
+    if(!this.orderDataSubscription){
+      this.orderDataSubscription = this.orderData$.subscribe((orderData) => {
+        //update method
+        this.orderData = orderData;
+
+        if(this.orderData){
+          let inCounter = 0
+          this.orderData.forEach((order) => {
+            if(inCounter == this.orderCount){
+              this.orderPrice = order.price;
+            } else {
+              inCounter++;
+            }
+          })
+        }
+      });
+    }
+
+    //create the reference towards the data list
+    const moneyRef = this.db.list("money");
+    //define the table as the data of the users table
+    this.moneyData$ = moneyRef.valueChanges();
+
+    //if the data subscription is not subbed yet then sub
+    if(!this.moneyDataSubscription){
+      this.moneyDataSubscription = this.moneyData$.subscribe((moneyData) => {
+        //update method
+        this.moneyData = moneyData;
+
+        if(this.moneyData){
+          this.moneyData.forEach((money) => {
+            if(money.role == "store"){
+              this.storeMoney = money;
+            } else {
+              this.manufactureMoney = money;
+            }
+          })
+        }
+      });
+    }
     this.messagesSubscription = this.fireConnectionService.getMessagesFromDatabase().subscribe(
       (items: any[]) => {
         this.messages = items;
       }
     );
+  }
+
+  async ngOnInit() {
+    //removes the node when the user leaves the webpage or disconnects
+    this.fireConnectionService.deleteUserNodeOnDisconnect();
+    this.fireConnectionService.deleteMessageNodeOnDisconnect();
+    this.fireConnectionService.deleteMoneyOnDisconnect();
+    //retrieve and subscribe to user data table
     this.value = Player.getInstance().role;
     switch (this.value) {
       case "buyer":
@@ -48,7 +108,7 @@ export class SupplychainClassicComponent {
       case "store":
         this.showStore = true;
         this.currentRole = this.value;
-        this.fireConnectionService.createMoneyNode(500, this.value);
+        this.fireConnectionService.createMoneyNode(500, "store");
         break;
 
       case "financier":
@@ -59,7 +119,7 @@ export class SupplychainClassicComponent {
       case "manufacturer":
         this.showFactory = true;
         this.currentRole = this.value;
-        this.fireConnectionService.createMoneyNode(350, this.value);
+        this.fireConnectionService.createMoneyNode(500, "manufacturer");
         break;
 
       case "delivery":
@@ -67,6 +127,7 @@ export class SupplychainClassicComponent {
         this.currentRole = this.value;
         break;
     }
+    this.retrieveGameData();
   }
   titles = 'SupplyChain';
   // @ts-ignore
@@ -84,6 +145,12 @@ export class SupplychainClassicComponent {
   badNumber : number = 0;
 
   pushTextWithRole(text: string, role: string) {
+    if(role == "buyer"){
+      this.storeMoney += this.orderPrice;
+      this.fireConnectionService.updateMoney({money: this.storeMoney}, "store");
+    } else {
+      this.storeMoney += this.orderPrice;
+      this.fireConnectionService.updateMoney({money: this.storeMoney}, "manufacturer");    }
     // @ts-ignore
     text = this[text];
     this.fireConnectionService.addTextToDatabase(text, role);

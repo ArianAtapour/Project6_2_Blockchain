@@ -14,6 +14,18 @@ export class OrdersComponent implements OnInit{
   gameData$: Observable<any[]> = of([]);
   data : any[] | undefined;
   gameDataSubscription: Subscription | undefined;
+  messages: any[] = [];
+  storeMoney : number = 0;
+  manufactureMoney : number = 0;
+  orderCount : number = 0;
+  orderPrice : number = 0;
+  orderData$: Observable<any[]> = of([]);
+  orderData : any[] | undefined;
+  moneyData$: Observable<any[]> = of([]);
+  moneyData : any[] | undefined;
+  moneyDataSubscription: Subscription | undefined;
+  orderDataSubscription: Subscription | undefined;
+  messagesSubscription: Subscription | undefined;
 
   manuf!:string;
   cpu!:string;
@@ -23,6 +35,7 @@ export class OrdersComponent implements OnInit{
   constructor(private router: Router, private db: AngularFireDatabase, private fireConnectionService: FireConectionService) {
     //initialize database
     this.dataBase = db;
+    this.retrieveGameData();
   }
 
   onSubmit(value: any) {
@@ -66,9 +79,17 @@ export class OrdersComponent implements OnInit{
     let totalPrice = manufPrice + cpuPrice + gpuPrice;
 
     this.fireConnectionService.createOrder(value.manuf, value.cpu, value.gpu, this.orderC, false, totalPrice);
+      this.storeMoney += totalPrice;
+      this.fireConnectionService.updateMoney({money: this.storeMoney}, "store");
+
     this.fireConnectionService.addTextToDatabase("Manufacturer: " + value.manuf + ", CPU: " + value.cpu + ", GPU: " + value.gpu + ", that costs " + totalPrice, "store");
-    console.log(totalPrice);
+    this.addMoneyToRole("buyer");
     this.orderC++;
+  }
+
+  addMoneyToRole(role: string) {
+      this.storeMoney += this.orderPrice;
+      this.fireConnectionService.updateMoney({money: `${this.storeMoney}`}, "store");
   }
 
   //turns id for select element into array of items
@@ -94,51 +115,61 @@ export class OrdersComponent implements OnInit{
       this.fireConnectionService.dissapproveOrder(this.selectedOrder.orderC);
     }
   }
-  retrieveData(){
+  retrieveGameData(){
     //create the reference towards the data list
-    const orders = this.db.list("orders");
+    const orderRef = this.db.list("orders ");
     //define the table as the data of the users table
-    this.gameData$ = orders.valueChanges();
+    this.orderData$ = orderRef.valueChanges();
 
     //if the data subscription is not subbed yet then sub
-    if(!this.gameDataSubscription){
-      this.gameDataSubscription = this.gameData$.subscribe((data) => {
+    if(!this.orderDataSubscription){
+      this.orderDataSubscription = this.orderData$.subscribe((orderData) => {
         //update method
-        this.data = data;
+        this.orderData = orderData;
 
-        //add number of valid players
-        if(this.data){
-          this.manuf = "";
-          this.cpu = "";
-          this.gpu = "";
-
-          let counter = 1;
-
-          this.data.forEach((order) => {
-            if(order.manuf != "" && order.gpu != "" && order.cpu != ""){
-                this.manuf = order.manuf;
-                this.cpu = order.cpu;
-                this.gpu = order.gpu; //get the things
+        if(this.orderData){
+          let inCounter = 0
+          this.orderData.forEach((order) => {
+            if(inCounter == this.orderCount){
+              this.orderPrice = order.price;
+            } else {
+              inCounter++;
             }
-
-            /*if(counter == 2){
-              this.manuf = order.manuf;
-              this.cpu = order.cpu;
-              this.gpu = order.gpu;
-            }else{
-              counter++;
-            }*/
-
-
-          });
+          })
         }
       });
     }
 
+    //create the reference towards the data list
+    const moneyRef = this.db.list("money");
+    //define the table as the data of the users table
+    this.moneyData$ = moneyRef.valueChanges();
+
+    //if the data subscription is not subbed yet then sub
+    if(!this.moneyDataSubscription){
+      this.moneyDataSubscription = this.moneyData$.subscribe((moneyData) => {
+        //update method
+        this.moneyData = moneyData;
+
+        if(this.moneyData){
+          this.moneyData.forEach((money) => {
+            if(money.role == "store"){
+              this.storeMoney = money.money;
+            } else {
+              this.manufactureMoney = money;
+            }
+          })
+        }
+      });
+    }
+    this.messagesSubscription = this.fireConnectionService.getMessagesFromDatabase().subscribe(
+      (items: any[]) => {
+        this.messages = items;
+      }
+    );
   }
   async ngOnInit() {
     //connect to the firebase database as an anonymous user
-    this.retrieveData();
     this.approveOrderSubmit();
     this.dissapproveOrderSubmit();
     this.fireConnectionService.deleteOrdersOnDisconnect();

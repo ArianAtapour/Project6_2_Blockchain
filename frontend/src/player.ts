@@ -43,9 +43,9 @@ export class Player {
 
 export enum Role {
   None,
-  Producer,
   Buyer,
+  Store,
   Shipper,
-  Company,
-  Gamemaster
+  Manufacturer,
+  Financier
 }

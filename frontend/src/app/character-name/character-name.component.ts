@@ -137,11 +137,11 @@ export class CharacterNameComponent {
         if(value.name == this.previousName){
           //don't check name
         } else {
-            if(playerData.name == value.name){
-              this.nameIsTaken = true;
-              this.nameTakenWarning = "username already taken, please pick another name"
-            }
+          if(playerData.name == value.name){
+            this.nameIsTaken = true;
+            this.nameTakenWarning = "username already taken, please pick another name"
           }
+        }
         //check role
         if(playerData.role == value.role){
           this.roleIsTaken = true;
@@ -229,7 +229,7 @@ export class CharacterNameComponent {
       }
     }, 1000);
   }
-    resetTimer(): void {
+  resetTimer(): void {
     // Unsubscribe from the current timer subscription
     this.timeLeft = 5;
   }
@@ -238,7 +238,7 @@ export class CharacterNameComponent {
     if(this.data)
     {
       this.data.forEach((playerData) => {
-          this.votes.push(playerData.vote)
+        this.votes.push(playerData.vote)
       });
     }
   }
@@ -253,8 +253,8 @@ export class CharacterNameComponent {
         this.vote0Count++;
       } else { // @ts-ignore
         if (vote === 1) {
-                this.vote1Count++;
-              }
+          this.vote1Count++;
+        }
       }
     });
   }
