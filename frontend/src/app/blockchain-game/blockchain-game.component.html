@@ -1,44 +1,31 @@
 <div class="containerFlex">
-  <div class="canvas">
-      <canvas #canvas id="canvas"></canvas>
+    <div class="row">
+        <!-- Canvases -->
+        <canvas #canvas id="canvas"></canvas>
     </div>
-    <div class="arrow">
-      <span>--></span>
+    <div class="row">
+        <canvas #canvasTwo id="canvasTwo"></canvas>
     </div>
-    <div class="canvas">
-      <canvas #canvasTwo id="canvasTwo"></canvas>
+    <div class="row">
+        <canvas #canvasThree id="canvasThree"></canvas>
     </div>
-    <div class="arrow">
-      <p>-----></p>
+    <div class="row">
+        <canvas #canvasFour id="canvasFour"></canvas>
     </div>
-    <div class="canvas">
-      <canvas #canvasThree id="canvasThree"></canvas>
+    <div class="row">
+        <canvas #canvasFive id="canvasFive"></canvas>
     </div>
-    <div class="arrow">
-      <p>-----></p>
-    </div>
-    <div class="canvas">
-      <canvas #canvasFour id="canvasFour"></canvas>
-    </div>
-    <div class="arrow">
-      <p>-----></p>
-    </div>
-    <div class="canvasFive">
-      <canvas #canvasFive id="canvasFive"></canvas>
-    </div>
-    <div class="arrow">
-      <p>-----></p>
-    </div>
-    <div class="canvas">
-      <canvas #canvasSix id="canvasSix"></canvas>
+    <div class="row">
+        <canvas #canvasSix id="canvasSix"></canvas>
     </div>
 </div>
 <div class="containerTest">
-  <div *ngFor="let order of data" class="order-item">
-    <p>{{order.manuf}}</p>
-    <p>{{order.cpu}}</p>
-    <p>{{order.gpu}}</p>
-  </div>
+    <details class="order-item" *ngFor="let order of data">
+      <summary>Block {{order.orderC}}</summary>
+        <p>{{order.manuf}}</p>
+        <p>{{order.cpu}}</p>
+        <p>{{order.gpu}}</p>
+  </details>
 </div>
 
 <!--

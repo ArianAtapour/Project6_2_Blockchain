@@ -70,6 +70,7 @@ export class BlockchainGameComponent implements OnInit,AfterViewInit{
 
   private directionalLight!: THREE.DirectionalLight;
 
+
 /*
   Blockchain code
  */
@@ -87,6 +88,7 @@ export class BlockchainGameComponent implements OnInit,AfterViewInit{
     //initialize database
     this.dataBase = db;
   }
+
 
   retrieveData(){
     //create the reference towards the data list
@@ -193,6 +195,7 @@ export class BlockchainGameComponent implements OnInit,AfterViewInit{
     document.body.appendChild(renderer.domElement);
     this.controls = new OrbitControls(this.camera, renderer.domElement);
   };
+
 
   /*private createControls = () => {
     const renderer = new CSS2DRenderer();

@@ -1,25 +1,40 @@
-.containerTest{
+.containerFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  width: 200px;
+  height: 200px;
+}
+
+.containerTest {
   display: flex;
   flex-direction: column;
-  height:200px;
-  width: 600px;
-}
-
-.order-item{
-  background-color: green;
-  height:200px;
-  width: 600px;
-}
-
-.containerFlex{
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: center;
-}
-
-.canvas{
+  align-items: center;
   height: 200px;
-  width: 200px;
+  width: 100%;
 }
 
+.order-item {
+  margin-top:20px;
+  text-align: center;
+  height:auto;
+  width: auto;
+}
+
+.order-item > p{
+  background-color: green;
+}
+
+details[open] .order-item {
+  background-color: green;
+}
