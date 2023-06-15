@@ -77,6 +77,7 @@ export class OrdersComponent implements OnInit{
     //calculate the total price
     let totalPrice = manufPrice + cpuPrice + gpuPrice;
 
+    this.retrieveGameData();
     this.fireConnectionService.createOrder(value.manuf, value.cpu, value.gpu, this.orderC, false, totalPrice);
       this.storeMoney += totalPrice;
       this.fireConnectionService.updateMoney({money: this.storeMoney}, "store");

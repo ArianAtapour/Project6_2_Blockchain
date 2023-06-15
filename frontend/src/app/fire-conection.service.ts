@@ -81,6 +81,7 @@ export class FireConectionService {
     const moneyData = {
       //users coordinates
       money: money,
+      role: role
     }
     // Create a new node with the key and set the user data
     return this.db.object(`money/${role}`).set(moneyData);
@@ -131,7 +132,7 @@ export class FireConectionService {
     return this.db.object(`orders/${orderNr}`).update({orderConfirm:false});
   }
   deleteOrdersOnDisconnect() {
-    const orders = this.db.database.ref('orders/');
+    const orders = this.db.database.ref('orders');
 
     orders.onDisconnect().remove()
       .then(() => {

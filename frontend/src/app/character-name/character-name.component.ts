@@ -110,7 +110,7 @@ export class CharacterNameComponent {
               }
 
               //replace with 2 to test easier
-              if(this.playersWhoVoted >= 1)
+              if(this.playersWhoVoted >= 2)
               {
                 this.startGame();
               }
