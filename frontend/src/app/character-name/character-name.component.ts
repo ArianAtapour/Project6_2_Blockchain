@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import {Observable, of, Subscription, timer} from "rxjs";
 import {SupplychainClassicComponent} from "../supplychain-classic/supplychain-classic.component";
+import {CONFIG} from "@angular/fire/compat/analytics";
 
 @Component({
   selector: 'app-character-name',
@@ -26,7 +27,7 @@ export class CharacterNameComponent {
   readyPlayers : number = 0;
   counterStatic:number = 0;
   counterBlock:number = 0;
-  timeleft:number=5;
+  timeLeft:number = 5;
 
   //warning strings
   nameTakenWarning: any;
@@ -109,7 +110,7 @@ export class CharacterNameComponent {
               }
 
               //replace with 2 to test easier
-              if(this.playersWhoVoted >= 2)
+              if(this.playersWhoVoted >= 1)
               {
                 this.startGame();
               }
@@ -206,34 +207,31 @@ export class CharacterNameComponent {
   votes :any[] = [];
   vote0Count: number = 0;
   vote1Count: number = 0;
-  startGame()
-  {
-    // Unsubscribe from any existing timer subscription
-    this.timerSubscription?.unsubscribe();
+  intervalId: any;
+  startGame() {
+    this.intervalId = setInterval(() => {
+      this.timeLeft--;
+      if (this.timeLeft == 1) {
+        clearInterval(this.intervalId);
+        // Unsubscribe from any existing timer subscription
+        this.timerSubscription?.unsubscribe();
 
-    // Start a new timer that emits a value after 5 seconds
-    this.timerSubscription = timer(5000).subscribe(() => {
-      if(this.timeleft > 0) {
-        this.timeleft--;
-      } else {
-        this.timeleft = 5;
+        this.timerSubscription = timer(1000).subscribe(() => {
+          this.fetchVotes();
+          this.countVotes();
+          console.log(this.votes);
+          if (this.vote0Count > this.vote1Count) {
+            this.router.navigate(['../supplychain-classic']);
+          } else {
+            this.router.navigate(['../supplychain-blockchain']);
+          }
+        });
       }
-      this.fetchVotes();
-      this.countVotes();
-      console.log(this.votes);
-      if(this.vote0Count > this.vote1Count)
-      {
-        this.router.navigate(['../supplychain-classic']);
-      }
-      else
-      {
-        this.router.navigate(['../supplychain-classic']);
-      }
-    });
+    }, 1000);
   }
-  resetTimer(): void {
+    resetTimer(): void {
     // Unsubscribe from the current timer subscription
-    this.timerSubscription?.unsubscribe();
+    this.timeLeft = 5;
   }
   fetchVotes() {
     this.votes = [];
