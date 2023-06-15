@@ -26,7 +26,7 @@ export class SupplychainClassicComponent {
   showGM: boolean = false;
   showStore: boolean = false;
   showFinancier: boolean = false;
-  showManufacturer: boolean = false;
+  showFactory: boolean = false;
   showDelivery: boolean = false;
   storeMoney : number = 0;
   manufactureMoney : number = 0;
@@ -122,8 +122,8 @@ export class SupplychainClassicComponent {
         this.fireConnectionService.createMoneyNode(500, "manufacturer");
         break;
 
-      case "delivery":
-        this.showDelivery = true;
+      case "shipper":
+        this.showShipper = true;
         this.currentRole = this.value;
         break;
     }
@@ -137,9 +137,9 @@ export class SupplychainClassicComponent {
   // @ts-ignore
   senderStore: any;
   // @ts-ignore
-  senderFactory: any;
+  senderManufacturer: any;
   // @ts-ignore
-  senderDelivery: any;
+  senderShipper: any;
 
   goodNumber : number = 0;
   badNumber : number = 0;
@@ -152,8 +152,12 @@ export class SupplychainClassicComponent {
       this.storeMoney += this.orderPrice;
       this.fireConnectionService.updateMoney({money: this.storeMoney}, "manufacturer");    }
     // @ts-ignore
-    text = this[text];
-    this.fireConnectionService.addTextToDatabase(text, role);
+    let textToSend = this[text];
+    console.log(text);
+    // @ts-ignore
+    this[text] = '';
+    this.fireConnectionService.addTextToDatabase(textToSend, role);
+
   }
 
   storeToManufacturer(text: string, role: string) {
