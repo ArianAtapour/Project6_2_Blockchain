@@ -26,8 +26,8 @@ export class SupplychainClassicComponent {
   showGM: boolean = false;
   showStore: boolean = false;
   showFinancier: boolean = false;
-  showFactory: boolean = false;
-  showDelivery: boolean = false;
+  showManufacturer: boolean = false;
+  showShipper: boolean = false;
   storeMoney : number = 0;
   manufactureMoney : number = 0;
   orderCount : number = 0;
@@ -117,13 +117,13 @@ export class SupplychainClassicComponent {
         break;
 
       case "manufacturer":
-        this.showFactory = true;
+        this.showManufacturer = true;
         this.currentRole = this.value;
         this.fireConnectionService.createMoneyNode(500, "manufacturer");
         break;
 
-      case "delivery":
-        this.showDelivery = true;
+      case "shipper":
+        this.showShipper = true;
         this.currentRole = this.value;
         break;
     }
@@ -137,9 +137,9 @@ export class SupplychainClassicComponent {
   // @ts-ignore
   senderStore: any;
   // @ts-ignore
-  senderFactory: any;
+  senderManufacturer: any;
   // @ts-ignore
-  senderDelivery: any;
+  senderShipper: any;
 
   goodNumber : number = 0;
   badNumber : number = 0;
@@ -152,8 +152,12 @@ export class SupplychainClassicComponent {
       this.storeMoney += this.orderPrice;
       this.fireConnectionService.updateMoney({money: this.storeMoney}, "manufacturer");    }
     // @ts-ignore
-    text = this[text];
-    this.fireConnectionService.addTextToDatabase(text, role);
+    let textToSend = this[text];
+    console.log(text);
+    // @ts-ignore
+    this[text] = '';
+    this.fireConnectionService.addTextToDatabase(textToSend, role);
+
   }
   isMessageVisible(item?: any): boolean {
     // Check if the user's role allows viewing the item

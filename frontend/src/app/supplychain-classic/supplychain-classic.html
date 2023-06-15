@@ -23,7 +23,7 @@
   </ul>
   <input type="text" [(ngModel)]="senderStore"><br>
   <button (click)="pushTextWithRole('senderStore','financier')">Send for financier's approval</button>
-  <button (click)="pushTextWithRole('senderStore', 'manufacturer')">Send to the factory</button>
+  <button (click)="pushTextWithRole('senderStore', 'manufacturer')">Send to the manufactorer</button>
   <button (click)="pushTextWithRole('senderStore', 'buyer')">Send to the client</button>
 </div>
 
@@ -39,13 +39,13 @@
   </ul>
   <input type="text" [(ngModel)]="senderFinancier"><br>
   <button (click)="pushTextWithRole('senderFinancier', 'store')">Send to the store</button>
-  <button (click)="pushTextWithRole('senderFinancier', 'manufacturer')">Send to the factory</button>
+  <button (click)="pushTextWithRole('senderFinancier', 'manufacturer')">Send to the manufacturer</button>
   <button (click)="pushTextWithRole('senderFinancier', 'delivery')">Send to delivery</button>
 </div>
 
 <!-- Element 4 -->
-<div *ngIf="showFactory">
-  <label>Factory:</label><br>
+<div *ngIf="showManufacturer">
+  <label>Manufacturer:</label><br>
   <ul>
     <ng-container *ngFor="let item of messages">
       <li *ngIf="isMessageVisible(item)">
@@ -53,14 +53,14 @@
       </li>
     </ng-container>
   </ul>
-  <input [(ngModel)]="senderFactory" type="text"><br>
-  <button (click)="pushTextWithRole('senderFactory', 'financier')">Send for financier's approval</button>
-  <button (click)="pushTextWithRole('senderFactory', 'delivery')">Send to delivery</button>
+  <input [(ngModel)]="senderManufacturer" type="text"><br>
+  <button (click)="pushTextWithRole('senderManufacturer', 'financier')">Send for financier's approval</button>
+  <button (click)="pushTextWithRole('senderManufacturer', 'delivery')">Send to delivery</button>
 </div>
 
 <!-- Element 5 -->
-<div *ngIf="showDelivery">
-  <label>Delivery:</label>
+<div *ngIf="showShipper">
+  <label>Shipper:</label>
   <ul>
     <ng-container *ngFor="let item of messages">
       <li *ngIf="isMessageVisible(item)">
@@ -68,9 +68,9 @@
       </li>
     </ng-container>
   </ul>
-  <input type="text" [(ngModel)]="senderDelivery"><br>
-  <button (click)="pushTextWithRole('senderDelivery', 'financier')">Send for financier's approval</button>
-  <button (click)="pushTextWithRole('senderDelivery', 'store')">Send to buyer</button>
+  <input type="text" [(ngModel)]="senderShipper"><br>
+  <button (click)="pushTextWithRole('senderShipper', 'financier')">Send for financier's approval</button>
+  <button (click)="pushTextWithRole('senderShipper', 'store')">Send to buyer</button>
 </div>
 </body>
 </html>

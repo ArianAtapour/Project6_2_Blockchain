@@ -20,8 +20,8 @@ export class EndGameComponent implements OnInit{
     this.dataBase = db;
   }
 
-  counterTrue = 0;
-  counterFalse:number = 0;
+  counterTrue : number = 0;
+  counterFalse : number = 0;
 
   async ngOnInit() {
 
