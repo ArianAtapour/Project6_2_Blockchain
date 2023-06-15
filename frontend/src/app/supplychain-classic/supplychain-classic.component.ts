@@ -181,6 +181,15 @@ export class SupplychainClassicComponent {
   startGameTimer()
   {
     this.intervalId = setInterval(() => {
+      if (this.gameTimeMin == 0 && this.gameTimeSec == 1) {
+        clearInterval(this.intervalId);
+        // Unsubscribe from any existing timer subscription
+        this.timerSubscription?.unsubscribe();
+
+        this.timerSubscription = timer(1000).subscribe(() => {
+          this.router.navigate(['end-game']);
+        });
+      }
       if(this.gameTimeSec == 0)
       {
         this.gameTimeMin--;
@@ -189,15 +198,6 @@ export class SupplychainClassicComponent {
       else
       {
         this.gameTimeSec--;
-      }
-      if (this.gameTimeMin == 0 && this.gameTimeSec == 1) {
-        clearInterval(this.intervalId);
-        // Unsubscribe from any existing timer subscription
-        this.timerSubscription?.unsubscribe();
-
-        this.timerSubscription = timer(1000).subscribe(() => {
-            this.router.navigate(['end-game']);
-          });
       }
     }, 1000);
   }
