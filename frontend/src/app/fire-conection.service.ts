@@ -3,7 +3,7 @@ import {AngularFireDatabase, AngularFireList} from "@angular/fire/compat/databas
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {Player} from "../player";
 import {getBoolean} from "@angular/fire/remote-config";
-import {Observable} from "rxjs";
+import {Observable, Subscription, take} from "rxjs";
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +15,7 @@ export class FireConectionService {
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
     this.dataBase = db;
     this.mgRef = db.list('textsWithRoles');
+
   }
 
   loginAnonymously() {
@@ -82,7 +83,31 @@ export class FireConectionService {
     // Create a new node with the key and set the user data
     return this.db.object(`money/${role}`).set(moneyData);
   }
+  private moneySubscription: Subscription | undefined;
+  moneys: any[] = [];
+  //disgusting code
+ /* moneTai()
+  {
+    this.moneySubscription = this.db.list('money/manufacturer').valueChanges().subscribe(
+      (items: any[]) => {
+        return(items[0])
+      }
+    );
+  }
 
+  */
+  async getMoney(role:string)
+  {
+  }
+  addMoneyToNode(money:number, role:string) {
+    // @ts-ignore
+    let addedMoney: number = money + this.getMoney(role);
+    const moneyData = {
+      money: addedMoney,
+    }
+    // @ts-ignore
+    return this.db.object(`money/${role}`).update(moneyData);
+  }
   createOrder(manuf:string, cpu:string, gpu:string, orderC:number, orderConfirm:boolean, price:number){
     //default beginning data
     this.orderC = orderC;
