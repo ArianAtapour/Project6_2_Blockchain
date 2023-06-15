@@ -30,6 +30,8 @@
 <!-- Element 3 -->
 <div *ngIf="showFinancier">
   <label>Financier:</label><br>
+  <p>Store Money: {{storeMoney}}</p>
+  <p>Manufacturer Money: {{manufactureMoney}}</p>
   <ul>
     <ng-container *ngFor="let item of messages">
       <li *ngIf="isMessageVisible(item)">
@@ -44,8 +46,8 @@
 </div>
 
 <!-- Element 4 -->
-<div *ngIf="showFactory">
-  <label>Factory:</label><br>
+<div *ngIf="showManufacturer">
+  <label>Manufacturer:</label><br>
   <ul>
     <ng-container *ngFor="let item of messages">
       <li *ngIf="isMessageVisible(item)">

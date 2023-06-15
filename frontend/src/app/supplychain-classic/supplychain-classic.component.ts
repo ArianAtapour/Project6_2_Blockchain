@@ -26,7 +26,7 @@ export class SupplychainClassicComponent {
   showGM: boolean = false;
   showStore: boolean = false;
   showFinancier: boolean = false;
-  showFactory: boolean = false;
+  showManufacturer: boolean = false;
   showDelivery: boolean = false;
   storeMoney : number = 0;
   manufactureMoney : number = 0;
@@ -40,7 +40,7 @@ export class SupplychainClassicComponent {
 
   retrieveGameData(){
     //create the reference towards the data list
-    const orderRef = this.db.list("orders ");
+    const orderRef = this.db.list("orders");
     //define the table as the data of the users table
     this.orderData$ = orderRef.valueChanges();
 
@@ -77,9 +77,9 @@ export class SupplychainClassicComponent {
         if(this.moneyData){
           this.moneyData.forEach((money) => {
             if(money.role == "store"){
-              this.storeMoney = money;
+              this.storeMoney = money.money;
             } else {
-              this.manufactureMoney = money;
+              this.manufactureMoney = money.money;
             }
           })
         }
@@ -117,7 +117,7 @@ export class SupplychainClassicComponent {
         break;
 
       case "manufacturer":
-        this.showFactory = true;
+        this.showManufacturer = true;
         this.currentRole = this.value;
         this.fireConnectionService.createMoneyNode(500, "manufacturer");
         break;
@@ -155,6 +155,16 @@ export class SupplychainClassicComponent {
     text = this[text];
     this.fireConnectionService.addTextToDatabase(text, role);
   }
+
+  storeToManufacturer(text: string, role: string) {
+    this.pushTextWithRole(text, role);
+
+    let manufMoney = this.manufactureMoney;
+    manufMoney += (this.orderPrice * 0.8);
+
+    this.fireConnectionService.updateMoney({money: `${manufMoney}`}, "manufacturer");
+  }
+
   isMessageVisible(item?: any): boolean {
     // Check if the user's role allows viewing the item
     return this.currentRole === item.role;
