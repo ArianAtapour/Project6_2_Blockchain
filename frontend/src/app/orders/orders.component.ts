@@ -66,6 +66,7 @@ export class OrdersComponent implements OnInit{
     let totalPrice = manufPrice + cpuPrice + gpuPrice;
 
     this.fireConnectionService.createOrder(value.manuf, value.cpu, value.gpu, this.orderC, false, totalPrice);
+    this.fireConnectionService.addTextToDatabase("Manufacturer: " + value.manuf + ", CPU: " + value.cpu + ", GPU: " + value.gpu + ", that costs " + totalPrice, "store");
     console.log(totalPrice);
     this.orderC++;
   }

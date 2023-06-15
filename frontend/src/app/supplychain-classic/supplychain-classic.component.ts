@@ -3,6 +3,7 @@ import {AngularFireDatabase} from "@angular/fire/compat/database";
 import {FireConectionService} from "../fire-conection.service";
 import {Observable, of, Subscription} from "rxjs";
 import {Player} from "../../player";
+import {OrdersComponent} from "../orders/orders.component";
 
 @Component({
   selector: 'supplychain-classic',

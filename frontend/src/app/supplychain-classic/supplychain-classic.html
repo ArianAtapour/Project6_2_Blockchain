@@ -8,19 +8,7 @@
 
 <div *ngIf="showGM">
   <label>Client:</label><br>
-  <ul>
-    <ng-container *ngFor="let item of messages">
-      <li *ngIf="isMessageVisible(item)">
-        <span *ngIf="item.text">{{ item.text }}</span>
-      </li>
-    </ng-container>
-  </ul>
-  <input type="text" [(ngModel)]="senderGMaster"><br>
-  <button (click)="pushTextWithRole('senderGMaster', 'store')">Send to store</button>
-  <button (click)="ProductGood()">Product was good</button>
-  <button (click)="ProductBad()">Product was bad</button><br>
-  <a>Good products: {{goodNumber}}</a><br>
-  <a>Bad products: {{badNumber}}</a>
+  <app-orders></app-orders>
 </div>
 
 <!-- Element 2 -->
