@@ -12,7 +12,6 @@ import {Observable, of, Subscription} from "rxjs";
 export class OrdersComponent implements OnInit{
   dataBase: AngularFireDatabase;
   gameData$: Observable<any[]> = of([]);
-  data : any[] | undefined;
   gameDataSubscription: Subscription | undefined;
   messages: any[] = [];
   storeMoney : number = 0;
@@ -117,7 +116,7 @@ export class OrdersComponent implements OnInit{
   }
   retrieveGameData(){
     //create the reference towards the data list
-    const orderRef = this.db.list("orders ");
+    const orderRef = this.db.list("orders");
     //define the table as the data of the users table
     this.orderData$ = orderRef.valueChanges();
 

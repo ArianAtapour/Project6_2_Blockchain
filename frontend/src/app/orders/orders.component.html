@@ -30,7 +30,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let order of data"> <!-- *ngFor="let order of data" for all, just put order instead of this -->
+  <tr *ngFor="let order of orderData"> <!-- *ngFor="let order of data" for all, just put order instead of this -->
     <td>{{ order.manuf }}</td> <!-- Change with this for order -->
     <td>{{ order.cpu }}</td>
     <td>{{ order.gpu }}</td>
@@ -46,7 +46,7 @@
   <h2 style="color: green">Approve or disapprove order</h2>
   <table class="tableAccept">
     <select name="approvalSelect" id="approvalSelect" [(ngModel)]="selectedOrder">
-      <option *ngFor="let order of data" [ngValue]="order">{{order.orderC}} {{order.manuf}} {{order.cpu}} {{order.gpu}}</option>
+      <option *ngFor="let order of orderData" [ngValue]="order">{{order.orderC}} {{order.manuf}} {{order.cpu}} {{order.gpu}}</option>
     </select>
     <br>
     <button style="color: green" (click)="approveOrderSubmit()">Approve</button>
