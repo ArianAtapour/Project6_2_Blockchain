@@ -85,17 +85,14 @@ export class FireConectionService {
   }
   private moneySubscription: Subscription | undefined;
   moneys: any[] = [];
-  //disgusting code
- /* moneTai()
+  getMoneyFromManufacturer()
   {
     this.moneySubscription = this.db.list('money/manufacturer').valueChanges().subscribe(
       (items: any[]) => {
-        return(items[0])
+        return(items[0]).toString();
       }
     );
   }
-
-  */
   async getMoney(role:string)
   {
   }

@@ -40,6 +40,8 @@ export class CharacterNameComponent {
   constructor(private router: Router, private db: AngularFireDatabase, private fireConnectionService: FireConectionService) {
     //initialize database
     this.dataBase = db;
+    console.log(this.fireConnectionService.getMoneyFromManufacturer());
+    //this.fireConnectionService.addMoneyToNode(1000,'manufacturer');
   }
 
   async ngOnInit(){
@@ -107,7 +109,7 @@ export class CharacterNameComponent {
               }
 
               //replace with 2 to test easier
-              if(this.playersWhoVoted >= 1)
+              if(this.playersWhoVoted >= 2)
               {
                 this.startGame();
               }
