@@ -1,0 +1,54 @@
+
+.containerEG {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  height: 90%;
+  width: 90%;
+  background-color: black;
+  opacity: .5;
+}
+
+.content {
+  margin-top: 60px;
+  color: white;
+}
+
+.main{
+  background-color: black;
+  font-size: 80px;
+  text-align: center;
+  font-family: 'Hind', sans-serif;
+  font-weight: bold;
+  padding-bottom: 20px;
+
+}
+
+.mainSecondary{
+  background-color: black;
+  font-size: 20px;
+  text-align: center;
+  font-family: 'Hind', sans-serif;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.secondaryApp{
+  background-color: black;
+  font-size: 20px;
+  text-align: center;
+  font-family: 'Hind', sans-serif;
+  color: green;
+  padding-bottom: 10px;
+}
+
+.secondaryDec{
+  background-color: black;
+  font-size: 20px;
+  text-align: center;
+  font-family: 'Hind', sans-serif;
+  color: red;
+}
