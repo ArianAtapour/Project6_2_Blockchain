@@ -11,10 +11,12 @@ import {Observable, Subscription, take} from "rxjs";
 export class FireConectionService {
   dataBase : AngularFireDatabase;
   orderC = 0;
-  private mgRef: AngularFireList<any>;
+  mgRef: AngularFireList<any>;
+  orderRef : AngularFireList<any>;
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
     this.dataBase = db;
     this.mgRef = db.list('textsWithRoles');
+    this.orderRef = db.list('orders');
 
   }
 
@@ -122,7 +124,11 @@ export class FireConectionService {
     //this.orderC++;
     return this.db.object("orders/" + this.orderC).set(orderData);
   }
+  getOrdersFromDatabase()
+  {
 
+    return this.orderRef.valueChanges();
+  }
   approveOrder(orderNr:number){
     return this.db.object(`orders/${orderNr}`).update({orderConfirm:true});
   }
