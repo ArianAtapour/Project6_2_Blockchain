@@ -89,7 +89,7 @@ export class OrdersComponent implements OnInit{
 
   addMoneyToRole(role: string) {
       this.storeMoney += this.orderPrice;
-      this.fireConnectionService.updateMoney({money: `${this.storeMoney}`}, "store");
+      this.fireConnectionService.updateMoney({money: this.storeMoney}, "store");
   }
 
   //turns id for select element into array of items

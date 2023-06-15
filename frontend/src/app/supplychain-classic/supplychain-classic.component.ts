@@ -26,8 +26,8 @@ export class SupplychainClassicComponent {
   showGM: boolean = false;
   showStore: boolean = false;
   showFinancier: boolean = false;
-  showFactory: boolean = false;
-  showDelivery: boolean = false;
+  showManufacturer: boolean = false;
+  showShipper: boolean = false;
   storeMoney : number = 0;
   manufactureMoney : number = 0;
   orderCount : number = 0;
@@ -166,7 +166,7 @@ export class SupplychainClassicComponent {
     let manufMoney = this.manufactureMoney;
     manufMoney += (this.orderPrice * 0.8);
 
-    this.fireConnectionService.updateMoney({money: `${manufMoney}`}, "manufacturer");
+    this.fireConnectionService.updateMoney({money: manufMoney}, "manufacturer");
   }
 
   isMessageVisible(item?: any): boolean {
