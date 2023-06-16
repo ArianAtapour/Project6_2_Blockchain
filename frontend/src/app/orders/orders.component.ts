@@ -168,13 +168,22 @@ export class OrdersComponent implements OnInit{
       }
     );
   }
+  getRandomDuration(): number {
+    return Math.floor(Math.random() * (120000 - 60000 + 1)) + 60000;
+  }
+  timeOut()
+  {
+    this.fireConnectionService.setTimerNumber(this.getRandomDuration());
+  }
   async ngOnInit() {
     //connect to the firebase database as an anonymous user
     this.approveOrderSubmit();
     this.dissapproveOrderSubmit();
     this.fireConnectionService.deleteOrdersOnDisconnect();
+    this.fireConnectionService.deleteTimerOnDisconnect();
     await this.fireConnectionService.loginAnonymously().then((userCredential) => {
 
     });
+    this.timeOut();
   }
 }

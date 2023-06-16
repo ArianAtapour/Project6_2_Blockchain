@@ -21,7 +21,10 @@ export class SupplychainClassicComponent {
   moneyDataSubscription: Subscription | undefined;
   orderDataSubscription: Subscription | undefined;
   messagesSubscription: Subscription | undefined;
+  timerSubscription : Subscription | undefined;
   messages: any[] = [];
+  randomTimer: number | undefined;
+  randomTimerData: any[] | undefined;
   currentRole : string = "";
   value : any | undefined;
   showGM: boolean = false;
@@ -91,6 +94,17 @@ export class SupplychainClassicComponent {
         this.messages = items;
       }
     );
+    this.timerSubscription = this.fireConnectionService.getTimerFromDatabase().subscribe(
+      (timerData: any[]) => {
+        this.randomTimerData = timerData;
+        if(this.randomTimerData) {
+          this.randomTimerData.forEach((timer) => {
+            this.randomTimer = timer;
+              console.log(this.randomTimer);
+            })
+          }
+        }
+    );
   }
 
   async ngOnInit() {
@@ -98,6 +112,7 @@ export class SupplychainClassicComponent {
     this.fireConnectionService.deleteUserNodeOnDisconnect();
     this.fireConnectionService.deleteMessageNodeOnDisconnect();
     this.fireConnectionService.deleteMoneyOnDisconnect();
+    this.fireConnectionService.deleteTimerOnDisconnect();
     //retrieve and subscribe to user data table
     this.value = Player.getInstance().role;
     switch (this.value) {
@@ -132,8 +147,6 @@ export class SupplychainClassicComponent {
     this.startGameTimer();
   }
   titles = 'SupplyChain';
-  // @ts-ignore
-  senderGMaster : any;
   // @ts-ignore
   senderFinancier : any;
   // @ts-ignore
@@ -170,7 +183,6 @@ export class SupplychainClassicComponent {
 
     this.fireConnectionService.updateMoney({money: manufMoney}, "manufacturer");
   }
-  timerSubscription: Subscription | undefined;
   isMessageVisible(item?: any): boolean {
     // Check if the user's role allows viewing the item
     return this.currentRole === item.role;
