@@ -19,12 +19,85 @@
         <canvas #canvasSix id="canvasSix"></canvas>
     </div>
 </div>
+<div *ngIf="showGM">
+  <label>Client:</label><br>
+  <app-orders></app-orders>
+  <ul>
+    <ng-container *ngFor="let item of messages">
+      <li *ngIf="isMessageVisible(item)">
+        <span *ngIf="item.text">{{ item.text }}</span>
+      </li>
+    </ng-container>
+  </ul>
+</div>
+
+<!-- Element 2 -->
+<div *ngIf="showStore">
+  <label>Store:</label><br>
+  <ul>
+    <ng-container *ngFor="let item of messages">
+      <li *ngIf="isMessageVisible(item)">
+        <span *ngIf="item.text">{{ item.text }}</span>
+      </li>
+    </ng-container>
+  </ul>
+  <input type="text" [(ngModel)]="senderStore"><br>
+  <button (click)="pushTextWithRole('senderStore','financier')">Send for financier's approval</button>
+  <button (click)="pushTextWithRole('senderStore', 'manufacturer')">Send to the manufactorer</button>
+  <button (click)="pushTextWithRole('senderStore', 'buyer')">Send to the client</button>
+</div>
+
+<!-- Element 3 -->
+<div *ngIf="showFinancier">
+  <label>Financier:</label><br>
+  <p>Store Money: {{storeMoney}}</p>
+  <p>Manufacturer Money: {{manufactureMoney}}</p>
+  <ul>
+    <ng-container *ngFor="let item of messages">
+      <li *ngIf="isMessageVisible(item)">
+        <span *ngIf="item.text">{{ item.text }}</span>
+      </li>
+    </ng-container>
+  </ul>
+  <input type="text" [(ngModel)]="senderFinancier"><br>
+  <button (click)="pushTextWithRole('senderFinancier', 'store')">Send to the store</button>
+  <button (click)="pushTextWithRole('senderFinancier', 'manufacturer')">Send to the manufacturer</button>
+  <button (click)="pushTextWithRole('senderFinancier', 'delivery')">Send to delivery</button>
+</div>
+
+<!-- Element 4 -->
+<div *ngIf="showManufacturer">
+  <label>Manufacturer:</label><br>
+  <ul>
+    <ng-container *ngFor="let item of messages">
+      <li *ngIf="isMessageVisible(item)">
+        <span *ngIf="item.text">{{ item.text }}</span>
+      </li>
+    </ng-container>
+  </ul>
+  <input [(ngModel)]="senderManufacturer" type="text"><br>
+  <button (click)="pushTextWithRole('senderManufacturer', 'financier')">Send for financier's approval</button>
+  <button (click)="pushTextWithRole('senderManufacturer', 'shipper')">Send to delivery</button>
+</div>
+
+<!-- Element 5 -->
+<div *ngIf="showShipper">
+  <label>Shipper:</label>
+  <ul>
+    <ng-container *ngFor="let item of messages">
+      <li *ngIf="isMessageVisible(item)">
+        <span *ngIf="item.text">{{ item.text }}</span>
+      </li>
+    </ng-container>
+  </ul>
+  <input type="text" [(ngModel)]="senderShipper"><br>
+  <button (click)="pushTextWithRole('senderShipper', 'financier')">Send for financier's approval</button>
+  <button (click)="pushTextWithRole('senderShipper', 'store')">Send to store</button>
+</div>
 <div class="containerTest">
-    <details class="order-item" *ngFor="let order of data">
-      <summary>Block {{order.orderC}}</summary>
-        <p>{{order.manuf}}</p>
-        <p>{{order.cpu}}</p>
-        <p>{{order.gpu}}</p>
+    <details class="order-item" *ngFor="let item of messages">
+      <summary>{{Player.getInstance().role}}</summary>
+      <p>{{item.text}}</p>
   </details>
 </div>
 

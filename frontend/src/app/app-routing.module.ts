@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'game-over', component: GameOverComponent},
   { path: 'supplychain-classic', component: SupplychainClassicComponent },
   {path:'orders', component:OrdersComponent},
-  {path:'blockchain', component:BlockchainGameComponent},
+  {path:'supplychain-blockchain', component:BlockchainGameComponent},
   {path:'end-game', component:EndGameComponent}
 
 ];
