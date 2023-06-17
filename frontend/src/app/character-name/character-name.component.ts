@@ -7,7 +7,7 @@ import {Player, Role} from "../../player";
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import {Observable, of, Subscription, timer} from "rxjs";
+import {Observable, of, Subscription, take, timer} from "rxjs";
 import {SupplychainClassicComponent} from "../supplychain-classic/supplychain-classic.component";
 import {CONFIG} from "@angular/fire/compat/analytics";
 
@@ -28,10 +28,11 @@ export class CharacterNameComponent {
   counterStatic:number = 0;
   counterBlock:number = 0;
   timeLeft:number = 5;
+  allRoles:string[] = ["buyer", "store", "manufacturer", "delivery", "financier"];
+  availableRoles:string[] = ["buyer", "store", "manufacturer", "delivery", "financier"];
 
   //warning strings
   nameTakenWarning: any;
-  roleTakenWarning: any;
 
   //flag for if username is taken
   nameIsTaken = false;
@@ -86,13 +87,20 @@ export class CharacterNameComponent {
       this.gameDataSubscription = this.gameData$.subscribe((data) => {
         //update method
         this.data = data;
-
+        let takenRoles : string[] = [];
         //add number of valid players
         if(this.data){
           this.readyPlayers = 0;
           this.playersWhoVoted = 0;
           this.counterStatic = 0;
           this.counterBlock= 0;
+
+          this.allRoles = ["buyer", "store", "manufacturer", "delivery", "financier"];
+
+          this.availableRoles = [];
+          this,takenRoles = [];
+
+
           this.data.forEach((playerData) => {
             if(playerData.name != "" && playerData.role != ""){
               this.readyPlayers++;
@@ -109,13 +117,29 @@ export class CharacterNameComponent {
                 this.counterBlock++;
               }
 
+              this.allRoles.forEach((role) => {
+                if(role == playerData.role){
+                  takenRoles?.push(role);
+                }
+              })
+
               //replace with 2 to test easier
-              if(this.playersWhoVoted >= 1)
+              if(this.playersWhoVoted >= 5)
               {
                 this.startGame();
               }
             }
           });
+          //add back the not taken roles to the list
+          if(takenRoles != null) {
+            this.allRoles.forEach((roles) => {
+              if(!takenRoles?.includes(roles, 0)){
+                this.availableRoles.push(roles);
+              }
+            })
+          } else {
+            this.availableRoles = ["buyer", "store", "manufacturer", "delivery", "manufacturer"]
+          }
         }
       });
     }
@@ -128,7 +152,6 @@ export class CharacterNameComponent {
   //add the players data, first check if possibilities are not taken
   onSubmit(value: any) {
     this.nameIsTaken = false;
-    this.roleIsTaken = false;
 
     //check to see if username or role was taken
     if (this.data) {
@@ -142,11 +165,6 @@ export class CharacterNameComponent {
             this.nameTakenWarning = "username already taken, please pick another name"
           }
         }
-        //check role
-        if(playerData.role == value.role){
-          this.roleIsTaken = true;
-          this.roleTakenWarning = "role already taken, please pick another role"
-        }
       });
     }
 
@@ -157,15 +175,9 @@ export class CharacterNameComponent {
       this.nameTakenWarning = "";
       Player.getInstance().name = "";
     }
-    if(this.roleIsTaken){
-      this.roleTakenWarning = "role is taken, please try another";
-    } else {
-      this.roleTakenWarning = "";
-      Player.getInstance().role = Role.None;
-    }
 
     //if both role and name is taken are false then add them to the DB and add to local player
-    if(!this.nameIsTaken && !this.roleIsTaken && value.name != ""){
+    if(!this.nameIsTaken && value.name != ""){
       this.fireConnectionService.updateUserData({
         name: value.name,
         role: value.role
@@ -208,6 +220,7 @@ export class CharacterNameComponent {
   vote0Count: number = 0;
   vote1Count: number = 0;
   intervalId: any;
+  selectedRole: any;
   startGame() {
     this.intervalId = setInterval(() => {
       this.timeLeft--;
