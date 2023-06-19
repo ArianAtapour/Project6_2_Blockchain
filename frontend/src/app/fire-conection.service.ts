@@ -125,11 +125,29 @@ export class FireConectionService {
       orderC:orderC,
       orderConfirm:orderConfirm,
       price:price
+
+      //Order variables
     }
     // Create a new node with the key and set the user data
     //this.orderC++;
     return this.db.object("orders/" + this.orderC).set(orderData);
   }
+
+
+  //Put questions in node
+  addQuestion(question:string, check:boolean){
+
+
+    const questionData = {
+      //The question itself and the boolean
+      question:question,
+      check:check
+    }
+    // Create a new node with the key and set the user data
+    //this.orderC++;
+    return this.db.object("questions/").set(questionData);
+  }
+
   getOrdersFromDatabase()
   {
 
@@ -146,6 +164,19 @@ export class FireConectionService {
     const orders = this.db.database.ref('orders');
 
     orders.onDisconnect().remove()
+      .then(() => {
+        console.log("Orders data deleted on disconnect");
+      })
+      .catch(error => {
+        console.error("Failed to set up onDisconnect function", error);
+      });
+  }
+
+  //Delete Questions on disconnect
+  deleteQuestionsOnDisconnect(){
+    const questions = this.db.database.ref('questions');
+
+    questions.onDisconnect().remove()
       .then(() => {
         console.log("Orders data deleted on disconnect");
       })
