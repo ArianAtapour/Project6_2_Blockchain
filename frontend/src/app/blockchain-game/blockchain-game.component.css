@@ -1,3 +1,32 @@
+.main {
+  font-family: 'Hind', sans-serif;
+  font-size: 16px;
+  text-align: left;
+}
+
+button {
+  border-radius: 20px;
+  background-color: #FFD215;
+  color: #303B44;
+  height: 27px;
+  padding: 5px 10px;
+  margin-right: 10px;
+  border-color:#FFD215;
+  margin-top: 20px;
+}
+
+.main-box {
+  margin-left: 60px;
+  margin-top: 20px;
+}
+
+input[type="text"] {
+  width: 510px;
+  background-color: white;
+  height: 25px;
+  font-size: 14px;
+  margin-top: 20px;
+}
 .containerFlex {
   display: flex;
   justify-content: center;
@@ -29,12 +58,46 @@ canvas {
   text-align: center;
   height:auto;
   width: auto;
+  background-color:#FFD215;
+  color: white;
 }
 
 .order-item > p{
-  background-color: green;
+  background-color: #6C47F6;
 }
 
 details[open] .order-item {
-  background-color: green;
+  background-color: #6C47F6;
+  font-size: 12px;
+}
+
+label {
+  margin: 30px;
+  color: white;
+  font-weight: bold;
+  font-size: 25px;
+}
+  .table {
+    border: 1px solid #FFD215;
+    margin: 20px;
+    color: white;
+  }
+
+  .table tr,
+  .table td {
+    border: 1px solid #FFD215;
+    padding: 5px;
+
+  }
+select {
+  background-color:white;
+  color: white;
+  width: 220px;
+  height: 25px;
+  margin: 20px;
+}
+p {
+  color:white;
+  font-size: 20px;
+  margin: 20px;
 }

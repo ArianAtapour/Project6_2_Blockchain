@@ -1,108 +1,113 @@
-<div class="containerFlex">
-    <div class="row">
-        <!-- Canvases -->
-        <canvas #canvas id="canvas"></canvas>
-    </div>
-    <div class="row">
-        <canvas #canvasTwo id="canvasTwo"></canvas>
-    </div>
-    <div class="row">
-        <canvas #canvasThree id="canvasThree"></canvas>
-    </div>
-    <div class="row">
-        <canvas #canvasFour id="canvasFour"></canvas>
-    </div>
-    <div class="row">
-        <canvas #canvasFive id="canvasFive"></canvas>
-    </div>
-    <div class="row">
-        <canvas #canvasSix id="canvasSix"></canvas>
-    </div>
-</div>
-<div *ngIf="showGM">
-  <label>Client:</label><br>
-  <app-orders></app-orders>
-  <ul>
-    <ng-container *ngFor="let item of messages">
-      <li *ngIf="isMessageVisible(item)">
-        <span *ngIf="item.text">{{ item.text }}</span>
-      </li>
-    </ng-container>
-  </ul>
-</div>
 
-<!-- Element 2 -->
-<div *ngIf="showStore">
-  <label>Store:</label><br>
-  <ul>
-    <ng-container *ngFor="let item of messages">
-      <li *ngIf="isMessageVisible(item)">
-        <span *ngIf="item.text">{{ item.text }}</span>
-      </li>
-    </ng-container>
-  </ul>
-  <input type="text" [(ngModel)]="senderStore"><br>
-  <button (click)="pushTextWithRole('senderStore','financier')">Send for financier's approval</button>
-  <button (click)="pushTextWithRole('senderStore', 'manufacturer')">Send to the manufactorer</button>
-  <button (click)="pushTextWithRole('senderStore', 'buyer')">Send to the client</button>
-</div>
+    <div class="main">
 
-<!-- Element 3 -->
-<div *ngIf="showFinancier">
-  <label>Financier:</label><br>
-  <p>Store Money: {{storeMoney}}</p>
-  <p>Manufacturer Money: {{manufactureMoney}}</p>
-  <ul>
-    <ng-container *ngFor="let item of messages">
-      <li *ngIf="isMessageVisible(item)">
-        <span *ngIf="item.text">{{ item.text }}</span>
-      </li>
-    </ng-container>
-  </ul>
-  <input type="text" [(ngModel)]="senderFinancier"><br>
-  <button (click)="pushTextWithRole('senderFinancier', 'store')">Send to the store</button>
-  <button (click)="pushTextWithRole('senderFinancier', 'manufacturer')">Send to the manufacturer</button>
-  <button (click)="pushTextWithRole('senderFinancier', 'shipper')">Send to delivery</button>
-</div>
+      <div class="main-box">
+        <div class="containerFlex">
+            <div class="row">
+                <!-- Canvases -->
+                <canvas #canvas id="canvas"></canvas>
+            </div>
+            <div class="row">
+                <canvas #canvasTwo id="canvasTwo"></canvas>
+            </div>
+            <div class="row">
+                <canvas #canvasThree id="canvasThree"></canvas>
+            </div>
+            <div class="row">
+                <canvas #canvasFour id="canvasFour"></canvas>
+            </div>
+            <div class="row">
+                <canvas #canvasFive id="canvasFive"></canvas>
+            </div>
+            <div class="row">
+                <canvas #canvasSix id="canvasSix"></canvas>
+            </div>
+        </div>
+        <div *ngIf="showGM">
+          <label>Buyer:</label><br>
+          <app-orders></app-orders>
+          <ul>
+            <ng-container *ngFor="let item of messages">
+              <li *ngIf="isMessageVisible(item)">
+                <span *ngIf="item.text">{{ item.text }}</span>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
 
-<!-- Element 4 -->
-<div *ngIf="showManufacturer">
-  <label>Manufacturer:</label><br>
-  <ul>
-    <ng-container *ngFor="let item of messages">
-      <li *ngIf="isMessageVisible(item)">
-        <span *ngIf="item.text">{{ item.text }}</span>
-      </li>
-    </ng-container>
-  </ul>
-  <input [(ngModel)]="senderManufacturer" type="text"><br>
-  <button (click)="pushTextWithRole('senderManufacturer', 'financier')">Send for financier's approval</button>
-  <button (click)="pushTextWithRole('senderManufacturer', 'shipper')">Send to delivery</button>
-</div>
+        <!-- Element 2 -->
+        <div *ngIf="showStore">
+          <label>Store:</label><br>
+          <ul>
+            <ng-container *ngFor="let item of messages">
+              <li *ngIf="isMessageVisible(item)">
+                <span *ngIf="item.text">{{ item.text }}</span>
+              </li>
+            </ng-container>
+          </ul>
+          <input type="text" [(ngModel)]="senderStore"><br>
+          <button (click)="pushTextWithRole('senderStore','financier')">Send for financier's approval</button>
+          <button (click)="pushTextWithRole('senderStore', 'manufacturer')">Send to the manufactorer</button>
+          <button (click)="pushTextWithRole('senderStore', 'buyer')">Send to the client</button>
+        </div>
 
-<!-- Element 5 -->
-<div *ngIf="showShipper">
-  <label>Shipper:</label>
-  <ul>
-    <ng-container *ngFor="let item of messages">
-      <li *ngIf="isMessageVisible(item)">
-        <span *ngIf="item.text">{{ item.text }}</span>
-      </li>
-    </ng-container>
-  </ul>
-  <input type="text" [(ngModel)]="senderShipper"><br>
-  <button (click)="pushTextWithRole('senderShipper', 'financier')">Send for financier's approval</button>
-  <button (click)="pushTextWithRole('senderShipper', 'store')">Send to store</button>
-</div>
-<div class="containerTest">
-    <details class="order-item" *ngFor="let item of messages">
-      <summary>{{Player.getInstance().role}}</summary>
-      <p>{{item.text}}</p>
-  </details>
-</div>
+        <!-- Element 3 -->
+        <div *ngIf="showFinancier">
+          <label>Financier:</label><br>
+          <p>Store Money: {{storeMoney}}</p>
+          <p>Manufacturer Money: {{manufactureMoney}}</p>
+          <ul>
+            <ng-container *ngFor="let item of messages">
+              <li *ngIf="isMessageVisible(item)">
+                <span *ngIf="item.text">{{ item.text }}</span>
+              </li>
+            </ng-container>
+          </ul>
+          <input type="text" [(ngModel)]="senderFinancier"><br>
+          <button (click)="pushTextWithRole('senderFinancier', 'store')">Send to the store</button>
+          <button (click)="pushTextWithRole('senderFinancier', 'manufacturer')">Send to the manufacturer</button>
+          <button (click)="pushTextWithRole('senderFinancier', 'shipper')">Send to delivery</button>
+        </div>
 
-<!--
-Would be awesome if I could make each block collapsible and with the default text of Block and then upon
-expanding it I can see the info inside.
-What I want is to have both the canvases centered nicely and also the containerTest centered, also each new div has to go downwards
--->
+        <!-- Element 4 -->
+        <div *ngIf="showManufacturer">
+          <label>Manufacturer:</label><br>
+          <ul>
+            <ng-container *ngFor="let item of messages">
+              <li *ngIf="isMessageVisible(item)">
+                <span *ngIf="item.text">{{ item.text }}</span>
+              </li>
+            </ng-container>
+          </ul>
+          <input [(ngModel)]="senderManufacturer" type="text"><br>
+          <button (click)="pushTextWithRole('senderManufacturer', 'financier')">Send for financier's approval</button>
+          <button (click)="pushTextWithRole('senderManufacturer', 'shipper')">Send to delivery</button>
+        </div>
+
+        <!-- Element 5 -->
+        <div *ngIf="showShipper">
+          <label>Shipper:</label>
+          <ul>
+            <ng-container *ngFor="let item of messages">
+              <li *ngIf="isMessageVisible(item)">
+                <span *ngIf="item.text">{{ item.text }}</span>
+              </li>
+            </ng-container>
+          </ul>
+          <input type="text" [(ngModel)]="senderShipper"><br>
+          <button (click)="pushTextWithRole('senderShipper', 'financier')">Send for financier's approval</button>
+          <button (click)="pushTextWithRole('senderShipper', 'store')">Send to store</button>
+        </div>
+        <div class="containerTest">
+            <details class="order-item" *ngFor="let item of messages">
+              <summary>{{Player.getInstance().role}}</summary>
+              <p>{{item.text}}</p>
+          </details>
+        </div>
+
+        <!--
+        Would be awesome if I could make each block collapsible and with the default text of Block and then upon
+        expanding it I can see the info inside.
+        What I want is to have both the canvases centered nicely and also the containerTest centered, also each new div has to go downwards
+        -->
+</div>

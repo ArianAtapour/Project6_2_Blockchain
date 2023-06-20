@@ -18,38 +18,33 @@
     <option value="gp12">GraphicsPower12</option>
   </select>
 
-  <button type="submit">Submit</button>
+  <button class="rounded-button" type="submit">Submit</button>
 </form>
 
 <table class="table">
   <thead>
-  <tr>
-    <th>Manufacturer</th>
-    <th>Cpu</th>
-    <th>Gpu</th>
-  </tr>
+    <tr>
+      <td>Manufacturer</td>
+      <td>CPU</td>
+      <td>GPU</td>
+    </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let order of orderData"> <!-- *ngFor="let order of data" for all, just put order instead of this -->
-    <td>{{ order.manuf }}</td> <!-- Change with this for order -->
-    <td>{{ order.cpu }}</td>
-    <td>{{ order.gpu }}</td>
-  </tr>
+    <tr *ngFor="let order of orderData">
+      <td>{{ order.manuf }}</td>
+      <td>{{ order.cpu }}</td>
+      <td>{{ order.gpu }}</td>
+    </tr>
   </tbody>
 </table>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-  <h2 style="color: green">Approve or disapprove order</h2>
-  <table class="tableAccept">
-    <select name="approvalSelect" id="approvalSelect" [(ngModel)]="selectedOrder">
-      <option *ngFor="let order of orderData" [ngValue]="order">{{order.orderC}} {{order.manuf}} {{order.cpu}} {{order.gpu}}</option>
-    </select>
-    <br>
-    <button style="color: green" (click)="approveOrderSubmit()">Approve</button>
-    <br>
-    <button style="color: red" (click)="dissapproveOrderSubmit()">Disapprove</button>
-  </table>
+<h2>Approve or disapprove order</h2>
+<table class="tableAccept">
+  <select name="approvalSelect" id="approvalSelect" [(ngModel)]="selectedOrder">
+    <option *ngFor="let order of orderData" [ngValue]="order">{{order.orderC}} {{order.manuf}} {{order.cpu}}
+      {{order.gpu}}</option>
+  </select>
+  <br>
+  <button class="approve" (click)="approveOrderSubmit()">Approve</button>
+  <button class="decline" (click)="dissapproveOrderSubmit()">Disapprove</button>
+</table>

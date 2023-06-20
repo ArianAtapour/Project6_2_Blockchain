@@ -1,3 +1,54 @@
-h1, h2, a {
+.rounded-button {
+  border-radius: 20px;
+  background-color: #FFD215;
   color: white;
+  width: 70px;
+  height: 30px;
+  border-color:#FFD215;
+  margin: 20px;
+}
+label {
+  margin: 30px;
+  color: white;
+  font-size: 23px;
+}
+  .table {
+    border: 1px solid #FFD215;
+    margin: 20px;
+    color: white;
+  }
+
+  .table tr,
+  .table td {
+    border: 1px solid #FFD215;
+    padding: 5px;
+  }
+select {
+  background-color:white;
+  width: 220px;
+  height: 25px;
+  margin: 20px;
+}
+
+.approve {
+  border-radius: 20px;
+  background-color: #50C878;
+  color: black;
+  width: 90px;
+  height: 30px;
+  border-color:#50C878;
+  margin: 20px;
+}
+
+.decline {
+  border-radius: 20px;
+  background-color: #FF2400;
+  color: black;
+  width: 90px;
+  height: 30px;
+  border-color: #FF2400;
+  margin: 20px;
+}
+h2 {
+  color:white;
 }
