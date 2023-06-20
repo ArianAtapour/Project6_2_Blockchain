@@ -28,8 +28,8 @@ export class CharacterNameComponent {
   counterStatic:number = 0;
   counterBlock:number = 0;
   timeLeft:number = 5;
-  allRoles:string[] = ["buyer", "store", "manufacturer", "delivery", "financier"];
-  availableRoles:string[] = ["buyer", "store", "manufacturer", "delivery", "financier"];
+  allRoles:string[] = ["buyer", "store", "manufacturer", "shipper", "financier"];
+  availableRoles:string[] = ["buyer", "store", "manufacturer", "shipper", "financier"];
 
   //warning strings
   nameTakenWarning: any;
@@ -95,7 +95,7 @@ export class CharacterNameComponent {
           this.counterStatic = 0;
           this.counterBlock= 0;
 
-          this.allRoles = ["buyer", "store", "manufacturer", "delivery", "financier"];
+          this.allRoles = ["buyer", "store", "manufacturer", "shipper", "financier"];
 
           this.availableRoles = [];
           this,takenRoles = [];
@@ -124,7 +124,7 @@ export class CharacterNameComponent {
               })
 
               //replace with 2 to test easier
-              if(this.playersWhoVoted >= 1)
+              if(this.playersWhoVoted >= 2)
               {
                 this.startGame();
               }
@@ -138,7 +138,7 @@ export class CharacterNameComponent {
               }
             })
           } else {
-            this.availableRoles = ["buyer", "store", "manufacturer", "delivery", "manufacturer"]
+            this.availableRoles = ["buyer", "store", "manufacturer", "shipper", "manufacturer"]
           }
         }
       });
