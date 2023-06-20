@@ -11,21 +11,18 @@ import {Observable, of, Subscription} from "rxjs";
 })
 export class QuestionsComponent implements OnInit{
   dataBase: AngularFireDatabase;
-  gameData$: Observable<any[]> = of([]);
-  data : any[] | undefined;
+  orderData$: Observable<any[]> = of([]);
+  orderData : any[] = [];
   gameDataSubscription: Subscription | undefined;
   checkAnswer!:boolean;
-  manuf!:string;
-  cpu!:string;
-  gpu!:string;
   orderC:number= 0;
-  selectedOrder: any;
+  possibleQuestions : string[] = [];
   constructor(private router: Router, private db: AngularFireDatabase, private fireConnectionService: FireConectionService) {
     //initialize database
     this.dataBase = db;
   }
 
-  onSubmitQuestion(value:any){
+  onSubmit(value:any){
     this.fireConnectionService.addQuestion(value, this.checkAnswer);
   }
 
@@ -33,48 +30,87 @@ export class QuestionsComponent implements OnInit{
     //create the reference towards the data list
     const orders = this.db.list("orders");
     //define the table as the data of the users table
-    this.gameData$ = orders.valueChanges();
+    this.orderData$ = orders.valueChanges();
 
     //if the data subscription is not subbed yet then sub
     if(!this.gameDataSubscription){
-      this.gameDataSubscription = this.gameData$.subscribe((data) => {
-        console.log('Data updated:', data);
+      this.gameDataSubscription = this.orderData$.subscribe((data) => {
         //update method
-        this.data = data;
-
-        //add number of valid players
-        if(this.data){
-          this.manuf = "";
-          this.cpu = "";
-          this.gpu = "";
-
-          let counter = 1;
-
-          this.data.forEach((order) => {
-            if(order.manuf != "" && order.gpu != "" && order.cpu != ""){
-              this.manuf = order.manuf;
-              this.cpu = order.cpu;
-              this.gpu = order.gpu; //get the things
-            }
-
-            /*if(counter == 2){
-              this.manuf = order.manuf;
-              this.cpu = order.cpu;
-              this.gpu = order.gpu;
-            }else{
-              counter++;
-            }*/
-
-
-          });
-        }
+        this.orderData = data;
       });
     }
-
   }
 
   async ngOnInit(){
     this.retrieveData();
     this.fireConnectionService.deleteQuestionsOnDisconnect();
+    this.makeQuestions();
+  }
+
+  makeQuestions(){
+    //get three random questions
+    let question1 = Math.floor(Math.random() * (this.orderData.length + 1));
+    let question2 = Math.floor(Math.random() * (this.orderData.length + 1));
+    //make sure they aren't the same number
+    //also make sure there are enough questions to do so
+    if(this.orderData.length >= 1){
+      while(question1 == question2){
+        question2 = Math.floor(Math.random() * (this.orderData.length + 1));
+      }
+    }
+    let question3 = Math.floor(Math.random() * (this.orderData.length + 1));
+    //make sure the third number is not equal to 1 or 2
+    if(this.orderData.length >= 2){
+      while(question1 == question3 && question2 == question3){
+        question3 = Math.floor(Math.random() * (this.orderData.length + 1));
+      }
+    }
+    let question1Part;
+    let question2Part;
+    let question3Part;
+    //pick a part randomly
+    switch(Math.floor(Math.random() * (2 - 0 + 1) + 0)){
+      case 0:
+        question1Part = this.orderData[question1].manuf;
+        break;
+      case 1:
+        question1Part = this.orderData[question1].cpu;
+        break;
+      case 2:
+        question1Part = this.orderData[question1].gpu;
+        break;
+    }
+    if(question2 != null){
+      switch(Math.floor(Math.random() * (2 - 0 + 1) + 0)){
+        case 0:
+          question2Part = this.orderData[question2].manuf;
+          break;
+        case 1:
+          question2Part = this.orderData[question2].cpu;
+          break;
+        case 2:
+          question2Part = this.orderData[question2].gpu;
+          break;
+      }
+    }
+
+    if(question3 != null){
+      switch(Math.floor(Math.random() * (2 - 0 + 1) + 0)){
+        case 0:
+          question3Part = this.orderData[question3].manuf;
+          break;
+        case 1:
+          question3Part = this.orderData[question3].cpu;
+          break;
+        case 2:
+          question3Part = this.orderData[question3].gpu;
+          break;
+      }
+    }
+    console.log("question1part: " + question1Part);
+    console.log("question2part: " + question2Part);
+    console.log("question3part: " + question3Part);
+    //make a question based on that part
+    //have potential answers
   }
 }

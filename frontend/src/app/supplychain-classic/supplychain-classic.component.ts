@@ -23,7 +23,7 @@ export class SupplychainClassicComponent {
   messagesSubscription: Subscription | undefined;
   timerSubscription : Subscription | undefined;
   messages: any[] = [];
-  randomTimer: number | undefined;
+  randomTimer: number = 0;
   randomTimerData: any[] | undefined;
   currentRole : string = "";
   value : any | undefined;
@@ -99,11 +99,11 @@ export class SupplychainClassicComponent {
         this.randomTimerData = timerData;
         if(this.randomTimerData) {
           this.randomTimerData.forEach((timer) => {
-            this.randomTimer = timer;
-              console.log(this.randomTimer);
-            })
-          }
+            this.randomTimer = timer.timerNumber;
+            setTimeout(this.randomQuestion, this.randomTimer);
+          })
         }
+      }
     );
   }
 
@@ -172,7 +172,6 @@ export class SupplychainClassicComponent {
     // @ts-ignore
     this[text] = '';
     this.fireConnectionService.addTextToDatabase(textToSend, role);
-
   }
 
   storeToManufacturer(text: string, role: string) {
@@ -212,5 +211,9 @@ export class SupplychainClassicComponent {
         this.gameTimeSec--;
       }
     }, 1000);
+  }
+
+  randomQuestion(){
+    console.log("ran a loop of random timer");
   }
 }

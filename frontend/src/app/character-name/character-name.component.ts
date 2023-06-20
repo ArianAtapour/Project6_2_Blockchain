@@ -98,8 +98,7 @@ export class CharacterNameComponent {
           this.allRoles = ["buyer", "store", "manufacturer", "shipper", "financier"];
 
           this.availableRoles = [];
-          this,takenRoles = [];
-
+          takenRoles = [];
 
           this.data.forEach((playerData) => {
             if(playerData.name != "" && playerData.role != ""){
