@@ -1,18 +1,9 @@
 
 <h1>Questions</h1>
-<form #questions="ngForm" (ngSubmit)="onSubmitQuestion(questions.value)">
+<form #questions="ngForm">
   <label for="questionSelect">Questions:</label>
-  <select name="questionSelect" id="questionSelect" ngModel>
-    <option value="q1cpu">What PC order(manufacturer) has IC5 CPU?</option>
-    <option value="q2cpu">What PC order(manufacturer) has VC48 ?"</option>
-    <option value="q1gpu">What PC order(manufacturer) has Monster13?</option>
+  <select name="questionSelect" id="questionSelect" (ngSubmit)="onSubmit(questions.value)">
+    <option *ngFor="let question of possibleQuestions" [value]="question">{{ question }}</option>
   </select>
   <button type="submit">Submit</button>
 </form>
-
-
-<h2>Answers</h2>
-  <label for="answerSelect">Answer Select</label>
-  <select name="answerSelect" id="answerSelect" [(ngModel)]="selectedOrder">
-    <option *ngFor="let answer of data" [ngValue]="answer">{{answer.manuf}}</option>
-  </select>

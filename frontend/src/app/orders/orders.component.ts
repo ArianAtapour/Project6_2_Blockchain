@@ -11,8 +11,6 @@ import {Observable, of, Subscription} from "rxjs";
 })
 export class OrdersComponent implements OnInit{
   dataBase: AngularFireDatabase;
-  gameData$: Observable<any[]> = of([]);
-  gameDataSubscription: Subscription | undefined;
   messages: any[] = [];
   storeMoney : number = 0;
   manufactureMoney : number = 0;
@@ -25,6 +23,7 @@ export class OrdersComponent implements OnInit{
   moneyDataSubscription: Subscription | undefined;
   orderDataSubscription: Subscription | undefined;
   messagesSubscription: Subscription | undefined;
+  randomNumber : number = 0;
 
   manuf!:string;
   cpu!:string;
@@ -173,7 +172,8 @@ export class OrdersComponent implements OnInit{
   }
   timeOut()
   {
-    this.fireConnectionService.setTimerNumber(this.getRandomDuration());
+    this.randomNumber = this.getRandomDuration();
+    this.fireConnectionService.setRandomNumber(this.randomNumber);
   }
   async ngOnInit() {
     //connect to the firebase database as an anonymous user
@@ -182,8 +182,15 @@ export class OrdersComponent implements OnInit{
     this.fireConnectionService.deleteOrdersOnDisconnect();
     this.fireConnectionService.deleteTimerOnDisconnect();
     await this.fireConnectionService.loginAnonymously().then((userCredential) => {
-
     });
     this.timeOut();
+    //set timer
+    setTimeout(this.randomQuestion, this.randomNumber);
+  }
+
+  randomQuestion(){
+
+    //recursive methods add 10 seconds for guessing time
+    setTimeout(this.randomQuestion, this.randomNumber + 10000);
   }
 }

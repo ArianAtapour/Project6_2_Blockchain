@@ -19,7 +19,7 @@ export class FireConectionService {
     this.dataBase = db;
     this.mgRef = db.list('textsWithRoles');
     this.orderRef = db.list('orders');
-    this.timerRef = db.list('timer');
+    this.timerRef = db.list('QuestionTimer');
   }
 
   loginAnonymously() {
@@ -75,7 +75,6 @@ export class FireConectionService {
     const messageNodeRef = this.db.database.ref(`textsWithRoles/`);
     messageNodeRef.onDisconnect().remove()
       .then(() => {
-        console.log("Message node delete on disconnect");
       })
       .catch(error => {
         console.error("Failed to set up onDisconnect function", error);
@@ -136,8 +135,6 @@ export class FireConectionService {
 
   //Put questions in node
   addQuestion(question:string, check:boolean){
-
-
     const questionData = {
       //The question itself and the boolean
       question:question,
@@ -165,7 +162,6 @@ export class FireConectionService {
 
     orders.onDisconnect().remove()
       .then(() => {
-        console.log("Orders data deleted on disconnect");
       })
       .catch(error => {
         console.error("Failed to set up onDisconnect function", error);
@@ -178,7 +174,6 @@ export class FireConectionService {
 
     questions.onDisconnect().remove()
       .then(() => {
-        console.log("Orders data deleted on disconnect");
       })
       .catch(error => {
         console.error("Failed to set up onDisconnect function", error);
@@ -189,7 +184,6 @@ export class FireConectionService {
 
     timer.onDisconnect().remove()
       .then(() => {
-        console.log("Timer data deleted on disconnect");
       })
       .catch(error => {
         console.error("Failed to set up onDisconnect function", error);
@@ -200,10 +194,13 @@ export class FireConectionService {
 
     money.onDisconnect().remove()
       .then(() => {
-        console.log("Orders data deleted on disconnect");
       })
       .catch(error => {
         console.error("Failed to set up onDisconnect function", error);
       });
+  }
+
+  setRandomNumber(randomNumber:number){
+    return this.db.object(`QuestionTimer/Timer`).update({timerNumber:randomNumber});
   }
 }
