@@ -76,6 +76,7 @@ label {
   color: white;
   font-weight: bold;
   font-size: 25px;
+  font-family: 'Hind', sans-serif;
 }
   .table {
     border: 1px solid #FFD215;
@@ -100,4 +101,5 @@ p {
   color:white;
   font-size: 20px;
   margin: 20px;
+  font-family: 'Hind', sans-serif;
 }

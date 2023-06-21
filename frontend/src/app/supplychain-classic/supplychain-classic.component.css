@@ -7,38 +7,37 @@ html, body {
   background-color: #303B44;
   height: 100vh;
   display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start; 
-      color: white;
-      font-family: 'Hind', sans-serif;
-      font-size: 20px;
-      font-weight: bold;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 130%;
-    }
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start; 
+  color: white;
+  font-family: 'Hind', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 130%;
+}
 
-    .rules-container {
-      padding: 10px;
-      padding: 10px;
-      margin-top: 15px;
-      margin-left: 20px;
-    }
+.rules-container {
+  padding: 10px;
+  margin-top: 15px;
+  margin-left: 20px;
+}
 
-    .rules-text {
-      color: #FFD215;
-      font-size: 24px;
-      font-weight: bold;
-    }
+.rules-text {
+  color: #FFD215;
+  font-size: 24px;
+  font-weight: bold;
+}
 
-    .info-box {
-      display: flex;
+.info-box {
+display: flex;
       justify-content: space-between;
       align-items: center;
       margin-left: 300px;
@@ -90,6 +89,7 @@ input[type="text"] {
 h2,h1 {
   margin-top: 20px;
   color: white;
+  font-family: 'Hind', sans-serif;
 }
 p {
   background-color: #6C47F6;
@@ -106,12 +106,15 @@ label {
   color: white;
   font-weight: bold;
   font-size: 25px;
+  font-family: 'Hind', sans-serif;
 }
 p {
   color:white;
   font-size: 20px;
   margin: 20px;
+  font-family: 'Hind', sans-serif;
 }
 a {
   color:white;
+  font-family: 'Hind', sans-serif;
 }
