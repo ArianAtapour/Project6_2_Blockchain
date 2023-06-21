@@ -37,41 +37,41 @@ html, body {
 }
 
 .info-box {
-display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-left: 300px;
-      padding: 10px;
-      width: 999px;
-      height: 25px;
-      border-color: #FFD215;
-      border-width: 3px;
-      border-style: solid; 
-      border-radius: 20px;
-      background-color:#6C47F6;
-    }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 300px;
+  padding: 10px;
+  width: 300px;
+  height: 25px;
+  border-color: #FFD215;
+  border-width: 3px;
+  border-style: solid; 
+  border-radius: 20px;
+  background-color:#6C47F6;
+}
 
-    .info-box p {
-      color: white;
-      margin: 0;
-    }
+.info-box p {
+  color: white;
+  margin: 0;
+}
 
-    .main {
-      font-family: 'Hind', sans-serif;
-      font-size: 16px;
-      text-align: left;
-    }
+.main {
+  font-family: 'Hind', sans-serif;
+  font-size: 16px;
+  text-align: left;
+}
 
-    button {
-      border-radius: 20px;
-      background-color: #FFD215;
-      color: #303B44;
-      height: 27px;
-      padding: 5px 10px;
-      margin-right: 10px;
-      border-color:#FFD215;
-      margin-top: 20px;
-    }
+button {
+  border-radius: 20px;
+  background-color: #FFD215;
+  color: #303B44;
+  height: 27px;
+  padding: 5px 10px;
+  margin-right: 10px;
+  border-color:#FFD215;
+  margin-top: 20px;
+}
 
 .main-box {
   margin-left: 60px;
@@ -117,4 +117,19 @@ p {
 a {
   color:white;
   font-family: 'Hind', sans-serif;
+}
+
+.rules-container {
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.rules-text {
+  color: #FFD215;
+  font-size: 24px;
+  font-weight: bold;
 }

@@ -174,5 +174,6 @@ input{
 .table td {
   color: #6C47F6;
 }
-
-
+.warning-Text {
+  background-color: white;
+}

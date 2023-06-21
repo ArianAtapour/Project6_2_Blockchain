@@ -1,8 +1,13 @@
 
 <body>
-
-<h1>Supply chain classic multiplayer edition</h1>
-<h2>Time left: {{gameTimeMin}}:{{gameTimeSec}}</h2>
+<div class="rules-container">
+  <span class="rules-text">CARGO QUEST</span>
+</div>
+<div class="info-box">
+  <p>Time left: {{gameTimeMin}}:{{gameTimeSec}}</p>
+  <p>|</p>
+  <p>Players: 5</p>
+</div>
 <div *ngIf="showGM">
   <label>Client:</label><br>
   <app-orders></app-orders>
