@@ -20,7 +20,7 @@
             <select [(ngModel)]="selectedRole" class="dropdown" id="role" name="role" ngModel>
               <option *ngFor="let role of availableRoles" [value]="role">{{ role }}</option>
             </select>
-            <input type="submit" class="input-button" value="Choose Role and Game">
+            <input type="submit" class="input-button" value="Choose Name and Role">
             <i class="warning-Text" *ngIf="nameTakenWarning">{{nameTakenWarning}}</i>
           </form>
       </div>
