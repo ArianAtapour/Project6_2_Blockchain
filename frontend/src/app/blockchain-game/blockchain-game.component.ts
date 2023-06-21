@@ -9,7 +9,6 @@ import {Router} from "@angular/router";
 import {FireConectionService} from "../fire-conection.service";
 import {Player} from "../../player";
 
-
 @Component({
   selector: 'app-blockchain-game',
   templateUrl: './blockchain-game.component.html',
@@ -70,7 +69,6 @@ export class BlockchainGameComponent implements OnInit,AfterViewInit{
   private modelSix:any;
 
   private directionalLight!: THREE.DirectionalLight;
-
 
 /*
   Blockchain code
@@ -764,6 +762,5 @@ export class BlockchainGameComponent implements OnInit,AfterViewInit{
     //this.controls = this.createControls(this.camera, this.renderer);
 
   }
-
   protected readonly Player = Player;
 }
