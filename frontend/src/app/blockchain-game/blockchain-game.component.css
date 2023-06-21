@@ -2,6 +2,7 @@
   font-family: 'Hind', sans-serif;
   font-size: 16px;
   text-align: left;
+  margin: 20px;
 }
 
 button {
@@ -26,19 +27,6 @@ input[type="text"] {
   height: 25px;
   font-size: 14px;
   margin-top: 20px;
-}
-.containerFlex {
-}
-
-.row {
-}
-
-canvas {
-  width: 200px;
-  height: 200px;
-}
-
-.containerTest {
 }
 
 .order-item {
@@ -90,4 +78,22 @@ p {
   font-size: 20px;
   margin: 20px;
   font-family: 'Hind', sans-serif;
+}
+
+.rules-container {
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.rules-text {
+  color: #FFD215;
+  font-size: 24px;
+  font-weight: bold;
+}
+.mainContent {
+  margin-top: 50px;
 }

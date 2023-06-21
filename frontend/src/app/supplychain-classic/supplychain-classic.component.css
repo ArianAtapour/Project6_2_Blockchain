@@ -42,7 +42,7 @@ html, body {
   align-items: center;
   margin-left: 300px;
   padding: 10px;
-  width: 300px;
+  width: 500px;
   height: 25px;
   border-color: #FFD215;
   border-width: 3px;
@@ -91,9 +91,6 @@ h2,h1 {
   color: white;
   font-family: 'Hind', sans-serif;
 }
-p {
-  background-color: #6C47F6;
-}
 
 #c {
   width: 100%;
@@ -113,6 +110,7 @@ p {
   font-size: 20px;
   margin: 20px;
   font-family: 'Hind', sans-serif;
+  background-color:#6C47F6;
 }
 a {
   color:white;
@@ -132,4 +130,13 @@ a {
   color: #FFD215;
   font-size: 24px;
   font-weight: bold;
+}
+.mainContent {
+  margin-top: 50px;
+}
+h5 {
+  color:white;
+  font-size: 20px;
+  margin: 20px;
+  font-family: 'Hind', sans-serif;
 }
