@@ -193,16 +193,13 @@ export class SupplychainClassicComponent implements OnInit, OnDestroy{
   goodNumber : number = 0;
   badNumber : number = 0;
 
-  pushTextWithRole(text: string, role: string) {
+  pushTextWithRole(text: string, role: string){
     if(role == "buyer"){
       this.storeMoney += this.orderPrice;
       this.fireConnectionService.updateMoney({money: this.storeMoney}, "store");
-    } else {
-      this.storeMoney += this.orderPrice;
-      this.fireConnectionService.updateMoney({money: this.storeMoney}, "manufacturer");    }
+    }
     // @ts-ignore
     let textToSend = this[text];
-    console.log(text);
     // @ts-ignore
     this[text] = '';
     this.fireConnectionService.addTextToDatabase(textToSend, role);
@@ -213,9 +210,21 @@ export class SupplychainClassicComponent implements OnInit, OnDestroy{
 
     let manufMoney = this.manufactureMoney;
     manufMoney += (this.orderPrice * 0.8);
+    let storeMoney = this.manufactureMoney - (this.orderPrice * 0.8);
+
+    this.fireConnectionService.updateMoney({money: manufMoney}, "manufacturer");
+    this.fireConnectionService.updateMoney({money: storeMoney}, "store");
+  }
+
+  manufToShipper(text: string, role: string) {
+    this.pushTextWithRole(text, role);
+
+    let manufMoney = this.manufactureMoney;
+    manufMoney -= (this.orderPrice * 0.6);
 
     this.fireConnectionService.updateMoney({money: manufMoney}, "manufacturer");
   }
+
   isMessageVisible(item?: any): boolean {
     // Check if the user's role allows viewing the item
     return this.currentRole === item.role;

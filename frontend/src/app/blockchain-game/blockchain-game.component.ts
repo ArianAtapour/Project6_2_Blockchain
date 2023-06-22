@@ -9,26 +9,13 @@ import {Router} from "@angular/router";
 import {FireConectionService} from "../fire-conection.service";
 import {Player} from "../../player";
 
-
 @Component({
   selector: 'app-blockchain-game',
   templateUrl: './blockchain-game.component.html',
   styleUrls: ['./blockchain-game.component.css']
 })
 
-
-
-/* 3D Code part */
-
-
 export class BlockchainGameComponent implements OnInit, AfterViewInit, OnDestroy{
-
-
-
-/*
-  Blockchain code
- */
-
   dataBase: AngularFireDatabase;
   gameData$: Observable<any[]> = of([]);
   data : any[] | undefined;
@@ -42,7 +29,6 @@ export class BlockchainGameComponent implements OnInit, AfterViewInit, OnDestroy
     //initialize database
     this.dataBase = db;
   }
-
 
   retrieveData(){
     //create the reference towards the data list
@@ -71,21 +57,10 @@ export class BlockchainGameComponent implements OnInit, AfterViewInit, OnDestroy
               this.cpu = order.cpu;
               this.gpu = order.gpu; //get the things
             }
-
-            /*if(counter == 2){
-              this.manuf = order.manuf;
-              this.cpu = order.cpu;
-              this.gpu = order.gpu;
-            }else{
-              counter++;
-            }*/
-
-
           });
         }
       });
     }
-
   }
 
   orderData$: Observable<any[]> = of([]);
@@ -213,16 +188,13 @@ export class BlockchainGameComponent implements OnInit, AfterViewInit, OnDestroy
   goodNumber : number = 0;
   badNumber : number = 0;
 
-  pushTextWithRole(text: string, role: string) {
+  pushTextWithRole(text: string, role: string){
     if(role == "buyer"){
       this.storeMoney += this.orderPrice;
       this.fireConnectionService.updateMoney({money: this.storeMoney}, "store");
-    } else {
-      this.storeMoney += this.orderPrice;
-      this.fireConnectionService.updateMoney({money: this.storeMoney}, "manufacturer");    }
+    }
     // @ts-ignore
     let textToSend = this[text];
-    console.log(text);
     // @ts-ignore
     this[text] = '';
     this.fireConnectionService.addTextToDatabase(textToSend, role);
@@ -233,6 +205,17 @@ export class BlockchainGameComponent implements OnInit, AfterViewInit, OnDestroy
 
     let manufMoney = this.manufactureMoney;
     manufMoney += (this.orderPrice * 0.8);
+    let storeMoney = this.manufactureMoney - (this.orderPrice * 0.8);
+
+    this.fireConnectionService.updateMoney({money: manufMoney}, "manufacturer");
+    this.fireConnectionService.updateMoney({money: storeMoney}, "store");
+  }
+
+  manufToShipper(text: string, role: string) {
+    this.pushTextWithRole(text, role);
+
+    let manufMoney = this.manufactureMoney;
+    manufMoney -= (this.orderPrice * 0.6);
 
     this.fireConnectionService.updateMoney({money: manufMoney}, "manufacturer");
   }
@@ -255,6 +238,7 @@ export class BlockchainGameComponent implements OnInit, AfterViewInit, OnDestroy
     this.startTime = Date.now();
     this.startTimer();
   }
+
   ngAfterViewInit() {
     //removes the node when the user leaves the webpage or disconnects
     this.fireConnectionService.deleteUserNodeOnDisconnect();
@@ -267,24 +251,20 @@ export class BlockchainGameComponent implements OnInit, AfterViewInit, OnDestroy
         this.showGM = true;
         this.currentRole = this.value;
         break;
-
       case "store":
         this.showStore = true;
         this.currentRole = this.value;
         this.fireConnectionService.createMoneyNode(500, "store");
         break;
-
       case "financier":
         this.showFinancier = true;
         this.currentRole = this.value;
         break;
-
       case "manufacturer":
         this.showManufacturer = true;
         this.currentRole = this.value;
         this.fireConnectionService.createMoneyNode(500, "manufacturer");
         break;
-
       case "shipper":
         this.showShipper = true;
         this.currentRole = this.value;

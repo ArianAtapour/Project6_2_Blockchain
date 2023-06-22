@@ -38,8 +38,8 @@
     </ul>
     <input type="text" [(ngModel)]="senderStore"><br>
     <button (click)="pushTextWithRole('senderStore','financier')">Send for financier's approval</button>
-    <button (click)="pushTextWithRole('senderStore', 'manufacturer')">Send to the manufacturer</button>
-    <button (click)="pushTextWithRole('senderStore', 'buyer')">Send to the client</button>
+    <button (click)="storeToManufacturer('senderStore', 'manufacturer')">Send to the manufacturer</button>
+    <button (click)="pushTextWithRole('senderStore', 'buyer')">Send to the buyer</button>
     <div>
       <h2>Objective of this role:</h2>
       <a>Your objective is to to firstly check with the financier if you can afford to buy the order, after which,
@@ -63,7 +63,6 @@
     <input type="text" [(ngModel)]="senderFinancier"><br>
     <button (click)="pushTextWithRole('senderFinancier', 'store')">Send to the store</button>
     <button (click)="pushTextWithRole('senderFinancier', 'manufacturer')">Send to the manufacturer</button>
-    <button (click)="pushTextWithRole('senderFinancier', 'shipper')">Send to shipper</button>
     <div>
       <h2>Objective of this role:</h2>
       <a>Your objective is to confirm that the store and the manufacturer have the budget to buy or manufacture the order.</a>
@@ -83,7 +82,7 @@
     </ul>
     <input [(ngModel)]="senderManufacturer" type="text"><br>
     <button (click)="pushTextWithRole('senderManufacturer', 'financier')">Send for financier's approval</button>
-    <button (click)="pushTextWithRole('senderManufacturer', 'shipper')">Send to shipper</button>
+    <button (click)="manufToShipper('senderManufacturer', 'shipper')">Send to shipper</button>
     <div>
       <h2>Objective of this role:</h2>
       <a>Your objective is to manufacture goods: the store sends an order, your objective is to check with the financier
