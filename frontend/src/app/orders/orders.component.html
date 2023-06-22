@@ -1,18 +1,21 @@
 <form #orderForm="ngForm" (ngSubmit)="onSubmit(orderForm.value)">
   <label for="manuf">Manufacturer:</label>
   <select name="manuf" id="manuf" ngModel>
+    <option value="" disabled selected>Select Manufacturer</option>
     <option value="coolPc">CoolPc</option>
     <option value="richSystems">RichSystems</option>
     <option value="studentUnit">StudentUnit</option>
   </select>
   <label for="cpu">CPU:</label>
   <select name="cpu" id="cpu" ngModel>
+    <option value="" disabled selected>Select CPU</option>
     <option value="ic5">IC5</option>
     <option value="extreme11">Extreme11</option>
     <option value="monster13">Monster13</option>
   </select>
   <label for="gpu">GPU</label>
   <select name="gpu" id="gpu" ngModel>
+    <option value="" disabled selected>Select GPU</option>
     <option value="vc48">VC48</option>
     <option value="vx65">VideoExtreme65</option>
     <option value="gp12">GraphicsPower12</option>

@@ -3,6 +3,11 @@
   font-size: 16px;
   text-align: left;
   margin: 20px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
 }
 
 button {
@@ -96,4 +101,30 @@ p {
 }
 .mainContent {
   margin-top: 50px;
+}
+.info-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 300px;
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 500px;
+  height: 25px;
+  border-color: #FFD215;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 20px;
+  background-color:#6C47F6;
+}
+
+.info-box p {
+  color: white;
+  background-color: #6C47F6;
+  margin: 0;
+}
+
+h2{
+  color: white;
+  font-family: 'Hind', sans-serif;
 }
