@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import * as THREE from "three";
 import { GLTFLoader, GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -8,6 +8,7 @@ import {Observable, of, Subscription} from "rxjs";
 import {Router} from "@angular/router";
 import {FireConectionService} from "../fire-conection.service";
 import {Player} from "../../player";
+
 
 @Component({
   selector: 'app-blockchain-game',
@@ -20,7 +21,7 @@ import {Player} from "../../player";
 /* 3D Code part */
 
 
-export class BlockchainGameComponent implements OnInit,AfterViewInit{
+export class BlockchainGameComponent implements OnInit, AfterViewInit, OnDestroy{
 
 
 
@@ -87,8 +88,6 @@ export class BlockchainGameComponent implements OnInit,AfterViewInit{
 
   }
 
-
-
   orderData$: Observable<any[]> = of([]);
   orderData : any[] | undefined;
   moneyData$: Observable<any[]> = of([]);
@@ -108,6 +107,19 @@ export class BlockchainGameComponent implements OnInit,AfterViewInit{
   manufactureMoney : number = 0;
   orderCount : number = 0;
   orderPrice : number = 0;
+  private timer: any;
+  public currentTime: number = 0;
+  startTime = 0;
+  endTime : number = 0;
+  timerSeconds : number = 0;
+  timerSecondsString : string = "";
+  timerMinutes : number = 0;
+  currentTimeInSeconds = 0;
+  timerSubtracted = 0;
+  questionNumber = 0;
+  questionData: Observable<any[]> = of([]);
+  qData : any[] = [];
+  questionDataSubscription: Subscription | undefined;
 
   retrieveGameData(){
     //create the reference towards the data list
@@ -161,6 +173,30 @@ export class BlockchainGameComponent implements OnInit,AfterViewInit{
         this.messages = items;
       }
     );
+
+    //create the reference towards the data list
+    const questionRef = this.db.list("questions");
+    //define the table as the data of the users table
+    this.questionData = questionRef.valueChanges();
+
+    //if the data subscription is not subbed yet then sub
+    if(!this.questionDataSubscription){
+      this.questionDataSubscription = this.questionData.subscribe((data) => {
+        //update method
+        this.qData = data;
+        if(this.qData) {
+          let questionNum = 0;
+          this.qData.forEach((question) => {
+            //make sure only the latest question is saved and ran and also if the question is not answered already
+            if(questionNum == this.questionNumber && question.solved){
+              this.timerSubtracted += 10;
+              questionNum++;
+              return;
+            }
+          })
+        }
+      });
+    }
   }
   titles = 'SupplyChain';
   // @ts-ignore
@@ -190,7 +226,6 @@ export class BlockchainGameComponent implements OnInit,AfterViewInit{
     // @ts-ignore
     this[text] = '';
     this.fireConnectionService.addTextToDatabase(textToSend, role);
-
   }
 
   storeToManufacturer(text: string, role: string) {
@@ -217,6 +252,8 @@ export class BlockchainGameComponent implements OnInit,AfterViewInit{
 
   async ngOnInit(){
     this.retrieveData();
+    this.startTime = Date.now();
+    this.startTimer();
   }
   ngAfterViewInit() {
     //removes the node when the user leaves the webpage or disconnects
@@ -256,5 +293,35 @@ export class BlockchainGameComponent implements OnInit,AfterViewInit{
     this.retrieveGameData();
 
   }
+
+  startTimer() {
+    this.currentTime = Date.now();
+    this.endTime = Date.now() + 600000;
+    this.timer = setInterval(() => {
+      //formulate timer
+      this.currentTime = Date.now();
+      this.currentTimeInSeconds = Math.round((Date.now() / 1000) - this.startTime / 1000);
+      this.timerSeconds = 60 - (this.currentTimeInSeconds % 60);
+      if(this.timerSeconds < 10){
+        this.timerSecondsString = "0" + this.timerSeconds;
+      } else {
+        this.timerSecondsString = this.timerSeconds.toString();
+      }
+      this.timerMinutes = 9 - Math.trunc(this.currentTimeInSeconds / 60);
+      if((this.currentTime >= this.endTime - 1000) && (this.currentTime <= this.endTime + 1000)){
+        this.stopTimer();
+        this.router.navigate(['end-game']);
+      }
+    }, 1000);
+  }
+
+  ngOnDestroy() {
+    this.stopTimer();
+  }
+
+  stopTimer() {
+    clearInterval(this.timer);
+  }
+
   protected readonly Player = Player;
 }

@@ -11,7 +11,6 @@ import { MainComponent } from './main/main.component';
 import {FormsModule} from "@angular/forms";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import {AngularFireModule} from "@angular/fire/compat";
-import {QuestionComponent} from "./question/question.component";
 import {GameOverComponent} from "./game-over/game-over.component";
 import {SupplychainClassicComponent} from "./supplychain-classic/supplychain-classic.component";
 import {NgOptimizedImage} from "@angular/common";
@@ -19,6 +18,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { BlockchainGameComponent } from './blockchain-game/blockchain-game.component';
 import { EndGameComponent } from './end-game/end-game.component';
 import { QuestionsComponent } from './questions/questions.component';
+import { AnswerQuestionsComponent } from './answer-questions/answer-questions.component';
 
 @NgModule({
   declarations: [
@@ -28,12 +28,12 @@ import { QuestionsComponent } from './questions/questions.component';
     CharacterNameComponent,
     MainComponent,
     GameOverComponent,
-    QuestionComponent,
     SupplychainClassicComponent,
     OrdersComponent,
     BlockchainGameComponent,
     EndGameComponent,
-    QuestionsComponent
+    QuestionsComponent,
+    AnswerQuestionsComponent
   ],
     imports: [
         BrowserModule,

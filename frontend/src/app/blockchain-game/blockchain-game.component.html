@@ -1,6 +1,7 @@
 <div class="main">
     <div *ngIf="showGM">
       <label>Buyer:</label><br>
+      <p>Time left: {{timerMinutes}}:{{timerSecondsString}}</p>
       <app-orders></app-orders>
       <ul>
         <ng-container *ngFor="let item of messages">

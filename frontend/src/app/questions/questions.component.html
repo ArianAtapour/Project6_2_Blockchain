@@ -1,8 +1,8 @@
 
 <h1>Questions</h1>
-<form #questions="ngForm">
-  <label for="questionSelect">Questions:</label>
-  <select name="questionSelect" id="questionSelect" (ngSubmit)="onSubmit(questions.value)">
+<form #questionsForm="ngForm" (ngSubmit)="onQuestionSubmit(questionsForm.value)">
+  <label for="questionSelect">Questions:</label><br>
+  <select name="questionSelect" id="questionSelect" ngModel>
     <option *ngFor="let question of possibleQuestions" [value]="question">{{ question }}</option>
   </select>
   <button type="submit">Submit</button>

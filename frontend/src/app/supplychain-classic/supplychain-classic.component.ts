@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {AngularFireDatabase} from "@angular/fire/compat/database";
 import {FireConectionService} from "../fire-conection.service";
 import {Observable, of, Subscription, timer} from "rxjs";
@@ -12,7 +12,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./supplychain-classic.component.css']
 })
 
-export class SupplychainClassicComponent {
+export class SupplychainClassicComponent implements OnInit, OnDestroy{
   dataBase : AngularFireDatabase;
   orderData$: Observable<any[]> = of([]);
   orderData : any[] | undefined;
@@ -36,10 +36,31 @@ export class SupplychainClassicComponent {
   manufactureMoney : number = 0;
   orderCount : number = 0;
   orderPrice : number = 0;
+  private timer: any;
+  public currentTime: number = 0;
+  startTime = 0;
+  endTime : number = 0;
+  timerSeconds : number = 0;
+  timerSecondsString : string = "";
+  timerMinutes : number = 0;
+  currentTimeInSeconds = 0;
+  timerSubtracted = 0;
+  questionNumber = 0;
+  questionData: Observable<any[]> = of([]);
+  qData : any[] = [];
+  questionDataSubscription: Subscription | undefined;
 
   constructor(private db: AngularFireDatabase, private fireConnectionService: FireConectionService, private router: Router) {
     //initialize database
     this.dataBase = db;
+  }
+
+  ngOnDestroy() {
+    this.stopTimer();
+  }
+
+  stopTimer() {
+    clearInterval(this.timer);
   }
 
   retrieveGameData(){
@@ -77,7 +98,6 @@ export class SupplychainClassicComponent {
       this.moneyDataSubscription = this.moneyData$.subscribe((moneyData) => {
         //update method
         this.moneyData = moneyData;
-
         if(this.moneyData){
           this.moneyData.forEach((money) => {
             if(money.role == "store"){
@@ -94,20 +114,35 @@ export class SupplychainClassicComponent {
         this.messages = items;
       }
     );
-    this.timerSubscription = this.fireConnectionService.getTimerFromDatabase().subscribe(
-      (timerData: any[]) => {
-        this.randomTimerData = timerData;
-        if(this.randomTimerData) {
-          this.randomTimerData.forEach((timer) => {
-            this.randomTimer = timer.timerNumber;
-            setTimeout(this.randomQuestion, this.randomTimer);
+
+    //create the reference towards the data list
+    const questionRef = this.db.list("questions");
+    //define the table as the data of the users table
+    this.questionData = questionRef.valueChanges();
+
+    //if the data subscription is not subbed yet then sub
+    if(!this.questionDataSubscription){
+      this.questionDataSubscription = this.questionData.subscribe((data) => {
+        //update method
+        this.qData = data;
+        if(this.qData) {
+          let questionNum = 0;
+          this.qData.forEach((question) => {
+            //make sure only the latest question is saved and ran and also if the question is not answered already
+            if(questionNum == this.questionNumber && question.solved){
+              this.timerSubtracted += 10;
+              questionNum++;
+              return;
+            }
           })
         }
-      }
-    );
+      });
+    }
   }
 
   async ngOnInit() {
+    this.startTime = Date.now();
+    this.startTimer();
     //removes the node when the user leaves the webpage or disconnects
     this.fireConnectionService.deleteUserNodeOnDisconnect();
     this.fireConnectionService.deleteMessageNodeOnDisconnect();
@@ -144,7 +179,6 @@ export class SupplychainClassicComponent {
         break;
     }
     this.retrieveGameData();
-    this.startGameTimer();
   }
   titles = 'SupplyChain';
   // @ts-ignore
@@ -186,34 +220,25 @@ export class SupplychainClassicComponent {
     // Check if the user's role allows viewing the item
     return this.currentRole === item.role;
   }
-  gameTimeMin: number = 10;
-  gameTimeSec: number = 0;
-  intervalId: any;
-  startGameTimer()
-  {
-    this.intervalId = setInterval(() => {
-      if (this.gameTimeMin == 0 && this.gameTimeSec == 1) {
-        clearInterval(this.intervalId);
-        // Unsubscribe from any existing timer subscription
-        this.timerSubscription?.unsubscribe();
 
-        this.timerSubscription = timer(1000).subscribe(() => {
-          this.router.navigate(['end-game']);
-        });
+  startTimer() {
+    this.currentTime = Date.now();
+    this.endTime = Date.now() + 600000;
+    this.timer = setInterval(() => {
+      //formulate timer
+      this.currentTime = Date.now() + (this.timerSubtracted * 1000);
+      this.currentTimeInSeconds = Math.round((this.currentTime / 1000) - this.startTime / 1000);
+      this.timerSeconds = 60 - (this.currentTimeInSeconds % 60);
+      if(this.timerSeconds < 10){
+        this.timerSecondsString = "0" + this.timerSeconds;
+      } else {
+        this.timerSecondsString = this.timerSeconds.toString();
       }
-      if(this.gameTimeSec == 0)
-      {
-        this.gameTimeMin--;
-        this.gameTimeSec = 59;
-      }
-      else
-      {
-        this.gameTimeSec--;
+      this.timerMinutes = 9 - Math.trunc(this.currentTimeInSeconds / 60);
+      if((this.currentTime >= this.endTime - 1000) && (this.currentTime <= this.endTime + 1000)){
+        this.stopTimer();
+        this.router.navigate(['end-game']);
       }
     }, 1000);
-  }
-
-  randomQuestion(){
-    console.log("ran a loop of random timer");
   }
 }

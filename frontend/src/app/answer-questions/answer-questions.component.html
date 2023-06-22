@@ -1,0 +1,29 @@
+<!-- The pop-up element -->
+<div class="popup" *ngIf="isPopupOpen">
+  <!-- Content of the pop-up -->
+  <h1>ANSWER THE QUESTION</h1>
+  <h2>On incorrect entry time will be deducted</h2>
+  <br>
+  <form #answerForm="ngForm" (ngSubmit)="onAnswerSubmit(answerForm.value)">
+    <fieldset>
+      <legend>{{questionString}}</legend>
+      <br>
+      <div>
+        <input type="radio" id="answer1" name="answer" value="answer1" ngModel/>
+        <label for="answer1"> order {{answer1}}</label><br><br>
+
+        <input type="radio" id="answer2" name="answer" value="answer2" ngModel/>
+        <label for="answer2"> order {{answer2}}</label><br><br>
+
+        <input type="radio" id="answer3" name="answer" value="answer3" ngModel/>
+        <label for="answer3"> order {{answer3}}</label><br><br>
+
+        <input type="radio" id="answer4" name="answer" value="answer4" ngModel/>
+        <label for="answer4"> order {{answer4}}</label><br><br>
+        <input type="submit" value="Submit">
+      </div>
+    </fieldset>
+  </form>
+  <h2 *ngIf="isIncorrect">Incorrect!</h2>
+  <h2 *ngIf="isCorrect">Correct!</h2>
+</div>

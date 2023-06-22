@@ -90,16 +90,6 @@ export class FireConectionService {
     // Create a new node with the key and set the user data
     return this.db.object(`money/${role}`).set(moneyData);
   }
-  private moneySubscription: Subscription | undefined;
-  moneys: any[] = [];
-  getMoneyFromManufacturer()
-  {
-    this.moneySubscription = this.db.list('money/manufacturer').valueChanges().subscribe(
-      (items: any[]) => {
-        return(items[0]).toString();
-      }
-    );
-  }
 
   updateMoney(newData: any, role:string) {
     //update user data
@@ -134,15 +124,25 @@ export class FireConectionService {
 
 
   //Put questions in node
-  addQuestion(question:string, check:boolean){
+  addQuestion(question:string, answer:string, solved:boolean, questionNumber : number, answer1: string, answer2: string, answer3 : string, answer4 : string){
     const questionData = {
       //The question itself and the boolean
-      question:question,
-      check:check
+      question: question,
+      answer: answer,
+      solved: solved,
+      answer1: answer1,
+      answer2: answer2,
+      answer3: answer3,
+      answer4: answer4,
     }
     // Create a new node with the key and set the user data
     //this.orderC++;
-    return this.db.object("questions/").set(questionData);
+    return this.db.object("questions/" + questionNumber).set(questionData);
+  }
+
+  updateQuestion(newData: any, questionNumber:number) {
+    //update user data
+    return this.db.object(`questions/${questionNumber}`).update(newData);
   }
 
   getOrdersFromDatabase()

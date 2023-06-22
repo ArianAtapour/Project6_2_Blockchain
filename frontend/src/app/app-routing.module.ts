@@ -10,6 +10,7 @@ import {OrdersComponent} from "./orders/orders.component";
 import {BlockchainGameComponent} from "./blockchain-game/blockchain-game.component";
 import {EndGameComponent} from "./end-game/end-game.component";
 import {QuestionsComponent} from "./questions/questions.component";
+import {AnswerQuestionsComponent} from "./answer-questions/answer-questions.component";
 
 const routes: Routes = [
   { path: '', component: StartPageComponent },
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path:'orders', component:OrdersComponent},
   {path:'supplychain-blockchain', component:BlockchainGameComponent},
   {path:'end-game', component:EndGameComponent},
-  {path:'questions', component:QuestionsComponent}
+  {path:'questions', component:QuestionsComponent},
+  {path:'answer-questions', component:AnswerQuestionsComponent}
 
 ];
 
