@@ -8,6 +8,11 @@
     <div *ngIf="showGM">
       <label>Buyer:</label><br>
       <app-orders></app-orders>
+      <div>
+        <h2>Objective of this role:</h2>
+        <a>Your objective is to periodically send orders to the store. Your other objective is to approve or disapprove received orders
+          ,based on whether the received product matches your order.</a>
+      </div>
     </div>
 
     <!-- Element 2 -->
@@ -17,6 +22,11 @@
       <button (click)="pushTextWithRole('senderStore','financier')">Send for financier's approval</button>
       <button (click)="storeToManufacturer('senderStore', 'manufacturer')">Send to the manufactorer</button>
       <button (click)="pushTextWithRole('senderStore', 'buyer')">Send to the client</button>
+      <div>
+        <h2>Objective of this role:</h2>
+        <a>Your objective is to to firstly check with the financier if you can afford to buy the order, after which,
+          send it to the manufacturer. The complete orders you receive should be given back to the client.</a>
+      </div>
     </div>
 
     <!-- Element 3 -->
@@ -28,6 +38,10 @@
       <button (click)="pushTextWithRole('senderFinancier', 'store')">Send to the store</button>
       <button (click)="pushTextWithRole('senderFinancier', 'manufacturer')">Send to the manufacturer</button>
       <button (click)="pushTextWithRole('senderFinancier', 'shipper')">Send to delivery</button>
+      <div>
+        <h2>Objective of this role:</h2>
+        <a>Your objective is to confirm that the store and the manufacturer have the budget to buy or manufacture the order.</a>
+      </div>
     </div>
 
     <!-- Element 4 -->
@@ -36,6 +50,11 @@
       <input [(ngModel)]="senderManufacturer" type="text"><br>
       <button (click)="pushTextWithRole('senderManufacturer', 'financier')">Send for financier's approval</button>
       <button (click)="manufToShipper('senderManufacturer', 'shipper')">Send to delivery</button>
+      <div>
+        <h2>Objective of this role:</h2>
+        <a>Your objective is to manufacture goods: the store sends an order, your objective is to check with the financier
+          whether you can build it and then you have to send it to the shipper.</a>
+      </div>
     </div>
 
     <!-- Element 5 -->
@@ -44,6 +63,10 @@
       <input type="text" [(ngModel)]="senderShipper"><br>
       <button (click)="pushTextWithRole('senderShipper', 'financier')">Send for financier's approval</button>
       <button (click)="pushTextWithRole('senderShipper', 'store')">Send to store</button>
+      <div>
+        <h2>Objective of this role:</h2>
+        <a>Your objective is to redirect received built orders to the store.</a>
+      </div>
     </div>
     <br>
     <h2>Blockchain</h2>
