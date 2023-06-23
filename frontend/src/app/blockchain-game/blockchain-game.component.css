@@ -33,20 +33,58 @@ input[type="text"] {
   font-size: 14px;
   margin-top: 20px;
 }
-
+.containerTest {
+  width: 200px;
+  word-wrap: break-word;
+}
 .order-item {
-  margin-top:20px;
+  margin-top:5px;
   text-align: center;
   height:auto;
   width: auto;
-  background-color:#FFD215;
   color: white;
 }
-
-.order-item > p{
-  background-color: #6C47F6;
+#buyer > p{
+  background-color: red;
+}
+#store > p{
+  background-color: orange;
+}
+#financier > p{
+  background-color: yellow;
+}
+#manufacturer > p{
+  background-color: green;
+}
+#shipper > p{
+  background-color: blue;
+}
+.order-block {
+  padding: 2px;
+  border: 2px white solid;
+  border-radius: 20px;
 }
 
+.red-order-block {
+  background-color: red;
+}
+.orange-order-block {
+  background-color: orange;
+}
+.yellow-order-block {
+  background-color: yellow;
+}
+.green-order-block {
+  background-color: green;
+}
+.blue-order-block {
+  background-color: blue;
+}
+.itemText {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
 details[open] .order-item {
   background-color: #6C47F6;
   font-size: 12px;
@@ -127,4 +165,9 @@ p {
 h2{
   color: white;
   font-family: 'Hind', sans-serif;
+}
+
+.containerTest {
+  display: flex;
+  flex-direction: column-reverse;
 }

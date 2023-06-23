@@ -175,8 +175,6 @@ export class BlockchainGameComponent implements OnInit, AfterViewInit, OnDestroy
   }
   titles = 'SupplyChain';
   // @ts-ignore
-  senderGMaster : any;
-  // @ts-ignore
   senderFinancier : any;
   // @ts-ignore
   senderStore: any;
@@ -185,8 +183,6 @@ export class BlockchainGameComponent implements OnInit, AfterViewInit, OnDestroy
   // @ts-ignore
   senderShipper: any;
 
-  goodNumber : number = 0;
-  badNumber : number = 0;
 
   pushTextWithRole(text: string, role: string){
     if(role == "buyer"){
@@ -224,15 +220,6 @@ export class BlockchainGameComponent implements OnInit, AfterViewInit, OnDestroy
     // Check if the user's role allows viewing the item
     return this.currentRole === item.role;
   }
-  ProductGood()
-  {
-    this.goodNumber++;
-  }
-  ProductBad()
-  {
-    this.badNumber++;
-  }
-
   async ngOnInit(){
     this.retrieveData();
     this.startTime = Date.now();
@@ -271,7 +258,6 @@ export class BlockchainGameComponent implements OnInit, AfterViewInit, OnDestroy
         break;
     }
     this.retrieveGameData();
-
   }
 
   startTimer() {
@@ -302,6 +288,4 @@ export class BlockchainGameComponent implements OnInit, AfterViewInit, OnDestroy
   stopTimer() {
     clearInterval(this.timer);
   }
-
-  protected readonly Player = Player;
 }

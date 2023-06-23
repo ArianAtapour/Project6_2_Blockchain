@@ -71,9 +71,14 @@
     <br>
     <h2>Blockchain</h2>
     <div class="containerTest">
-      <details class="order-item" *ngFor="let item of messages">
-        <summary>Block {{orderC}}</summary>
-        <p>{{item.text}}</p>
+      <details class="order-block" *ngFor="let item of messages" [attr.id]="item.role">
+        <summary class ="order-block" [ngClass]="{
+        'red-order-block' : item.role == 'buyer',
+        'orange-order-block' : item.role == 'store',
+        'yellow-order-block' : item.role == 'financier',
+        'green-order-block' : item.role == 'manufacturer',
+        'blue-order-block' : item.role == 'shipper'}">Block {{orderC}}</summary>
+        <p class="itemText">{{item.text}}</p>
       </details>
     </div>
 </div>
