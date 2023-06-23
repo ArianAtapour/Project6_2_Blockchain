@@ -21,7 +21,7 @@ Players can find instructions on how to play the game within the game itself (on
   <li>Pull the project from the `main` branch if you did not do it yet.</li>
   <li>Open a terminal and navigate to the serious game folder.</li>
   <li>Within the serious game folder navigate into the `frontend` folder (still in terminal).</li>
-  <li>Now having selected the `frontend` folder in the terminal, type the command `ng serve` .</li>
+  <li>Now having selected the `frontend` folder in the terminal, type the command `npm install` and afterwards `ng serve` .</li>
   <li>If successful, you should see some information and among that information a `localhost` link. Press it or copy, paste it into your favourite web browser.</li>
   <li>In the browser the `index` page should display successfuly.</li>
 </ol>
