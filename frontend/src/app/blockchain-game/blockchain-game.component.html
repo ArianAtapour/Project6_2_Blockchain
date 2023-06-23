@@ -20,9 +20,9 @@
     <div *ngIf="showStore">
       <label>Store:</label><br>
       <input type="text" [(ngModel)]="senderStore" class="rounded-select"><br>
-      <button (click)="pushTextWithRole('senderStore','financier')">Send for financier's approval</button>
-      <button (click)="storeToManufacturer('senderStore', 'manufacturer')">Send to the manufactorer</button>
-      <button (click)="pushTextWithRole('senderStore', 'buyer')">Send to the client</button>
+      <button (click)="pushTextWithRole('senderStore','financier')">Request budget approval statement</button>
+      <button (click)="storeToManufacturer('senderStore', 'manufacturer')">Place a manufacturing order</button>
+      <button (click)="pushTextWithRole('senderStore', 'buyer')">Deliver the product to the client</button>
       <app-answer-questions></app-answer-questions>
       <div>
         <h2>Objective of this role:</h2>
@@ -37,9 +37,8 @@
       <p>Store Money: {{storeMoney}}</p>
       <p>Manufacturer Money: {{manufactureMoney}}</p>
       <input type="text" [(ngModel)]="senderFinancier" class="rounded-select"><br>
-      <button (click)="pushTextWithRole('senderFinancier', 'store')">Send to the store</button>
-      <button (click)="pushTextWithRole('senderFinancier', 'manufacturer')">Send to the manufacturer</button>
-      <button (click)="pushTextWithRole('senderFinancier', 'shipper')">Send to delivery</button>
+      <button (click)="pushTextWithRole('senderFinancier', 'store')">Send budget approval statement to the client</button>
+      <button (click)="pushTextWithRole('senderFinancier', 'manufacturer')">Send budget approval statement to the manufacturer</button>
       <app-answer-questions></app-answer-questions>
       <div>
         <h2>Objective of this role:</h2>
@@ -51,8 +50,8 @@
     <div *ngIf="showManufacturer">
       <label>Manufacturer:</label><br>
       <input [(ngModel)]="senderManufacturer" type="text" class="rounded-select"><br>
-      <button (click)="pushTextWithRole('senderManufacturer', 'financier')">Send for financier's approval</button>
-      <button (click)="manufToShipper('senderManufacturer', 'shipper')">Send to delivery</button>
+      <button (click)="pushTextWithRole('senderManufacturer', 'financier')">Request budget approval statement</button>
+      <button (click)="manufToShipper('senderManufacturer', 'shipper')">Hand the product over to the shipper</button>
       <app-answer-questions></app-answer-questions>
       <div>
         <h2>Objective of this role:</h2>
@@ -65,8 +64,7 @@
     <div *ngIf="showShipper">
       <label>Shipper:</label>
       <input type="text" [(ngModel)]="senderShipper" class="rounded-select"><br>
-      <button (click)="pushTextWithRole('senderShipper', 'financier')">Send for financier's approval</button>
-      <button (click)="pushTextWithRole('senderShipper', 'store')">Send to store</button>
+      <button (click)="pushTextWithRole('senderShipper', 'store')">Deliver to the store</button>
       <app-answer-questions></app-answer-questions>
       <div>
         <h2>Objective of this role:</h2>
