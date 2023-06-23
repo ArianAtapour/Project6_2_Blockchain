@@ -42,7 +42,7 @@ export class QuestionsComponent implements OnInit{
     this.retrieveData();
   }
 
-  onQuestionSubmit(value:any){
+    onQuestionSubmit(value:any){
     if(this.possibleQuestions[this.question1] == value.questionSelect){
       this.questionString = value.questionSelect;
       this.makeAnswers();

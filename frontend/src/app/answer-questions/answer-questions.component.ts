@@ -51,6 +51,12 @@ export class AnswerQuestionsComponent {
               this.answer3 = question.answer3;
               this.answer4 = question.answer4;
               this.isPopupOpen = true;
+              if(question){
+                setTimeout(() => {
+                  //Perform action here
+                  this.retrieveGameData();
+                }, 2000);
+              }
               return;
             } else {
               this.isPopupOpen = false;
@@ -96,7 +102,7 @@ export class AnswerQuestionsComponent {
   isCorrect : boolean = false;
   correctAnswer(){
     setTimeout(() => {
-      // Perform the desired action here
+      //Perform action here
       this.isPopupOpen = false;
       this.isCorrect = false;
     }, 2000);
@@ -105,7 +111,7 @@ export class AnswerQuestionsComponent {
   isIncorrect : boolean = false;
   incorrectAnswer(){
     setTimeout(() => {
-      // Perform the desired action here
+      //Perform action here
       this.isPopupOpen = false;
       this.isIncorrect = false;
     }, 2000);
