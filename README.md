@@ -33,9 +33,12 @@ Congratulations ! If you got to this point with no issues, that means you have c
 For different operating systems there are separate errors and ways to solve them.
 
 **For Windows users**:
-1.) Run Powershell as administrator.
-2.) Enter this command `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned` . If successful, there should be no errors displayed.
-
+<ol>
+ <li>Run Powershell as administrator.</li>
+ <li>Enter this command `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned` . If successful, there should be no errors displayed.</li>
+</ol>
 **For MacOS users**:
-1.) If the installation throws any kind of errors, repeat every installation step and add `sudo` before each command.
-2.) If there are write errors then in the terminal, access the project folder and run the following command: `sudo chown -R $(whoami) frontend` .
+<ol>
+ <li>If the installation throws any kind of errors, repeat every installation step and add `sudo` before each command.</li>
+ <li>If there are write errors then in the terminal, access the project folder and run the following command: `sudo chown -R $(whoami) frontend` .</li>
+</ol>
