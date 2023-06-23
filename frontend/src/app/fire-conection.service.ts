@@ -56,9 +56,7 @@ export class FireConectionService {
   getMessagesFromDatabase(): Observable<any[]> {
     return this.mgRef.valueChanges();
   }
-  getTimerFromDatabase() {
-    return this.timerRef.valueChanges();
-  }
+
   //deletes the user when they disconnect from the firebase database
   deleteUserNodeOnDisconnect() {
     const userNodeRef = this.db.database.ref(`users/${Player.getInstance().id}`);
@@ -95,13 +93,7 @@ export class FireConectionService {
     //update user data
     return this.db.object(`money/${role}`).update(newData);
   }
-  setTimerNumber(time: number)
-  {
-    const timerData = {
-      time: time,
-    }
-    return this.db.object('timer/').set(timerData);
-  }
+
   createOrder(manuf:string, cpu:string, gpu:string, orderC:number, orderConfirm:boolean, price:number){
     //default beginning data
     this.orderC = orderC;
@@ -181,15 +173,6 @@ export class FireConectionService {
       });
   }
 
-  deleteQuestion(){
-    const questions = this.db.database.ref('questions');
-    questions.remove()
-      .then(() => {
-      })
-      .catch(error => {
-        console.error("Failed to set up onDisconnect function", error);
-      });
-  }
   deleteTimerOnDisconnect() {
     const timer = this.db.database.ref('timer');
 
@@ -200,6 +183,7 @@ export class FireConectionService {
         console.error("Failed to set up onDisconnect function", error);
       });
   }
+
   deleteMoneyOnDisconnect() {
     const money = this.db.database.ref('money/');
 
