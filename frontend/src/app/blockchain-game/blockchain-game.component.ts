@@ -8,6 +8,7 @@ import {Observable, of, Subscription} from "rxjs";
 import {Router} from "@angular/router";
 import {FireConectionService} from "../fire-conection.service";
 import {Player} from "../../player";
+import {randInt} from "three/src/math/MathUtils";
 
 @Component({
   selector: 'app-blockchain-game',
@@ -218,10 +219,6 @@ export class BlockchainGameComponent implements OnInit, AfterViewInit, OnDestroy
     this.fireConnectionService.updateMoney({money: manufMoney}, "manufacturer");
   }
 
-  isMessageVisible(item?: any): boolean {
-    // Check if the user's role allows viewing the item
-    return this.currentRole === item.role;
-  }
   async ngOnInit(){
     this.retrieveData();
     this.startTime = Date.now();
@@ -290,4 +287,6 @@ export class BlockchainGameComponent implements OnInit, AfterViewInit, OnDestroy
   stopTimer() {
     clearInterval(this.timer);
   }
+
+  protected readonly randInt = randInt;
 }
