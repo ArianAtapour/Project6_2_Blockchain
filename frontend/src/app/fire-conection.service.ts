@@ -180,6 +180,16 @@ export class FireConectionService {
         console.error("Failed to set up onDisconnect function", error);
       });
   }
+
+  deleteQuestion(){
+    const questions = this.db.database.ref('questions');
+    questions.remove()
+      .then(() => {
+      })
+      .catch(error => {
+        console.error("Failed to set up onDisconnect function", error);
+      });
+  }
   deleteTimerOnDisconnect() {
     const timer = this.db.database.ref('timer');
 

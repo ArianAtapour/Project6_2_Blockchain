@@ -41,10 +41,9 @@ export class AnswerQuestionsComponent {
         //update method
         this.qData = data;
         if(this.qData) {
-          let questionNum = 0;
           this.qData.forEach((question) => {
-            //make sure only the latest question is saved and ran and also if the question is not answered already
-            if(questionNum == this.questionNumber && !question.solved && question.isCorrect == ""){
+            if(question != null){
+              //make sure only the latest question is saved and ran and also if the question is not answered already
               this.questionString = question.question;
               this.questionAnswer = question.answer;
               this.answer1 = question.answer1;
@@ -53,10 +52,8 @@ export class AnswerQuestionsComponent {
               this.answer4 = question.answer4;
               this.isPopupOpen = true;
               return;
-            } else if (questionNum == this.questionNumber && !question.solved && question.isCorrect == "incorrect") {
-              this.isPopupOpen = false;
             } else {
-              questionNum++;
+              this.isPopupOpen = false;
             }
           })
         }
@@ -82,13 +79,13 @@ export class AnswerQuestionsComponent {
   //if wrong do same and remove time
   checkAnswer(answer: string): boolean {
     if(answer == this.questionAnswer){
-      this.fireConnectionService.updateQuestion({solved: true}, this.questionNumber);
+      this.fireConnectionService.updateQuestion({solved: true, isCorrect: "correct"}, this.questionNumber);
       this.isCorrect = true;
       this.correctAnswer();
       this.questionNumber++;
       return true;
     } else {
-      this.fireConnectionService.updateQuestion({solved: true}, this.questionNumber);
+      this.fireConnectionService.updateQuestion({solved: true, isCorrect: "incorrect"}, this.questionNumber);
       this.isIncorrect = true;
       this.incorrectAnswer();
       this.questionNumber++;
