@@ -41,8 +41,9 @@ export class AnswerQuestionsComponent {
         //update method
         this.qData = data;
         if(this.qData) {
+          let questionNum = 0;
           this.qData.forEach((question) => {
-            if(question != null){
+            if(questionNum == this.questionNumber && !question.solved){
               //make sure only the latest question is saved and ran and also if the question is not answered already
               this.questionString = question.question;
               this.questionAnswer = question.answer;
@@ -50,16 +51,10 @@ export class AnswerQuestionsComponent {
               this.answer2 = question.answer2;
               this.answer3 = question.answer3;
               this.answer4 = question.answer4;
-              this.isPopupOpen = true;
-              if(question){
-                setTimeout(() => {
-                  //Perform action here
-                  this.retrieveGameData();
-                }, 2000);
-              }
-              return;
+              this.isPopupOpen = question.isPopUpOpen;
             } else {
               this.isPopupOpen = false;
+              questionNum++;
             }
           })
         }
@@ -78,23 +73,21 @@ export class AnswerQuestionsComponent {
     } else if (value.answer == "answer4"){
       this.checkAnswer(this.answer4);
     }
-    this.fireConnectionService.deleteQuestion();
+    //this.isPopupOpen = false;
   }
 
   //when correct close update question to be answered and close box
   //if wrong do same and remove time
   checkAnswer(answer: string): boolean {
     if(answer == this.questionAnswer){
-      this.fireConnectionService.updateQuestion({solved: true, isCorrect: "correct"}, this.questionNumber);
+      this.fireConnectionService.updateQuestion({solved: true, isPopUpOpen: false}, this.questionNumber);
       this.isCorrect = true;
       this.correctAnswer();
-      this.questionNumber++;
       return true;
     } else {
-      this.fireConnectionService.updateQuestion({solved: true, isCorrect: "incorrect"}, this.questionNumber);
+      this.fireConnectionService.updateQuestion({solved: true, isPopUpOpen: false}, this.questionNumber);
       this.isIncorrect = true;
       this.incorrectAnswer();
-      this.questionNumber++;
       return false;
     }
   }
@@ -102,7 +95,7 @@ export class AnswerQuestionsComponent {
   isCorrect : boolean = false;
   correctAnswer(){
     setTimeout(() => {
-      //Perform action here
+      // Perform the desired action here
       this.isPopupOpen = false;
       this.isCorrect = false;
     }, 2000);
@@ -111,7 +104,7 @@ export class AnswerQuestionsComponent {
   isIncorrect : boolean = false;
   incorrectAnswer(){
     setTimeout(() => {
-      //Perform action here
+      //Perform the desired action here
       this.isPopupOpen = false;
       this.isIncorrect = false;
     }, 2000);

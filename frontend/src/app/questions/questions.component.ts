@@ -47,17 +47,17 @@ export class QuestionsComponent implements OnInit{
       this.questionString = value.questionSelect;
       this.makeAnswers();
       this.questionAnswer = this.question1Answer;
-      this.fireConnectionService.addQuestion(this.possibleQuestions[this.question1], this.question1Answer, false, this.questionNumber, this.answer1, this.answer2, this.answer3, this.answer4, "");
+      this.fireConnectionService.addQuestion(this.possibleQuestions[this.question1], this.question1Answer, false, this.questionNumber, this.answer1, this.answer2, this.answer3, this.answer4, true);
     } else if(this.possibleQuestions[this.question2] == value.questionSelect){
       this.questionString = value.questionSelect;
       this.makeAnswers();
       this.questionAnswer = this.question2Answer;
-      this.fireConnectionService.addQuestion(this.possibleQuestions[this.question2], this.question2Answer, false, this.questionNumber, this.answer1, this.answer2, this.answer3, this.answer4, "");
+      this.fireConnectionService.addQuestion(this.possibleQuestions[this.question2], this.question2Answer, false, this.questionNumber, this.answer1, this.answer2, this.answer3, this.answer4, true);
     } else if(this.possibleQuestions[this.question3] == value.questionSelect){
       this.questionString = value.questionSelect;
       this.makeAnswers();
       this.questionAnswer = this.question3Answer;
-      this.fireConnectionService.addQuestion(this.possibleQuestions[this.question3], this.question3Answer, false, this.questionNumber, this.answer1, this.answer2, this.answer3, this.answer4, "");
+      this.fireConnectionService.addQuestion(this.possibleQuestions[this.question3], this.question3Answer, false, this.questionNumber, this.answer1, this.answer2, this.answer3, this.answer4, true);
     } else {return}
     this.questionNumber++;
   }

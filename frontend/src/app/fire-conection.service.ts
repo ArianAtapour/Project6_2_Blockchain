@@ -124,7 +124,7 @@ export class FireConectionService {
 
 
   //Put questions in node
-  addQuestion(question:string, answer:string, solved:boolean, questionNumber : number, answer1: string, answer2: string, answer3 : string, answer4 : string, isCorrect : string){
+  addQuestion(question:string, answer:string, solved:boolean, questionNumber : number, answer1: string, answer2: string, answer3 : string, answer4 : string, showPopUp : boolean){
     const questionData = {
       //The question itself and the boolean
       question: question,
@@ -134,7 +134,7 @@ export class FireConectionService {
       answer2: answer2,
       answer3: answer3,
       answer4: answer4,
-      isCorrect: ""
+      isPopUpOpen: showPopUp
     }
     // Create a new node with the key and set the user data
     //this.orderC++;
