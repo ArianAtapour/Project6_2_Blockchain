@@ -72,7 +72,7 @@ export class AnswerQuestionsComponent {
     } else if (value.answer == "answer4"){
       this.checkAnswer(this.answer4);
     }
-    //this.isPopupOpen = false;
+    this.fireConnectionService.deleteQuestion();
   }
 
   //when correct close update question to be answered and close box
