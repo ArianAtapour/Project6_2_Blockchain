@@ -10,19 +10,21 @@ Players can find instructions on how to play the game within the game itself (on
 ## 🔽 Installing and running the serious game application
 **First, make sure to pull from the main branch !**
 ### Pre-requisites:
-**1.) npm**:
-Install npm by having Node.js installed from here (we highly recommend the LTS version): https://nodejs.org/en/download
-
-**2.)Angular CLI**:
-Install the Angular CLI globally by running the following command in a terminal `npm install -g @angular/cli`
+  **1.) npm**:
+  Install npm by having Node.js installed from here (we highly recommend the LTS version): https://nodejs.org/en/download
+  
+  **2.)Angular CLI**:
+  Install the Angular CLI globally by running the following command in a terminal `npm install -g @angular/cli`
 
 ### Running the serious game
-1.) Pull the project from the `main` branch if you did not do it yet.
-2.) Open a terminal and navigate to the serious game folder.
-3.) Within the serious game folder navigate into the `frontend` folder (still in terminal).
-4.) Now having selected the `frontend` folder in the terminal, type the command `ng serve` .
-5.) If successful, you should see some information and among that information a `localhost` link. Press it or copy, paste it into your favourite web browser.
-6.) In the browser the `index` page should display successfuly.
+<ol>
+  <li>Pull the project from the `main` branch if you did not do it yet.</li>
+  <li>Open a terminal and navigate to the serious game folder.</li>
+  <li>Within the serious game folder navigate into the `frontend` folder (still in terminal).</li>
+  <li>Now having selected the `frontend` folder in the terminal, type the command `ng serve` .</li>
+  <li>If successful, you should see some information and among that information a `localhost` link. Press it or copy, paste it into your favourite web browser.</li>
+  <li>In the browser the `index` page should display successfuly.</li>
+</ol>
 
 Congratulations ! If you got to this point with no issues, that means you have configured the application correctly.
 
