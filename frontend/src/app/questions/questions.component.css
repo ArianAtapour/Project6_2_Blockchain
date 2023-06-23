@@ -18,3 +18,7 @@ select{
   height: 25px;
   margin: 20px;
 }
+.rounded-select {
+  border-radius: 20px;
+  border: 2px solid #FFD215;
+}

@@ -19,7 +19,7 @@
     <!-- Element 2 -->
     <div *ngIf="showStore">
       <label>Store:</label><br>
-      <input type="text" [(ngModel)]="senderStore"><br>
+      <input type="text" [(ngModel)]="senderStore" class="rounded-select"><br>
       <button (click)="pushTextWithRole('senderStore','financier')">Send for financier's approval</button>
       <button (click)="storeToManufacturer('senderStore', 'manufacturer')">Send to the manufactorer</button>
       <button (click)="pushTextWithRole('senderStore', 'buyer')">Send to the client</button>
@@ -36,7 +36,7 @@
       <label>Financier:</label><br>
       <p>Store Money: {{storeMoney}}</p>
       <p>Manufacturer Money: {{manufactureMoney}}</p>
-      <input type="text" [(ngModel)]="senderFinancier"><br>
+      <input type="text" [(ngModel)]="senderFinancier" class="rounded-select"><br>
       <button (click)="pushTextWithRole('senderFinancier', 'store')">Send to the store</button>
       <button (click)="pushTextWithRole('senderFinancier', 'manufacturer')">Send to the manufacturer</button>
       <button (click)="pushTextWithRole('senderFinancier', 'shipper')">Send to delivery</button>
@@ -50,7 +50,7 @@
     <!-- Element 4 -->
     <div *ngIf="showManufacturer">
       <label>Manufacturer:</label><br>
-      <input [(ngModel)]="senderManufacturer" type="text"><br>
+      <input [(ngModel)]="senderManufacturer" type="text" class="rounded-select"><br>
       <button (click)="pushTextWithRole('senderManufacturer', 'financier')">Send for financier's approval</button>
       <button (click)="manufToShipper('senderManufacturer', 'shipper')">Send to delivery</button>
       <app-answer-questions></app-answer-questions>
@@ -64,7 +64,7 @@
     <!-- Element 5 -->
     <div *ngIf="showShipper">
       <label>Shipper:</label>
-      <input type="text" [(ngModel)]="senderShipper"><br>
+      <input type="text" [(ngModel)]="senderShipper" class="rounded-select"><br>
       <button (click)="pushTextWithRole('senderShipper', 'financier')">Send for financier's approval</button>
       <button (click)="pushTextWithRole('senderShipper', 'store')">Send to store</button>
       <app-answer-questions></app-answer-questions>

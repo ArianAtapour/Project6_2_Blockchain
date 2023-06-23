@@ -133,3 +133,7 @@ li{
   color: white;
   list-style-type: ">";
 }
+.rounded-select {
+  border-radius: 20px;
+  border: 2px solid #FFD215;
+}

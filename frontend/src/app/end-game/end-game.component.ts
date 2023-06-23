@@ -3,7 +3,6 @@ import {AngularFireDatabase} from "@angular/fire/compat/database";
 import {Observable, of, Subscription} from "rxjs";
 import {Router} from "@angular/router";
 import {FireConectionService} from "../fire-conection.service";
-
 @Component({
   selector: 'app-end-game',
   templateUrl: './end-game.component.html',
@@ -47,5 +46,9 @@ export class EndGameComponent implements OnInit{
         this.counterFalse++;
       }
     });
+  }
+
+  restart() {
+    this.router.navigate(['character-name']);
   }
 }

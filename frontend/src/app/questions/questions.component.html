@@ -1,7 +1,7 @@
 
 <h1>Questions</h1>
 <form #questionsForm="ngForm" (ngSubmit)="onQuestionSubmit(questionsForm.value)">
-  <select name="questionSelect" id="questionSelect" ngModel>
+  <select name="questionSelect" id="questionSelect" ngModel class="rounded-select">
     <option value="" disabled selected>Select question</option>
     <option *ngFor="let question of possibleQuestions" [value]="question">{{ question }}</option>
   </select>

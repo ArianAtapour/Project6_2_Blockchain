@@ -7,6 +7,8 @@
       <p>|</p>
       <p>Players: 5</p>
     </div>
+
+    <!--Element 1-->
     <div class="mainContent">
       <div *ngIf="showGM">
         <label>Buyer:</label><br>
@@ -39,7 +41,7 @@
           </li>
         </ng-container>
       </ul>
-      <input type="text" [(ngModel)]="senderStore"><br>
+      <input type="text" [(ngModel)]="senderStore" class="rounded-select"><br>
       <button (click)="pushTextWithRole('senderStore','financier')">Send for financier's approval</button>
       <button (click)="storeToManufacturer('senderStore', 'manufacturer')">Send to the manufacturer</button>
       <button (click)="pushTextWithRole('senderStore', 'buyer')">Send to the buyer</button>
@@ -63,7 +65,7 @@
           </li>
         </ng-container>
       </ul>
-      <input type="text" [(ngModel)]="senderFinancier"><br>
+      <input type="text" [(ngModel)]="senderFinancier" class="rounded-select">><br>
       <button (click)="pushTextWithRole('senderFinancier', 'store')">Send to the store</button>
       <button (click)="pushTextWithRole('senderFinancier', 'manufacturer')">Send to the manufacturer</button>
       <div>
@@ -83,7 +85,7 @@
           </li>
         </ng-container>
       </ul>
-      <input [(ngModel)]="senderManufacturer" type="text"><br>
+      <input [(ngModel)]="senderManufacturer" type="text" class="rounded-select">><br>
       <button (click)="pushTextWithRole('senderManufacturer', 'financier')">Send for financier's approval</button>
       <button (click)="manufToShipper('senderManufacturer', 'shipper')">Send to shipper</button>
       <div>
@@ -104,7 +106,7 @@
           </li>
         </ng-container>
       </ul>
-      <input type="text" [(ngModel)]="senderShipper"><br>
+      <input type="text" [(ngModel)]="senderShipper" class="rounded-select"><br>
       <button (click)="pushTextWithRole('senderShipper', 'financier')">Send for financier's approval</button>
       <button (click)="pushTextWithRole('senderShipper', 'store')">Send to store</button>
       <div>
@@ -113,4 +115,5 @@
       </div>
       <app-answer-questions></app-answer-questions>
     </div>
+    <img ngSrc="./assets/gameRoles.png" alt="Roles Image" height="520" width="330">
   </div>

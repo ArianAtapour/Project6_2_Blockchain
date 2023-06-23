@@ -49,6 +49,12 @@ select {
   border-color: #FF2400;
   margin: 20px;
 }
+
 h2 {
   color:white;
+}
+
+.rounded-select {
+  border-radius: 20px;
+  border: 2px solid #FFD215;
 }

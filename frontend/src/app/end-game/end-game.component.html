@@ -1,8 +1,11 @@
 <div class="containerEG">
   <div class="content">
-    <p class="main">End of the game</p>
-    <p class="mainSecondary">Results</p>
-    <p class="secondaryApp">Orders accepted: {{counterTrue}}</p>
-    <p class="secondaryDec">Orders failed: {{counterFalse}}</p>
+    <div class="box">
+    <p class="main">Game has ended</p>
+      <p class="mainSecondary">Results</p>
+      <p class="secondaryApp">Orders accepted: {{counterTrue}}</p>
+      <p class="secondaryDec">Orders failed: {{counterFalse}}</p>
+      <button class="restart-button" (click)="restart()">Restart</button>
+    </div>
+    </div>
   </div>
-</div>

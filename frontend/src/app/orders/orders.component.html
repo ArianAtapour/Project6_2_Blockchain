@@ -1,20 +1,20 @@
 <form #orderForm="ngForm" (ngSubmit)="onSubmit(orderForm.value)">
   <label for="manuf">Manufacturer:</label>
-  <select name="manuf" id="manuf" ngModel>
+  <select name="manuf" id="manuf" ngModel class="rounded-select">
     <option value="" disabled selected>Select Manufacturer</option>
     <option value="coolPc">CoolPc</option>
     <option value="richSystems">RichSystems</option>
     <option value="studentUnit">StudentUnit</option>
   </select>
   <label for="cpu">CPU:</label>
-  <select name="cpu" id="cpu" ngModel>
+  <select name="cpu" id="cpu" ngModel class="rounded-select">
     <option value="" disabled selected>Select CPU</option>
     <option value="ic5">IC5</option>
     <option value="extreme11">Extreme11</option>
     <option value="monster13">Monster13</option>
   </select>
   <label for="gpu">GPU</label>
-  <select name="gpu" id="gpu" ngModel>
+  <select name="gpu" id="gpu" ngModel class="rounded-select">
     <option value="" disabled selected>Select GPU</option>
     <option value="vc48">VC48</option>
     <option value="vx65">VideoExtreme65</option>
@@ -24,12 +24,12 @@
   <button class="rounded-button" type="submit">Submit</button>
 </form>
 
-<table class="table">
+<div class="table">
   <thead>
     <tr>
-      <td>Manufacturer</td>
-      <td>CPU</td>
-      <td>GPU</td>
+      <th>Manufacturer</th>
+      <th>CPU</th>
+      <th>GPU</th>
     </tr>
   </thead>
   <tbody>
@@ -39,11 +39,12 @@
       <td>{{ order.gpu }}</td>
     </tr>
   </tbody>
-</table>
+</div>
+
 
 <h2>Approve or disapprove order</h2>
 <table class="tableAccept">
-  <select name="approvalSelect" id="approvalSelect" [(ngModel)]="selectedOrder">
+  <select name="approvalSelect" id="approvalSelect" [(ngModel)]="selectedOrder" class="rounded-select">
     <option *ngFor="let order of orderData" [ngValue]="order">{{order.orderC}} {{order.manuf}} {{order.cpu}}
       {{order.gpu}}</option>
   </select>
