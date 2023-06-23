@@ -44,7 +44,7 @@ export class AnswerQuestionsComponent {
           let questionNum = 0;
           this.qData.forEach((question) => {
             //make sure only the latest question is saved and ran and also if the question is not answered already
-            if(questionNum == this.questionNumber && !question.solved){
+            if(questionNum == this.questionNumber && !question.solved && question.isCorrect == ""){
               this.questionString = question.question;
               this.questionAnswer = question.answer;
               this.answer1 = question.answer1;
@@ -53,6 +53,8 @@ export class AnswerQuestionsComponent {
               this.answer4 = question.answer4;
               this.isPopupOpen = true;
               return;
+            } else if (questionNum == this.questionNumber && !question.solved && question.isCorrect == "incorrect") {
+              this.isPopupOpen = false;
             } else {
               questionNum++;
             }

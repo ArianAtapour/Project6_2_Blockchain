@@ -163,10 +163,12 @@ export class BlockchainGameComponent implements OnInit, AfterViewInit, OnDestroy
           let questionNum = 0;
           this.qData.forEach((question) => {
             //make sure only the latest question is saved and ran and also if the question is not answered already
-            if(questionNum == this.questionNumber && question.solved){
+            if(questionNum == this.questionNumber && question.solved && question.isCorrect == "incorrect"){
               this.timerSubtracted += 10;
               questionNum++;
               return;
+            } else if (questionNum == this.questionNumber && question.solved) {
+              questionNum++;
             }
           })
         }
